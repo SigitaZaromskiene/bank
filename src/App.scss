@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: white;
+  box-sizing: border-box;
 }
 
 .App-logo {
@@ -14,14 +16,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 150px;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px;
+  margin-bottom: 100px;
 }
 
 .App-link {
@@ -38,8 +40,8 @@
 }
 
 .form {
-  background-color: rgb(38, 82, 71);
-  height: 200px;
+  background-color: #f4f6f9;
+  height: 300px;
   width: 600px;
   border-radius: 15px;
   border: 1px solid black;
@@ -57,28 +59,51 @@
     padding: 10px;
   }
 
-  button {
+  .button {
     padding: 10px 60px;
-    background-color: rgb(71, 159, 140);
+    background-color: #5f4ae5;
     border: 1px solid black;
     border-radius: 15px;
+    font-size: 24px;
 
-    &.hover {
+    &:hover {
       cursor: pointer;
     }
   }
 }
 
 .bill-container {
-  background-color: rgb(38, 82, 71);
-  height: 100px;
-  width: 80%;
+  background-color: #f4f6f9;
+  padding-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 70%;
   border-radius: 15px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 32px;
   margin-bottom: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f6f9;
+  border: 1px solid black;
+  height: 80px;
+  width: 300px;
+  color: black;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

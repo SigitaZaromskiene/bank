@@ -1,11 +1,26 @@
+import { v4 as uuidv4 } from "uuid";
+
 function AddNewBillForm(props) {
   const showNewBillHandler = () => {
-    props.setNewBill((b) => [...b, props.addNewBill]);
-    props.setAddNewBill("");
+    props.setNewBill((b) => [
+      ...b,
+      {
+        name: props.addNewName,
+        surname: props.addNewSurname,
+        id: uuidv4(),
+        show: true,
+      },
+    ]);
+    console.log(props.newBill);
+    // props.setAddNewName("");
   };
 
   const setNameHandler = (e) => {
-    props.setAddNewBill(e.target.value);
+    props.setAddNewName(e.target.value);
+  };
+
+  const setSurnameHandler = (e) => {
+    props.setAddNewSurname(e.target.value);
   };
   return (
     <div>
@@ -13,10 +28,19 @@ function AddNewBillForm(props) {
         <label>Enter your name and surname to open a new bill</label>
         <input
           type="text"
-          value={props.addNewBill}
+          placeholder="Name"
+          value={props.addNewName}
           onChange={setNameHandler}
         ></input>
-        <button onClick={showNewBillHandler}>Submit</button>
+        <input
+          type="text"
+          placeholder="Surname"
+          value={props.addNewSurname}
+          onChange={setSurnameHandler}
+        ></input>
+        <button className={props.btn} onClick={showNewBillHandler}>
+          Submit
+        </button>
       </div>
     </div>
   );
