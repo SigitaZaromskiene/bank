@@ -1,22 +1,26 @@
-import { useState } from "react";
 import DeleteBtn from "./DeleteBtn";
+import { useState } from "react";
 
 function Bill(props) {
   const [amount, setAmount] = useState(0);
-  const [submitAmount, setSubmitAmount] = useState("");
-
+  const [submitAmount, setSubmitAmount] = useState([]);
   console.log(amount);
 
   const submitAmountHandler = (e) => {
     setSubmitAmount(e.target.value > 0 ? e.target.value : 0);
   };
   const addMoneyHandler = () => {
-    setAmount((a) => Number(a) + Number(submitAmount));
+    setAmount((a) => [...a] + Number(submitAmount));
+
     setSubmitAmount("");
   };
 
   const withdrawMoneyHandler = () => {
-    setAmount((a) => Number(a) - Number(submitAmount));
+    setAmount((a) =>
+      Number(a) > Number(submitAmount) && Number(a) - Number(submitAmount)
+        ? Number(a) - Number(submitAmount)
+        : Number(a)
+    );
     setSubmitAmount("");
   };
 
@@ -33,7 +37,7 @@ function Bill(props) {
         <p>{props.name}</p>
         <p>{props.surName}</p>
 
-        <p>Total: {amount > 0 ? amount.toFixed(2, 0) : 0} &euro;</p>
+        <p>Total: {amount} &euro;</p>
       </div>
       <div
         style={{
@@ -64,7 +68,7 @@ function Bill(props) {
         <DeleteBtn
           setNewBill={props.setNewBill}
           id={props.id}
-          amount={amount}
+          amount={props.amount}
           classes={props.classes}
         />
       </div>

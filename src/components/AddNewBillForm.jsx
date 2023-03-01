@@ -31,12 +31,14 @@ function AddNewBillForm(props) {
           placeholder="Name"
           value={props.addNewName}
           onChange={setNameHandler}
+          required
         ></input>
         <input
           type="text"
           placeholder="Surname"
           value={props.addNewSurname}
           onChange={setSurnameHandler}
+          required
         ></input>
         <button className={props.btn} onClick={showNewBillHandler}>
           Submit

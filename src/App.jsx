@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
 import SortBtn from "./components/SortBtn";
+import TotalAmount from "./components/TotalAmount";
 
 function App() {
   const [newBill, setNewBill] = useState([]);
@@ -20,6 +21,7 @@ function App() {
           newBill={newBill}
           headerContainer="header-container"
         ></ClientsNumber>
+        <TotalAmount></TotalAmount>
         <CurrentBalance className="header"></CurrentBalance>
       </header>
       <main>
