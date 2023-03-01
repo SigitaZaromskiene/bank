@@ -58,17 +58,17 @@
     width: 80%;
     padding: 10px;
   }
+}
 
-  .button {
-    padding: 10px 60px;
-    background-color: #5f4ae5;
-    border: 1px solid black;
-    border-radius: 15px;
-    font-size: 24px;
+.button {
+  padding: 10px 60px;
+  background-color: #5f4ae5;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-size: 24px;
 
-    &:hover {
-      cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
   }
 }
 

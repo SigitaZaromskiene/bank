@@ -5,15 +5,19 @@ function Bill(props) {
   const [amount, setAmount] = useState(0);
   const [submitAmount, setSubmitAmount] = useState("");
 
+  console.log(amount);
+
   const submitAmountHandler = (e) => {
     setSubmitAmount(e.target.value > 0 ? e.target.value : 0);
   };
   const addMoneyHandler = () => {
     setAmount((a) => Number(a) + Number(submitAmount));
+    setSubmitAmount("");
   };
 
   const withdrawMoneyHandler = () => {
     setAmount((a) => Number(a) - Number(submitAmount));
+    setSubmitAmount("");
   };
 
   return (
@@ -26,8 +30,10 @@ function Bill(props) {
           alignItems: "center",
         }}
       >
-        <p>{props.addNewSurname}</p>
-        <p>Total: {amount > 0 ? amount.toFixed(2, 0) : 0}</p>
+        <p>{props.name}</p>
+        <p>{props.surName}</p>
+
+        <p>Total: {amount > 0 ? amount.toFixed(2, 0) : 0} &euro;</p>
       </div>
       <div
         style={{
@@ -37,11 +43,12 @@ function Bill(props) {
         }}
       >
         <div>
-          <button className={props.btn} onClick={addMoneyHandler}>
+          <button className={props.classes} onClick={addMoneyHandler}>
             Add money
           </button>
           <input
             type="number"
+            value={submitAmount}
             style={{
               height: "50px",
               width: "250px",
@@ -50,7 +57,7 @@ function Bill(props) {
             onChange={submitAmountHandler}
           ></input>
 
-          <button className={props.btn} onClick={withdrawMoneyHandler}>
+          <button className={props.classes} onClick={withdrawMoneyHandler}>
             Withdraw money
           </button>
         </div>
@@ -58,6 +65,7 @@ function Bill(props) {
           setNewBill={props.setNewBill}
           id={props.id}
           amount={amount}
+          classes={props.classes}
         />
       </div>
     </div>

@@ -8,11 +8,11 @@ function AddNewBillForm(props) {
         name: props.addNewName,
         surname: props.addNewSurname,
         id: uuidv4(),
-        show: true,
       },
     ]);
-    console.log(props.newBill);
-    // props.setAddNewName("");
+
+    props.setAddNewName("");
+    props.setAddNewSurname("");
   };
 
   const setNameHandler = (e) => {

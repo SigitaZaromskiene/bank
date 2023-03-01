@@ -5,6 +5,7 @@ import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
+import SortBtn from "./components/SortBtn";
 
 function App() {
   const [newBill, setNewBill] = useState([]);
@@ -39,15 +40,13 @@ function App() {
             id={b.id}
             text={b}
             billContainer="bill-container"
-            btn="button"
-            addNewName={addNewName}
-            setAddNewName={setAddNewName}
-            addNewSurname={addNewSurname}
-            setAddNewSurname={setAddNewSurname}
-            newBill={newBill}
+            classes="button"
+            name={b.name}
+            surName={b.surname}
             setNewBill={setNewBill}
           ></Bill>
         ))}
+        <SortBtn classes="button" setNewBill={setNewBill}></SortBtn>
       </main>
     </div>
   );
