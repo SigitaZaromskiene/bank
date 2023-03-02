@@ -1,16 +1,27 @@
 import "./App.scss";
 import AddNewBillForm from "./components/AddNewBillForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
 import SortBtn from "./components/SortBtn";
+import { create } from "./components/localStorage";
+
+const KEY = "bill";
 
 function App() {
   const [newBill, setNewBill] = useState([]);
   const [addNewName, setAddNewName] = useState([]);
   const [addNewSurname, setAddNewSurname] = useState([]);
+  const [createData, setCreateData] = useState(null);
+
+  useEffect(() => {
+    if (null === createData) {
+      return;
+    }
+    create(KEY, createData);
+  }, [createData]);
 
   return (
     <div className="App">
@@ -45,6 +56,7 @@ function App() {
             total={b.total}
             surName={b.surname}
             setNewBill={setNewBill}
+            setCreateData={setCreateData}
           ></Bill>
         ))}
         <SortBtn classes="button" setNewBill={setNewBill}></SortBtn>

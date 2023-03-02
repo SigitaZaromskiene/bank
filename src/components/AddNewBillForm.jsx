@@ -1,15 +1,27 @@
 import { v4 as uuidv4 } from "uuid";
 
 function AddNewBillForm(props) {
-  const showNewBillHandler = () => {
-    props.setNewBill((b) => [
-      ...b,
-      {
-        name: props.addNewName,
-        surname: props.addNewSurname,
-        id: uuidv4(),
-      },
-    ]);
+  const create = (_) => {
+    props.setCreateData(
+      props.setNewBill((b) => [
+        ...b,
+        {
+          name: props.addNewName,
+          surname: props.addNewSurname,
+          id: uuidv4(),
+        },
+      ])
+    );
+
+    // const showNewBillHandler = () => {
+    //   props.setNewBill((b) => [
+    //     ...b,
+    //     {
+    //       name: props.addNewName,
+    //       surname: props.addNewSurname,
+    //       id: uuidv4(),
+    //     },
+    //   ]);
 
     props.setAddNewName("");
     props.setAddNewSurname("");
@@ -40,7 +52,11 @@ function AddNewBillForm(props) {
           onChange={setSurnameHandler}
           required
         ></input>
-        <button className={props.btn} onClick={showNewBillHandler}>
+        <button
+          className={props.btn}
+          // onClick={showNewBillHandler}
+          onClick={create}
+        >
           Submit
         </button>
       </div>

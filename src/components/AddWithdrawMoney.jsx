@@ -2,6 +2,14 @@ function AddWithdrawMoney(props) {
   const submitAmountHandler = (e) => {
     props.setSubmitAmount(e.target.value > 0 ? e.target.value : 0);
   };
+
+  // const addMoneyHandler = () => {
+  //   props.setAmount((b) => [
+  //     ...b,
+  //     {
+  //       total: Number(a) + Number(props.submitAmount)
+  //     },
+  //   ]);
   const addMoneyHandler = () => {
     props.setAmount((a) => Number(a) + Number(props.submitAmount));
 
