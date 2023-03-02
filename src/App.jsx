@@ -21,7 +21,7 @@ function App() {
           newBill={newBill}
           headerContainer="header-container"
         ></ClientsNumber>
-        <TotalAmount></TotalAmount>
+        {/* <TotalAmount></TotalAmount> */}
         <CurrentBalance className="header"></CurrentBalance>
       </header>
       <main>
@@ -44,6 +44,7 @@ function App() {
             billContainer="bill-container"
             classes="button"
             name={b.name}
+            total={b.total}
             surName={b.surname}
             setNewBill={setNewBill}
           ></Bill>
