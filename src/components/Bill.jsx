@@ -3,10 +3,10 @@ import { useState } from "react";
 import AddWithdrawMoney from "./AddWithdrawMoney";
 
 function Bill(props) {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState([]);
   const [submitAmount, setSubmitAmount] = useState([]);
-  console.log(amount);
 
+  console.log(amount);
   return (
     <div className={props.billContainer}>
       <div
