@@ -29,12 +29,12 @@ function AddWithdrawMoney(props) {
         style={{
           width: "100%",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
         }}
       >
         <div>
           <button className={props.classes} onClick={addMoneyHandler}>
-            Add money
+            Add &euro;
           </button>
           <input
             type="number"
@@ -43,12 +43,14 @@ function AddWithdrawMoney(props) {
               height: "50px",
               width: "250px",
               fontSize: "30px",
+              marginLeft: "10px",
+              marginRight: "10px",
             }}
             onChange={submitAmountHandler}
           ></input>
 
           <button className={props.classes} onClick={withdrawMoneyHandler}>
-            Withdraw money
+            Withdraw &euro;
           </button>
           <p>Total: {props.amount} &euro;</p>
         </div>

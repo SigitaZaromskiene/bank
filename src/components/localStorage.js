@@ -22,6 +22,7 @@ export const create = (key, data) => {
 
 export const destroy = (key, id) => {
   const allData = read(key);
-  const deletedData = allData.filter((d) => id !== d.id);
+  const deletedData = allData.filter((b) => b.id !== id);
+
   write(key, deletedData);
 };

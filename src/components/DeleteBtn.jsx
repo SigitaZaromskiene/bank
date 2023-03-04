@@ -15,6 +15,9 @@ function DeleteBtn(props) {
     props.setDeleteForm({
       id: uuidv4(),
     });
+    props.setNewBill((b) =>
+      props.amount === 0 ? b.filter((b) => b.id !== props.id) : b
+    );
   };
   return (
     <button className={props.classes} onClick={destroy}>

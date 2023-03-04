@@ -5,6 +5,7 @@ function AddNewBillForm(props) {
     props.setCreateData({
       name: props.addNewName,
       surname: props.addNewSurname,
+      amount: props.amount,
     });
 
     props.setNewBill((b) => [

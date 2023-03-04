@@ -23,7 +23,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 }
 
 .App-link {
@@ -41,8 +41,8 @@
 
 .form {
   background-color: #f4f6f9;
-  height: 300px;
-  width: 600px;
+  height: 400px;
+  width: 700px;
   border-radius: 15px;
   border: 1px solid black;
   display: flex;
@@ -51,12 +51,19 @@
   align-items: center;
   font-size: 24px;
   margin-bottom: 100px;
+  label {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
 
   input {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 80%;
     padding: 10px;
+    border: 1px solid black;
+    font-size: 24px;
   }
 }
 
@@ -66,7 +73,22 @@
   border: 1px solid black;
   border-radius: 15px;
   font-size: 24px;
+  margin-top: 20px;
+  width: 270px;
+  &:hover {
+    cursor: pointer;
+  }
+}
 
+.button-money {
+  padding: 10px 60px;
+  background-color: #5f4ae5;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-size: 24px;
+  margin-top: 20px;
+  width: 270px;
+  height: 100px;
   &:hover {
     cursor: pointer;
   }
@@ -95,7 +117,7 @@
   background-color: #f4f6f9;
   border: 1px solid black;
   height: 80px;
-  width: 300px;
+  width: 400px;
   color: black;
   border-radius: 15px;
   padding: 15px;

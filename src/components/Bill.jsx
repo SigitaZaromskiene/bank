@@ -12,14 +12,18 @@ function Bill(props) {
         style={{
           display: "flex",
           width: "100%",
-          justifyContent: "space-between",
+          gap: "40px",
           alignItems: "center",
+          fontWeight: "500px",
+          justifyContent: "center",
         }}
       >
         <p>{props.name}</p>
         <p>{props.surName}</p>
       </div>
       <AddWithdrawMoney
+        classes={props.classes}
+        classesMoney={props.classesMoney}
         amount={amount}
         setAmount={setAmount}
         submitAmount={submitAmount}
@@ -27,6 +31,7 @@ function Bill(props) {
       ></AddWithdrawMoney>
       <DeleteBtn
         setNewBill={props.setNewBill}
+        newBill={props.newBill}
         id={props.id}
         amount={amount}
         classes={props.classes}

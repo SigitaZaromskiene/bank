@@ -19,6 +19,8 @@ function App() {
   const [messages, setMessages] = useState(null);
   const [deleteForm, setDeleteForm] = useState(null);
 
+  console.log(deleteForm);
+
   useEffect(() => {
     if (null === createData) {
       return;
@@ -80,6 +82,7 @@ function App() {
             setCreateData={setCreateData}
             setDeleteForm={setDeleteForm}
             deleteForm={deleteForm}
+            newBill={newBill}
           ></Bill>
         ))}
         <SortBtn classes="button" setNewBill={setNewBill}></SortBtn>
