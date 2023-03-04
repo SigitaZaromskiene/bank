@@ -8,6 +8,7 @@ import CurrentBalance from "./components/CurrentBalance";
 import SortBtn from "./components/SortBtn";
 import { create, destroy } from "./components/localStorage";
 import Messages from "./components/Messages";
+import FilterBtn from "./components/FilterBtn";
 
 const KEY = "bill";
 
@@ -19,7 +20,7 @@ function App() {
   const [messages, setMessages] = useState(null);
   const [deleteForm, setDeleteForm] = useState(null);
 
-  console.log(deleteForm);
+  console.log(createData);
 
   useEffect(() => {
     if (null === createData) {
@@ -86,6 +87,7 @@ function App() {
           ></Bill>
         ))}
         <SortBtn classes="button" setNewBill={setNewBill}></SortBtn>
+        <FilterBtn classes="button" setNewBill={setNewBill}></FilterBtn>
       </main>
       {messages && <Messages messages={messages} />}
     </div>
