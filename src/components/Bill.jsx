@@ -6,7 +6,6 @@ function Bill(props) {
   const [amount, setAmount] = useState(0);
   const [submitAmount, setSubmitAmount] = useState([]);
 
-  console.log(amount);
   return (
     <div className={props.billContainer}>
       <div
@@ -31,6 +30,9 @@ function Bill(props) {
         id={props.id}
         amount={amount}
         classes={props.classes}
+        setAddNewName={props.setAddNewName}
+        setAddNewSurname={props.setAddNewSurname}
+        setDeleteForm={props.setDeleteForm}
       />
     </div>
   );

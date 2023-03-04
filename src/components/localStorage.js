@@ -14,7 +14,14 @@ export const read = (key) => {
 
 export const create = (key, data) => {
   const allData = read(key);
+
   data.id = uuidv4();
   allData.push(data);
   write(key, allData);
+};
+
+export const destroy = (key, id) => {
+  const allData = read(key);
+  const deletedData = allData.filter((d) => id !== d.id);
+  write(key, deletedData);
 };

@@ -2,26 +2,19 @@ import { v4 as uuidv4 } from "uuid";
 
 function AddNewBillForm(props) {
   const create = (_) => {
-    props.setCreateData(
-      props.setNewBill((b) => [
-        ...b,
-        {
-          name: props.addNewName,
-          surname: props.addNewSurname,
-          id: uuidv4(),
-        },
-      ])
-    );
+    props.setCreateData({
+      name: props.addNewName,
+      surname: props.addNewSurname,
+    });
 
-    // const showNewBillHandler = () => {
-    //   props.setNewBill((b) => [
-    //     ...b,
-    //     {
-    //       name: props.addNewName,
-    //       surname: props.addNewSurname,
-    //       id: uuidv4(),
-    //     },
-    //   ]);
+    props.setNewBill((b) => [
+      ...b,
+      {
+        name: props.addNewName,
+        surname: props.addNewSurname,
+        id: uuidv4(),
+      },
+    ]);
 
     props.setAddNewName("");
     props.setAddNewSurname("");

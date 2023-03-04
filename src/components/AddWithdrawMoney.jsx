@@ -12,7 +12,6 @@ function AddWithdrawMoney(props) {
   //   ]);
   const addMoneyHandler = () => {
     props.setAmount((a) => Number(a) + Number(props.submitAmount));
-
     props.setSubmitAmount("");
   };
 
