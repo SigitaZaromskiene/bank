@@ -11,6 +11,7 @@ function Bill(props) {
             fontSize: "24px",
             gap: "8px",
             justifyContent: "center",
+            width: "200px",
           }}
         >
           <p>{props.text.name}</p>

@@ -5,13 +5,16 @@ import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
-import SortBtn from "./components/SortBtn";
 import FilterBtn from "./components/FilterBtn";
 
 function App() {
   const [clientList, setClientList] = useState(
     JSON.parse(localStorage.getItem("newBills")) || []
   );
+
+  const sortArrOfObjByProp = (arr, propName) => {
+    return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
+  };
 
   useEffect(
     () => localStorage.setItem("newBills", JSON.stringify(clientList)),
@@ -39,7 +42,7 @@ function App() {
         flex="flex"
         modal="modal"
       ></AddNewBillForm>
-      {clientList.map((b) => (
+      {sortArrOfObjByProp(clientList, "surname").map((b) => (
         <Bill
           key={uuidv4()}
           text={b}
@@ -62,7 +65,6 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <SortBtn classes="button" setClientList={setClientList}></SortBtn>
         <FilterBtn classes="button" setClientList={setClientList}></FilterBtn>
       </div>
     </div>
