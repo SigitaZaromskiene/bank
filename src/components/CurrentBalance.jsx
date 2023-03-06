@@ -1,5 +1,4 @@
 function CurrentBalance(props) {
-  console.log(props);
   const getTotalAmount = () => {
     return props.clientList.reduce((acc, curr) => acc + Number(curr.amount), 0);
   };

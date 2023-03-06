@@ -29,38 +29,36 @@ function AddWithdrawMoney(props) {
       return bill;
     });
 
-    alert(`${newAmount} € has been added`);
     props.setClientList(updatedBill);
   };
 
   const withdrawMoneyHandler = () => {
     if (!validateAmount()) return;
 
+    let isNewAmountValid = true;
+
     const updatedBill = props.clientList.map((bill) => {
       if (bill.id !== props.bill.id) return bill;
 
       const newTotalAmount = Number(bill.amount) - Number(newAmount);
-      const isNewAmountValid = newTotalAmount >= 0;
-
-      if (isNewAmountValid) {
-        bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
-      }
-
-      if (!isNewAmountValid) {
-        setModal({
-          class: "visible",
-          msg: "hhh",
-          color: "red",
-        });
-        setTimeout(() => {
-          setModal({ class: "hidden", msg: "", color: "" });
-        }, 2000);
-      }
-
+      isNewAmountValid = newTotalAmount >= 0;
+      bill.amount = isNewAmountValid ? newTotalAmount : bill.amount;
       return bill;
     });
 
-    alert(`${newAmount} € has been withdrawn`);
+    if (!isNewAmountValid) {
+      setModal({
+        class: "visible",
+        msg: "Not enough funds",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
+
+      return;
+    }
+
     props.setClientList(updatedBill);
   };
   return (

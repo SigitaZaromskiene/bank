@@ -2,8 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 function AddNewBillForm(props) {
-  const [addNewName, setAddNewName] = useState([]);
-  const [addNewSurname, setAddNewSurname] = useState([]);
+  const [addNewName, setAddNewName] = useState("");
+  const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
   const create = (_) => {
@@ -18,10 +18,13 @@ function AddNewBillForm(props) {
       }, 2000);
       return;
     }
-    if (typeof addNewName !== "string" || typeof addNewSurname !== "string") {
+
+    const regex = /^[a-zA-Z\u0080-\uFFFF]+$/;
+
+    if (!regex.test(addNewName) || !regex.test(addNewSurname)) {
       setModal({
         class: "visible",
-        msg: "Cannot use numbers",
+        msg: "Cannot use numbers and special chars",
         color: "red",
       });
       setTimeout(() => {
