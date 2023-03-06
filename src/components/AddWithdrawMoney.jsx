@@ -1,7 +1,17 @@
+import { useState } from "react";
+
 function AddWithdrawMoney(props) {
+  const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const validateAmount = () => {
     if (!props.amount) {
-      alert("sos");
+      setModal({
+        class: "visible",
+        msg: "Please enter amount",
+        color: "hsl(350, 75%, 60%)",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
     }
     return !!props.amount;
   };
@@ -33,6 +43,17 @@ function AddWithdrawMoney(props) {
 
       if (isNewAmountValid) {
         bill.amount = newAmount >= 0 ? newAmount : bill.amount;
+      }
+
+      if (!isNewAmountValid) {
+        setModal({
+          class: "visible",
+          msg: "hhh",
+          color: "hsl(350, 75%, 60%)",
+        });
+        setTimeout(() => {
+          setModal({ class: "hidden", msg: "", color: "" });
+        }, 2000);
       }
 
       return bill;
@@ -69,6 +90,9 @@ function AddWithdrawMoney(props) {
         Withdraw &euro;
       </button>
       <p className={props.totalClass}>Total: {props.bill.amount} &euro;</p>
+      <div className={`${modal.class} modal`}>
+        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
+      </div>
     </div>
   );
 }

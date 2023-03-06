@@ -43,6 +43,7 @@ function Bill(props) {
           setAddNewName={props.setAddNewName}
           setAddNewSurname={props.setAddNewSurname}
           setDeleteForm={props.setDeleteForm}
+          modal="modal"
         />
       </div>
     </div>
