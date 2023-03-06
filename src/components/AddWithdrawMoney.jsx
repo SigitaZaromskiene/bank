@@ -2,54 +2,55 @@ import { useState } from "react";
 
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
+  const [newAmount, setNewAmount] = useState("");
   const validateAmount = () => {
-    if (!props.amount) {
+    if (!newAmount) {
       setModal({
         class: "visible",
         msg: "Please enter amount",
-        color: "hsl(350, 75%, 60%)",
+        color: "red",
       });
       setTimeout(() => {
         setModal({ class: "hidden", msg: "", color: "" });
       }, 2000);
     }
-    return !!props.amount;
+    return !!newAmount;
   };
 
   const addMoneyHandler = () => {
     if (!validateAmount()) return;
 
-    const updatedBill = props.newBill.map((bill) => {
-      if (bill.id !== props.id) return bill;
+    const updatedBill = props.clientList.map((bill) => {
+      if (bill.id !== props.bill.id) return bill;
 
-      const newAmount = Number(bill.amount) + Number(props.amount);
-      bill.amount = newAmount >= 0 ? newAmount : bill.amount;
+      const newTotalAmount = Number(bill.amount) + Number(newAmount);
+      bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
 
       return bill;
     });
 
-    alert(`${props.amount} € has been added`);
-    props.setNewBill(updatedBill);
+    alert(`${newAmount} € has been added`);
+    props.setClientList(updatedBill);
   };
 
   const withdrawMoneyHandler = () => {
     if (!validateAmount()) return;
 
-    const updatedBill = props.newBill.map((bill) => {
-      if (bill.id !== props.id) return bill;
+    const updatedBill = props.clientList.map((bill) => {
+      if (bill.id !== props.bill.id) return bill;
 
-      const newAmount = Number(bill.amount) - Number(props.amount);
-      const isNewAmountValid = newAmount >= 0;
+      const newTotalAmount = Number(bill.amount) - Number(newAmount);
+      const isNewAmountValid = newTotalAmount >= 0;
 
       if (isNewAmountValid) {
-        bill.amount = newAmount >= 0 ? newAmount : bill.amount;
+        bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
       }
 
       if (!isNewAmountValid) {
         setModal({
           class: "visible",
           msg: "hhh",
-          color: "hsl(350, 75%, 60%)",
+          color: "red",
         });
         setTimeout(() => {
           setModal({ class: "hidden", msg: "", color: "" });
@@ -59,8 +60,8 @@ function AddWithdrawMoney(props) {
       return bill;
     });
 
-    alert(`${props.amount} € has been withdrawn`);
-    props.setNewBill(updatedBill);
+    alert(`${newAmount} € has been withdrawn`);
+    props.setClientList(updatedBill);
   };
   return (
     <div
@@ -76,14 +77,15 @@ function AddWithdrawMoney(props) {
       </button>
       <input
         type="number"
-        value={props.amount}
+        min="0"
+        value={newAmount}
         style={{
           fontSize: "30px",
           marginLeft: "2px",
           marginRight: "2px",
           width: "100px",
         }}
-        onChange={(e) => props.setAmount(e.target.value)}
+        onChange={(e) => setNewAmount(e.target.value)}
       ></input>
 
       <button className={props.add} onClick={withdrawMoneyHandler}>

@@ -1,6 +1,6 @@
 function SortBtn(props) {
   const sortHandler = () => {
-    props.setNewBill((a) =>
+    props.setClientList((a) =>
       [...a].sort((a, b) => a.surname.localeCompare(b.surname))
     );
   };

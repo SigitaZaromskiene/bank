@@ -9,39 +9,45 @@ import SortBtn from "./components/SortBtn";
 import FilterBtn from "./components/FilterBtn";
 
 function App() {
-  const [newBill, setNewBill] = useState(
+  const [clientList, setClientList] = useState(
     JSON.parse(localStorage.getItem("newBills")) || []
   );
 
   useEffect(
-    () => localStorage.setItem("newBills", JSON.stringify(newBill)),
-    [newBill]
+    () => localStorage.setItem("newBills", JSON.stringify(clientList)),
+    [clientList]
   );
 
   return (
     <div className="App">
       <header className="App-header">
-        <ClientsNumber className="header" newBill={newBill}></ClientsNumber>
-        <CurrentBalance className="header" newBill={newBill}></CurrentBalance>
+        <ClientsNumber
+          className="header"
+          clientList={clientList}
+        ></ClientsNumber>
+        <CurrentBalance
+          className="header"
+          clientList={clientList}
+        ></CurrentBalance>
       </header>
       <AddNewBillForm
-        newBill={newBill}
-        setNewBill={setNewBill}
+        clientList={clientList}
+        setClientList={setClientList}
         form="form"
         btn="button"
         billContainer="bill-container"
         flex="flex"
+        modal="modal"
       ></AddNewBillForm>
-      {newBill.map((b) => (
+      {clientList.map((b) => (
         <Bill
           key={uuidv4()}
-          id={b.id}
           text={b}
           billContainer="bill-container"
           classes="button"
           total={b.total}
-          setNewBill={setNewBill}
-          newBill={newBill}
+          setClientList={setClientList}
+          clientList={clientList}
           bill="bill"
           add="button-add"
           totalClass="total"
@@ -56,8 +62,8 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <SortBtn classes="button" setNewBill={setNewBill}></SortBtn>
-        <FilterBtn classes="button" setNewBill={setNewBill}></FilterBtn>
+        <SortBtn classes="button" setClientList={setClientList}></SortBtn>
+        <FilterBtn classes="button" setClientList={setClientList}></FilterBtn>
       </div>
     </div>
   );

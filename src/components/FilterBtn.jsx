@@ -1,6 +1,6 @@
 function FilterBtn(props) {
   const filterHandler = () => {
-    props.setNewBill((a) =>
+    props.setClientList((a) =>
       props.amount === 0 ? a.filter((b) => b.id !== props.id) : a
     );
   };

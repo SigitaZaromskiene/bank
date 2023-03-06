@@ -4,17 +4,32 @@ import { useState } from "react";
 function AddNewBillForm(props) {
   const [addNewName, setAddNewName] = useState([]);
   const [addNewSurname, setAddNewSurname] = useState([]);
+  const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
   const create = (_) => {
     if (!addNewName || !addNewSurname) {
-      alert("Name and Surname cannot be empty");
+      setModal({
+        class: "visible",
+        msg: "Please enter name and surname",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
       return;
     }
     if (typeof addNewName !== "string" || typeof addNewSurname !== "string") {
-      alert("Name and Surname cannot contain numbers");
+      setModal({
+        class: "visible",
+        msg: "Cannot use numbers",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
       return;
     } else {
-      props.setNewBill((b) => [
+      props.setClientList((b) => [
         ...b,
         {
           name: addNewName,
@@ -56,6 +71,9 @@ function AddNewBillForm(props) {
         <button className={props.btn} onClick={create}>
           Submit
         </button>
+      </div>
+      <div className={`${modal.class} modal`}>
+        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
       </div>
     </div>
   );

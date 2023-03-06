@@ -202,3 +202,13 @@ main {
   z-index: 10;
   background-color: hsla(0, 0%, 0%, 80%);
 }
+
+.modal > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px;
+  background-color: #11a8ab;
+  border-radius: 0.5em;
+}
