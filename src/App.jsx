@@ -1,6 +1,6 @@
 import "./App.scss";
 import AddNewBillForm from "./components/AddNewBillForm";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
@@ -15,6 +15,28 @@ function App() {
   const sortArrOfObjByProp = (arr, propName) => {
     return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
   };
+
+  const [filteredClients, setFilteredClients] = useState([]);
+
+  const filterClient = useCallback(
+    (filterType) => {
+      let filteredList = clientList;
+
+      if (filterType === "with") {
+        filteredList = clientList.filter(({ amount }) => amount);
+      }
+      if (filterType === "without") {
+        filteredList = clientList.filter(({ amount }) => !amount);
+      }
+
+      setFilteredClients(filteredList);
+    },
+    [clientList]
+  );
+
+  useEffect(() => {
+    filterClient();
+  }, [filterClient]);
 
   useEffect(
     () => localStorage.setItem("newBills", JSON.stringify(clientList)),
@@ -42,7 +64,7 @@ function App() {
         flex="flex"
         modal="modal"
       ></AddNewBillForm>
-      {sortArrOfObjByProp(clientList, "surname").map((b) => (
+      {sortArrOfObjByProp(filteredClients, "surname").map((b) => (
         <Bill
           key={uuidv4()}
           text={b}
@@ -65,7 +87,9 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <FilterBtn classes="button" setClientList={setClientList}></FilterBtn>
+        <button onClick={() => filterClient("all")}>all</button>
+        <button onClick={() => filterClient("with")}>with</button>
+        <button onClick={() => filterClient("without")}>without</button>
       </div>
     </div>
   );
