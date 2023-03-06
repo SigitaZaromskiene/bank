@@ -78,6 +78,7 @@
   border: 1px solid black;
   border-radius: 15px;
   font-size: 18px;
+  width: 160px;
 
   &:hover {
     cursor: pointer;
@@ -153,35 +154,6 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.messages {
-  position: fixed;
-  top: 50px;
-  right: 5px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  .message {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 200px;
-    border-radius: 5px;
-    margin: 20px;
-    color: white;
-    background-color: rgb(188, 179, 179);
-    padding: 20px 20px;
-    font-size: 24px;
-    &ok {
-      background-color: darkgray;
-    }
-
-    &error {
-      background-color: red;
-    }
-  }
 }
 
 .hidden {

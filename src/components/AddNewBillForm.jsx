@@ -42,6 +42,15 @@ function AddNewBillForm(props) {
         },
       ]);
 
+      setModal({
+        class: "visible",
+        msg: "The bill was created",
+        color: "white",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 1000);
+
       setAddNewName("");
       setAddNewSurname("");
     }

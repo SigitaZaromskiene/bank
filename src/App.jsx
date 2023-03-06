@@ -5,7 +5,6 @@ import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
-import FilterBtn from "./components/FilterBtn";
 
 function App() {
   const [clientList, setClientList] = useState(
@@ -87,9 +86,15 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <button onClick={() => filterClient("all")}>all</button>
-        <button onClick={() => filterClient("with")}>with</button>
-        <button onClick={() => filterClient("without")}>without</button>
+        <button className="button" onClick={() => filterClient("all")}>
+          All
+        </button>
+        <button className="button" onClick={() => filterClient("with")}>
+          With &euro;
+        </button>
+        <button className="button" onClick={() => filterClient("without")}>
+          Without &euro;
+        </button>
       </div>
     </div>
   );
