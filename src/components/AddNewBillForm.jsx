@@ -1,47 +1,55 @@
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 function AddNewBillForm(props) {
+  const [addNewName, setAddNewName] = useState([]);
+  const [addNewSurname, setAddNewSurname] = useState([]);
+
   const create = (_) => {
-    if (!props.addNewName || !props.addNewSurname) {
+    if (!addNewName || !addNewSurname) {
       alert("Name and Surname cannot be empty");
+      return;
+    }
+    if (typeof addNewName !== "string" || typeof addNewSurname !== "string") {
+      alert("Name and Surname cannot contain numbers");
       return;
     } else {
       props.setNewBill((b) => [
         ...b,
         {
-          name: props.addNewName,
-          surname: props.addNewSurname,
+          name: addNewName,
+          surname: addNewSurname,
           id: uuidv4(),
           amount: 0,
         },
       ]);
 
-      props.setAddNewName("");
-      props.setAddNewSurname("");
+      setAddNewName("");
+      setAddNewSurname("");
     }
   };
   const setNameHandler = (e) => {
-    props.setAddNewName(e.target.value);
+    setAddNewName(e.target.value);
   };
 
   const setSurnameHandler = (e) => {
-    props.setAddNewSurname(e.target.value);
+    setAddNewSurname(e.target.value);
   };
   return (
-    <div>
+    <div className={props.flex}>
       <div className={props.form}>
         <label>Enter your name and surname to open a new bill</label>
         <input
           type="text"
           placeholder="Name"
-          value={props.addNewName}
+          value={addNewName}
           onChange={setNameHandler}
           required
         ></input>
         <input
           type="text"
           placeholder="Surname"
-          value={props.addNewSurname}
+          value={addNewSurname}
           onChange={setSurnameHandler}
           required
         ></input>

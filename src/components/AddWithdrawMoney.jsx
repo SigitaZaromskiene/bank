@@ -1,6 +1,8 @@
 function AddWithdrawMoney(props) {
   const validateAmount = () => {
-    if (!props.amount) return alert("Invalid value");
+    if (!props.amount) {
+      alert("sos");
+    }
     return !!props.amount;
   };
 
@@ -16,6 +18,7 @@ function AddWithdrawMoney(props) {
       return bill;
     });
 
+    alert(`${props.amount} € has been added`);
     props.setNewBill(updatedBill);
   };
 
@@ -34,41 +37,39 @@ function AddWithdrawMoney(props) {
 
       return bill;
     });
+
+    alert(`${props.amount} € has been withdrawn`);
     props.setNewBill(updatedBill);
   };
   return (
-    <>
-      <div
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "20px",
+      }}
+    >
+      <button className={props.add} onClick={addMoneyHandler}>
+        Add &euro;
+      </button>
+      <input
+        type="number"
+        value={props.amount}
         style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
+          fontSize: "30px",
+          marginLeft: "2px",
+          marginRight: "2px",
+          width: "100px",
         }}
-      >
-        <div>
-          <button className={props.classes} onClick={addMoneyHandler}>
-            Add &euro;
-          </button>
-          <input
-            type="number"
-            value={props.amount}
-            style={{
-              height: "50px",
-              width: "250px",
-              fontSize: "30px",
-              marginLeft: "10px",
-              marginRight: "10px",
-            }}
-            onChange={(e) => props.setAmount(e.target.value)}
-          ></input>
+        onChange={(e) => props.setAmount(e.target.value)}
+      ></input>
 
-          <button className={props.classes} onClick={withdrawMoneyHandler}>
-            Withdraw &euro;
-          </button>
-          <p>Total: {props.bill.amount} &euro;</p>
-        </div>
-      </div>
-    </>
+      <button className={props.add} onClick={withdrawMoneyHandler}>
+        Withdraw &euro;
+      </button>
+      <p className={props.totalClass}>Total: {props.bill.amount} &euro;</p>
+    </div>
   );
 }
 

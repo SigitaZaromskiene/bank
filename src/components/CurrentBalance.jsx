@@ -1,10 +1,14 @@
 function CurrentBalance(props) {
-  //   const total = props.setNewBill.reduce(
-  //     (acc, num) => acc + Number(num.amount),
-  //     0
-  //   );
-  //   return <h2 className={props.className}>Total amount: {total} &euro;</h2>;
-  // }
+  console.log(props);
+  const getTotalAmount = () => {
+    return props.newBill.reduce((acc, curr) => acc + Number(curr.amount), 0);
+  };
+
+  return (
+    <div className={props.className}>
+      Total amount: {getTotalAmount()} &euro;
+    </div>
+  );
 }
 
 export default CurrentBalance;

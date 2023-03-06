@@ -22,8 +22,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 20px;
-  margin-bottom: 70px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .App-link {
@@ -41,40 +41,56 @@
 
 .form {
   background-color: #f4f6f9;
-  height: 400px;
-  width: 700px;
+  height: 120px;
+  margin-bottom: 20px;
+  width: 1200px;
   border-radius: 15px;
   border: 1px solid black;
   display: flex;
-  flex-direction: column;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   font-size: 24px;
-  margin-bottom: 100px;
+  padding: 10px 20px;
+
   label {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 500;
-    margin-bottom: 20px;
   }
 
   input {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 80%;
     padding: 10px;
     border: 1px solid black;
-    font-size: 24px;
+    font-size: 14px;
   }
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
 .button {
-  padding: 10px 60px;
+  padding: 10px 40px;
   background-color: #5f4ae5;
   border: 1px solid black;
   border-radius: 15px;
-  font-size: 24px;
-  margin-top: 20px;
-  width: 270px;
+  font-size: 18px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.button-add {
+  padding: 10px 40px;
+  background-color: #5f4ae5;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-size: 14px;
+
   &:hover {
     cursor: pointer;
   }
@@ -95,19 +111,28 @@
 }
 
 .bill-container {
-  background-color: #f4f6f9;
-  padding-top: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
-  width: 70%;
-  border-radius: 15px;
-  border: 1px solid black;
   display: flex;
-  flex-direction: column;
+  margin-top: 20px;
   justify-content: center;
   align-items: center;
-  font-size: 32px;
-  margin-bottom: 30px;
+
+  .bill {
+    background-color: #f4f6f9;
+    display: flex;
+
+    align-items: center;
+    width: 60%;
+    height: 100px;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+}
+
+.total {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .header {
@@ -116,11 +141,12 @@
   align-items: center;
   background-color: #f4f6f9;
   border: 1px solid black;
-  height: 80px;
-  width: 400px;
+  height: 55px;
+  width: 230px;
   color: black;
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px;
+  font-size: 24px;
 }
 
 main {
@@ -157,4 +183,22 @@ main {
       background-color: red;
     }
   }
+}
+
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  background-color: hsla(0, 0%, 0%, 80%);
 }

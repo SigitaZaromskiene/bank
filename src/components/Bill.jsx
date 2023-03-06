@@ -7,40 +7,44 @@ function Bill(props) {
 
   return (
     <div className={props.billContainer}>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          gap: "40px",
-          alignItems: "center",
-          fontWeight: "500px",
-          justifyContent: "center",
-        }}
-      >
-        <p>{props.name}</p>
-        <p>{props.surName}</p>
+      <div className={props.bill}>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "24px",
+            gap: "8px",
+            justifyContent: "center",
+          }}
+        >
+          <p>{props.text.name}</p>
+          <p>{props.text.surname}</p>
+        </div>
+        <AddWithdrawMoney
+          flex={props.flex}
+          classes={props.classes}
+          amount={amount}
+          setAmount={setAmount}
+          newBill={props.newBill}
+          setNewBill={props.setNewBill}
+          id={props.id}
+          bill={props.text}
+          setMessages={props.setMessages}
+          messages={props.messages}
+          add={props.add}
+          totalClass={props.totalClass}
+          modal={props.modal}
+        ></AddWithdrawMoney>
+        <DeleteBtn
+          setNewBill={props.setNewBill}
+          id={props.id}
+          bill={props.text}
+          amount={amount}
+          classes={props.classes}
+          setAddNewName={props.setAddNewName}
+          setAddNewSurname={props.setAddNewSurname}
+          setDeleteForm={props.setDeleteForm}
+        />
       </div>
-      <AddWithdrawMoney
-        classes={props.classes}
-        classesMoney={props.classesMoney}
-        amount={amount}
-        setAmount={setAmount}
-        newBill={props.newBill}
-        setNewBill={props.setNewBill}
-        id={props.id}
-        bill={props.text}
-      ></AddWithdrawMoney>
-      <DeleteBtn
-        setNewBill={props.setNewBill}
-        newBill={props.newBill}
-        id={props.id}
-        bill={props.text}
-        amount={amount}
-        classes={props.classes}
-        setAddNewName={props.setAddNewName}
-        setAddNewSurname={props.setAddNewSurname}
-        setDeleteForm={props.setDeleteForm}
-      />
     </div>
   );
 }
