@@ -16,19 +16,16 @@ function App() {
   const [newBill, setNewBill] = useState([]);
   const [addNewName, setAddNewName] = useState([]);
   const [addNewSurname, setAddNewSurname] = useState([]);
-  const [createData, setCreateData] = useState(null);
   const [messages, setMessages] = useState(null);
   const [deleteForm, setDeleteForm] = useState(null);
 
-  console.log(createData);
-
   useEffect(() => {
-    if (null === createData) {
+    if (!newBill.length) {
       return;
     }
-    create(KEY, createData);
+    create(KEY, newBill);
     msg("The new bill is created", "ok");
-  }, [createData]);
+  }, [newBill]);
 
   useEffect(() => {
     if (null === deleteForm) {
@@ -54,7 +51,10 @@ function App() {
           newBill={newBill}
           headerContainer="header-container"
         ></ClientsNumber>
-        <CurrentBalance className="header"></CurrentBalance>
+        <CurrentBalance
+          className="header"
+          setNewBill={setNewBill}
+        ></CurrentBalance>
       </header>
       <main>
         <AddNewBillForm
@@ -63,7 +63,6 @@ function App() {
           form="form"
           btn="button"
           billContainer="bill-container"
-          setCreateData={setCreateData}
           addNewName={addNewName}
           addNewSurname={addNewSurname}
           setAddNewName={setAddNewName}
@@ -80,7 +79,6 @@ function App() {
             total={b.total}
             surName={b.surname}
             setNewBill={setNewBill}
-            setCreateData={setCreateData}
             setDeleteForm={setDeleteForm}
             deleteForm={deleteForm}
             newBill={newBill}

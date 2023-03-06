@@ -1,27 +1,40 @@
 function AddWithdrawMoney(props) {
-  const submitAmountHandler = (e) => {
-    props.setSubmitAmount(e.target.value > 0 ? e.target.value : 0);
+  const validateAmount = () => {
+    if (!props.amount) return alert("Invalid value");
+    return !!props.amount;
   };
 
-  // const addMoneyHandler = () => {
-  //   props.setAmount((b) => [
-  //     ...b,
-  //     {
-  //       total: Number(a) + Number(props.submitAmount)
-  //     },
-  //   ]);
   const addMoneyHandler = () => {
-    props.setAmount((a) => Number(a) + Number(props.submitAmount));
-    props.setSubmitAmount("");
+    if (!validateAmount()) return;
+
+    const updatedBill = props.newBill.map((bill) => {
+      if (bill.id !== props.id) return bill;
+
+      const newAmount = Number(bill.amount) + Number(props.amount);
+      bill.amount = newAmount >= 0 ? newAmount : bill.amount;
+
+      return bill;
+    });
+
+    props.setNewBill(updatedBill);
   };
 
   const withdrawMoneyHandler = () => {
-    props.setAmount((a) =>
-      Number(a) >= Number(props.submitAmount)
-        ? Number(a) - Number(props.submitAmount)
-        : Number(a)
-    );
-    props.setSubmitAmount("");
+    if (!validateAmount()) return;
+
+    const updatedBill = props.newBill.map((bill) => {
+      if (bill.id !== props.id) return bill;
+
+      const newAmount = Number(bill.amount) - Number(props.amount);
+      const isNewAmountValid = newAmount >= 0;
+
+      if (isNewAmountValid) {
+        bill.amount = newAmount >= 0 ? newAmount : bill.amount;
+      }
+
+      return bill;
+    });
+    props.setNewBill(updatedBill);
   };
   return (
     <>
@@ -38,7 +51,7 @@ function AddWithdrawMoney(props) {
           </button>
           <input
             type="number"
-            value={props.submitAmount}
+            value={props.amount}
             style={{
               height: "50px",
               width: "250px",
@@ -46,13 +59,13 @@ function AddWithdrawMoney(props) {
               marginLeft: "10px",
               marginRight: "10px",
             }}
-            onChange={submitAmountHandler}
+            onChange={(e) => props.setAmount(e.target.value)}
           ></input>
 
           <button className={props.classes} onClick={withdrawMoneyHandler}>
             Withdraw &euro;
           </button>
-          <p>Total: {props.amount} &euro;</p>
+          <p>Total: {props.bill.amount} &euro;</p>
         </div>
       </div>
     </>

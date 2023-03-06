@@ -2,25 +2,24 @@ import { v4 as uuidv4 } from "uuid";
 
 function AddNewBillForm(props) {
   const create = (_) => {
-    props.setCreateData({
-      name: props.addNewName,
-      surname: props.addNewSurname,
-      amount: props.amount,
-    });
+    if (!props.addNewName || !props.addNewSurname) {
+      alert("Name and Surname cannot be empty");
+      return;
+    } else {
+      props.setNewBill((b) => [
+        ...b,
+        {
+          name: props.addNewName,
+          surname: props.addNewSurname,
+          id: uuidv4(),
+          amount: 0,
+        },
+      ]);
 
-    props.setNewBill((b) => [
-      ...b,
-      {
-        name: props.addNewName,
-        surname: props.addNewSurname,
-        id: uuidv4(),
-      },
-    ]);
-
-    props.setAddNewName("");
-    props.setAddNewSurname("");
+      props.setAddNewName("");
+      props.setAddNewSurname("");
+    }
   };
-
   const setNameHandler = (e) => {
     props.setAddNewName(e.target.value);
   };
@@ -46,11 +45,7 @@ function AddNewBillForm(props) {
           onChange={setSurnameHandler}
           required
         ></input>
-        <button
-          className={props.btn}
-          // onClick={showNewBillHandler}
-          onClick={create}
-        >
+        <button className={props.btn} onClick={create}>
           Submit
         </button>
       </div>

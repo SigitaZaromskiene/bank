@@ -1,5 +1,5 @@
 function Messages(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="messages">
       {props.messages.map((m) => (

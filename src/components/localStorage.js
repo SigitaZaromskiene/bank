@@ -15,14 +15,15 @@ export const read = (key) => {
 export const create = (key, data) => {
   const allData = read(key);
 
-  data.id = uuidv4();
   allData.push(data);
   write(key, allData);
 };
 
 export const destroy = (key, id) => {
   const allData = read(key);
-  const deletedData = allData.filter((b) => b.id !== id);
+  const deletedData = allData.filter((b) =>
+    b.amount === 0 ? b.id !== id : b.id
+  );
 
   write(key, deletedData);
 };

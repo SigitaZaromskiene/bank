@@ -4,7 +4,6 @@ import AddWithdrawMoney from "./AddWithdrawMoney";
 
 function Bill(props) {
   const [amount, setAmount] = useState(0);
-  const [submitAmount, setSubmitAmount] = useState([]);
 
   return (
     <div className={props.billContainer}>
@@ -26,13 +25,16 @@ function Bill(props) {
         classesMoney={props.classesMoney}
         amount={amount}
         setAmount={setAmount}
-        submitAmount={submitAmount}
-        setSubmitAmount={setSubmitAmount}
+        newBill={props.newBill}
+        setNewBill={props.setNewBill}
+        id={props.id}
+        bill={props.text}
       ></AddWithdrawMoney>
       <DeleteBtn
         setNewBill={props.setNewBill}
         newBill={props.newBill}
         id={props.id}
+        bill={props.text}
         amount={amount}
         classes={props.classes}
         setAddNewName={props.setAddNewName}
