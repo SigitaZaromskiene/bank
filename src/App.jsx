@@ -1,102 +1,110 @@
 import "./App.scss";
 import AddNewBillForm from "./components/AddNewBillForm";
-import { useEffect, useState, useCallback } from "react";
+// import { useEffect, useState, useCallback } from "react";
 import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
+import { GlobalProvider } from "./components/Global";
+import { Global } from "./components/Global";
+import { useContext, useState } from "react";
 
 function App() {
-  const [clientList, setClientList] = useState(
-    JSON.parse(localStorage.getItem("newBills")) || []
-  );
+  const [clientList, setClientList] = useState([]);
 
-  const sortArrOfObjByProp = (arr, propName) => {
-    return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
-  };
+  const { bill } = useContext(Global);
 
-  const [filteredClients, setFilteredClients] = useState([]);
+  // JSON.parse(localStorage.getItem("newBills")) ||
 
-  const filterClient = useCallback(
-    (filterType) => {
-      let filteredList = clientList;
+  // const sortArrOfObjByProp = (arr, propName) => {
+  //   return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
+  // };
 
-      if (filterType === "with") {
-        filteredList = clientList.filter(({ amount }) => amount);
-      }
-      if (filterType === "without") {
-        filteredList = clientList.filter(({ amount }) => !amount);
-      }
+  // const [filteredClients, setFilteredClients] = useState([]);
 
-      setFilteredClients(filteredList);
-    },
-    [clientList]
-  );
+  // const filterClient = useCallback(
+  //   (filterType) => {
+  //     let filteredList = clientList;
 
-  useEffect(() => {
-    filterClient();
-  }, [filterClient]);
+  //     if (filterType === "with") {
+  //       filteredList = clientList.filter(({ amount }) => amount);
+  //     }
+  //     if (filterType === "without") {
+  //       filteredList = clientList.filter(({ amount }) => !amount);
+  //     }
 
-  useEffect(
-    () => localStorage.setItem("newBills", JSON.stringify(clientList)),
-    [clientList]
-  );
+  //     setFilteredClients(filteredList);
+  //   },
+  //   [clientList]
+  // );
+
+  // useEffect(() => {
+  //   filterClient();
+  // }, [filterClient]);
+
+  // useEffect(
+  //   () => localStorage.setItem("newBills", JSON.stringify(clientList)),
+  //   [clientList]
+  // );
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <ClientsNumber
-          className="header"
+    <GlobalProvider>
+      <div className="App">
+        <header className="App-header">
+          <ClientsNumber
+            className="header"
+            clientList={clientList}
+          ></ClientsNumber>
+          <CurrentBalance
+            className="header"
+            clientList={clientList}
+          ></CurrentBalance>
+        </header>
+        <AddNewBillForm
           clientList={clientList}
-        ></ClientsNumber>
-        <CurrentBalance
-          className="header"
-          clientList={clientList}
-        ></CurrentBalance>
-      </header>
-      <AddNewBillForm
-        clientList={clientList}
-        setClientList={setClientList}
-        form="form"
-        btn="button"
-        billContainer="bill-container"
-        flex="flex"
-        modal="modal"
-      ></AddNewBillForm>
-      {sortArrOfObjByProp(filteredClients, "surname").map((b) => (
-        <Bill
-          key={uuidv4()}
-          text={b}
-          billContainer="bill-container"
-          classes="button"
-          total={b.total}
           setClientList={setClientList}
-          clientList={clientList}
-          bill="bill"
-          add="button-add"
-          totalClass="total"
+          form="form"
+          btn="button"
+          billContainer="bill-container"
+          flex="flex"
           modal="modal"
-        ></Bill>
-      ))}
-      <div
-        style={{
-          marginTop: "30px",
-          display: "flex",
-          gap: "20px",
-          justifyContent: "center",
-        }}
-      >
-        <button className="button" onClick={() => filterClient("all")}>
-          All
-        </button>
-        <button className="button" onClick={() => filterClient("with")}>
-          With &euro;
-        </button>
-        <button className="button" onClick={() => filterClient("without")}>
-          Without &euro;
-        </button>
+        ></AddNewBillForm>
+        {bill.map((b) => (
+          <Bill
+            key={uuidv4()}
+            text={b}
+            billContainer="bill-container"
+            classes="button"
+            total={b.total}
+            setClientList={setClientList}
+            clientList={clientList}
+            bill="bill"
+            add="button-add"
+            totalClass="total"
+            modal="modal"
+          ></Bill>
+        ))}
+        <div
+          style={{
+            marginTop: "30px",
+            display: "flex",
+            gap: "20px",
+            justifyContent: "center",
+          }}
+        >
+          {/* /* <button className="button" onClick={() => filterClient("all")}>
+            All
+          </button>
+          <button className="button" onClick={() => filterClient("with")}>
+            With &euro;
+          </button>
+          <button className="button" onClick={() => filterClient("without")}>
+            Without &euro;
+          </button> */}{" "}
+          */
+        </div>
       </div>
-    </div>
+    </GlobalProvider>
   );
 }
 

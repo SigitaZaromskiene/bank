@@ -1,60 +1,74 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { useContext } from "react";
+import { Global } from "./Global";
 
 function AddNewBillForm(props) {
-  const [addNewName, setAddNewName] = useState("");
-  const [addNewSurname, setAddNewSurname] = useState("");
-  const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
+  const [name, setAddNewName] = useState("");
+  const [surname, setAddNewSurname] = useState("");
+  // const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
+  const { setCreate } = useContext(Global);
 
-  const create = (_) => {
-    if (!addNewName || !addNewSurname) {
-      setModal({
-        class: "visible",
-        msg: "Please enter name and surname",
-        color: "red",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 2000);
-      return;
-    }
+  const add = () => {
+    setCreate({
+      name: name,
+      surname: surname,
+      amount: 0,
+    });
 
-    const regex = /^[a-zA-Z\u0080-\uFFFF]+$/;
-
-    if (!regex.test(addNewName) || !regex.test(addNewSurname)) {
-      setModal({
-        class: "visible",
-        msg: "Cannot use numbers and special chars",
-        color: "red",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 2000);
-      return;
-    } else {
-      props.setClientList((b) => [
-        ...b,
-        {
-          name: addNewName,
-          surname: addNewSurname,
-          id: uuidv4(),
-          amount: 0,
-        },
-      ]);
-
-      setModal({
-        class: "visible",
-        msg: "The bill was created",
-        color: "white",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 1000);
-
-      setAddNewName("");
-      setAddNewSurname("");
-    }
+    setAddNewName("");
+    setAddNewSurname("");
   };
+
+  // const create = (_) => {
+  //   if (!addNewName || !addNewSurname) {
+  //     setModal({
+  //       class: "visible",
+  //       msg: "Please enter name and surname",
+  //       color: "red",
+  //     });
+  //     setTimeout(() => {
+  //       setModal({ class: "hidden", msg: "", color: "" });
+  //     }, 2000);
+  //     return;
+  //   }
+
+  //   const regex = /^[a-zA-Z\u0080-\uFFFF]+$/;
+
+  //   if (!regex.test(addNewName) || !regex.test(addNewSurname)) {
+  //     setModal({
+  //       class: "visible",
+  //       msg: "Cannot use numbers and special chars",
+  //       color: "red",
+  //     });
+  //     setTimeout(() => {
+  //       setModal({ class: "hidden", msg: "", color: "" });
+  //     }, 2000);
+  //     return;
+  //   } else {
+  //     props.setClientList((b) => [
+  //       ...b,
+  //       {
+  //         name: addNewName,
+  //         surname: addNewSurname,
+  //         id: uuidv4(),
+  //         amount: 0,
+  //       },
+  //     ]);
+
+  //     setModal({
+  //       class: "visible",
+  //       msg: "The bill was created",
+  //       color: "white",
+  //     });
+  //     setTimeout(() => {
+  //       setModal({ class: "hidden", msg: "", color: "" });
+  //     }, 1000);
+
+  //     setAddNewName("");
+  //     setAddNewSurname("");
+  //   }
+  // };
   const setNameHandler = (e) => {
     setAddNewName(e.target.value);
   };
@@ -69,24 +83,24 @@ function AddNewBillForm(props) {
         <input
           type="text"
           placeholder="Name"
-          value={addNewName}
+          value={name}
           onChange={setNameHandler}
           required
         ></input>
         <input
           type="text"
           placeholder="Surname"
-          value={addNewSurname}
+          value={surname}
           onChange={setSurnameHandler}
           required
         ></input>
-        <button className={props.btn} onClick={create}>
+        <button className={props.btn} onClick={add}>
           Submit
         </button>
       </div>
-      <div className={`${modal.class} modal`}>
+      {/* <div className={`${modal.class} modal`}>
         <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-      </div>
+      </div> */}
     </div>
   );
 }
