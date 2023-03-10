@@ -5,11 +5,18 @@ import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
+import axios from "axios";
+
+const URL = "http://localhost:3003/bills";
 
 function App() {
-  const [clientList, setClientList] = useState(
-    JSON.parse(localStorage.getItem("newBills")) || []
-  );
+  const [clientList, setClientList] = useState([]);
+
+  useEffect(() => {
+    axios.post(URL, clientList).then((res) => {
+      console.log(res.data);
+    });
+  }, [clientList]);
 
   const sortArrOfObjByProp = (arr, propName) => {
     return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
@@ -37,10 +44,10 @@ function App() {
     filterClient();
   }, [filterClient]);
 
-  useEffect(
-    () => localStorage.setItem("newBills", JSON.stringify(clientList)),
-    [clientList]
-  );
+  // useEffect(
+  //   () => localStorage.setItem("newBills", JSON.stringify(clientList)),
+  //   [clientList]
+  // );
 
   return (
     <div className="App">

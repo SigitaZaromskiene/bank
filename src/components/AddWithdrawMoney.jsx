@@ -3,6 +3,7 @@ import { useState } from "react";
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
+
   const validateAmount = () => {
     if (!newAmount) {
       setModal({
