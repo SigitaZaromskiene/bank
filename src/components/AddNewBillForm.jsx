@@ -9,9 +9,12 @@ function AddNewBillForm(props) {
   const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
-  const [createData, setCreateData] = useState([]);
+  const [createData, setCreateData] = useState(null);
 
   useEffect(() => {
+    if (createData === null) {
+      return;
+    }
     axios.post(URL, createData).then((res) => console.log(res.data));
   }, [createData]);
 
