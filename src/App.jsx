@@ -18,6 +18,15 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    if (clientList === null) {
+      return;
+    }
+    axios
+      .delete(URL + "/" + clientList.id)
+      .then((res) => console.log(res.data));
+  }, [clientList]);
+
   const sortArrOfObjByProp = (arr, propName) => {
     return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
   };
