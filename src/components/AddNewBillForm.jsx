@@ -1,10 +1,19 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const URL = "http://localhost:3003/bills";
 
 function AddNewBillForm(props) {
   const [addNewName, setAddNewName] = useState("");
   const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
+
+  const [createData, setCreateData] = useState([]);
+
+  useEffect(() => {
+    axios.post(URL, createData).then((res) => console.log(res.data));
+  }, [createData]);
 
   const create = (_) => {
     if (!addNewName || !addNewSurname) {
@@ -32,15 +41,12 @@ function AddNewBillForm(props) {
       }, 2000);
       return;
     } else {
-      props.setClientList((b) => [
-        ...b,
-        {
-          name: addNewName,
-          surname: addNewSurname,
-          id: uuidv4(),
-          amount: 0,
-        },
-      ]);
+      setCreateData({
+        name: addNewName,
+        surname: addNewSurname,
+        id: uuidv4(),
+        amount: 0,
+      });
 
       setModal({
         class: "visible",

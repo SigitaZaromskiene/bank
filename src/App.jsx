@@ -13,36 +13,36 @@ function App() {
   const [clientList, setClientList] = useState([]);
 
   useEffect(() => {
-    axios.post(URL, clientList).then((res) => {
-      console.log(res.data);
+    axios.get(URL).then((res) => {
+      setClientList(res.data);
     });
-  }, [clientList]);
+  }, []);
 
   const sortArrOfObjByProp = (arr, propName) => {
     return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
   };
 
-  const [filteredClients, setFilteredClients] = useState([]);
+  // const [filteredClients, setFilteredClients] = useState([]);
 
-  const filterClient = useCallback(
-    (filterType) => {
-      let filteredList = clientList;
+  // const filterClient = useCallback(
+  //   (filterType) => {
+  //     let filteredList = clientList;
 
-      if (filterType === "with") {
-        filteredList = clientList.filter(({ amount }) => amount);
-      }
-      if (filterType === "without") {
-        filteredList = clientList.filter(({ amount }) => !amount);
-      }
+  //     if (filterType === "with") {
+  //       filteredList = clientList.filter(({ amount }) => amount);
+  //     }
+  //     if (filterType === "without") {
+  //       filteredList = clientList.filter(({ amount }) => !amount);
+  //     }
 
-      setFilteredClients(filteredList);
-    },
-    [clientList]
-  );
+  //     setFilteredClients(filteredList);
+  //   },
+  //   [clientList]
+  // );
 
-  useEffect(() => {
-    filterClient();
-  }, [filterClient]);
+  // useEffect(() => {
+  //   filterClient();
+  // }, [filterClient]);
 
   // useEffect(
   //   () => localStorage.setItem("newBills", JSON.stringify(clientList)),
@@ -70,7 +70,7 @@ function App() {
         flex="flex"
         modal="modal"
       ></AddNewBillForm>
-      {sortArrOfObjByProp(filteredClients, "surname").map((b) => (
+      {clientList.map((b) => (
         <Bill
           key={uuidv4()}
           text={b}
@@ -93,7 +93,7 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <button className="button" onClick={() => filterClient("all")}>
+        {/* <button className="button" onClick={() => filterClient("all")}>
           All
         </button>
         <button className="button" onClick={() => filterClient("with")}>
@@ -101,7 +101,7 @@ function App() {
         </button>
         <button className="button" onClick={() => filterClient("without")}>
           Without &euro;
-        </button>
+        </button> */}
       </div>
     </div>
   );
