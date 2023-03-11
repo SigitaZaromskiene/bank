@@ -4,7 +4,7 @@ import axios from "axios";
 
 const URL = "http://localhost:3003/bills";
 
-function AddNewBillForm(props) {
+function AddNewBillForm({ setLastStateUpdate, flex, form, btn }) {
   const [addNewName, setAddNewName] = useState("");
   const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
@@ -15,10 +15,8 @@ function AddNewBillForm(props) {
     if (createData === null) {
       return;
     }
-    axios
-      .post(URL, createData)
-      .then((res) => props.setLastStateUpdate(Date.now()));
-  }, [createData, props]);
+    axios.post(URL, createData).then((res) => setLastStateUpdate(Date.now()));
+  }, [createData, setLastStateUpdate]);
 
   const create = (_) => {
     if (!addNewName || !addNewSurname) {
@@ -74,8 +72,8 @@ function AddNewBillForm(props) {
     setAddNewSurname(e.target.value);
   };
   return (
-    <div className={props.flex}>
-      <div className={props.form}>
+    <div className={flex}>
+      <div className={form}>
         <label>Enter your name and surname to open a new bill</label>
         <input
           type="text"
@@ -91,7 +89,7 @@ function AddNewBillForm(props) {
           onChange={setSurnameHandler}
           required
         ></input>
-        <button className={props.btn} onClick={create}>
+        <button className={btn} onClick={create}>
           Submit
         </button>
       </div>
