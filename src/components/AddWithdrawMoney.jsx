@@ -1,25 +1,9 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
 
-  const add = (_) => {
-    props.setEditData({
-      number: parseInt(newAmount),
-      action: "add",
-      id: props.bill.id,
-    });
-  };
-
-  const remove = (_) => {
-    props.setEditData({
-      number: parseInt(newAmount),
-      action: "remove",
-      id: props.bill.id,
-    });
-  };
   // const validateAmount = () => {
   //   if (!newAmount) {
   //     setModal({
@@ -33,6 +17,73 @@ function AddWithdrawMoney(props) {
   //   }
   //   return !!newAmount;
   // };
+
+  const add = (_) => {
+    if (!newAmount) {
+      setModal({
+        class: "visible",
+        msg: "Please enter amount",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
+    } else {
+      props.setEditData({
+        number: parseInt(newAmount),
+        action: "add",
+        id: props.bill.id,
+      });
+    }
+  };
+
+  const remove = (_) => {
+    let isNewAmountValid = true;
+
+    const newTotalAmount = Number(props.bill.amount) - Number(newAmount);
+    isNewAmountValid = newTotalAmount >= 0;
+    props.bill.amount = isNewAmountValid ? newTotalAmount : props.bill.amount;
+    if (!isNewAmountValid) {
+      setModal({
+        class: "visible",
+        msg: "Not enough funds",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
+
+      return;
+    } else if (!newAmount) {
+      setModal({
+        class: "visible",
+        msg: "Please enter amount",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
+    } else {
+      props.setEditData({
+        number: parseInt(newAmount),
+        action: "remove",
+        id: props.bill.id,
+      });
+    }
+
+    // if (!validateAmount) {
+    //   setModal({
+    //     class: "visible",
+    //     msg: "Not enough funds",
+    //     color: "red",
+    //   });
+    //   setTimeout(() => {
+    //     setModal({ class: "hidden", msg: "", color: "" });
+    //   }, 2000);
+
+    //   return;
+    // }
+  };
 
   // const addMoneyHandler = () => {
   //   if (!validateAmount()) return;
