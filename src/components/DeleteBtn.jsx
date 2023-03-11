@@ -18,9 +18,9 @@ function DeleteBtn(props) {
       }, 2000);
 
       return;
+    } else {
+      props.setDeleteData(props.bill);
     }
-
-    props.setDeleteData(props.bill);
 
     // props.setClientList((bill) =>
     // bill.filter((bill) => bill.id !== props.bill.id)

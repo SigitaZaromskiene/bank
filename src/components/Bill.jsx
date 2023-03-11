@@ -24,7 +24,9 @@ function Bill(props) {
           add={props.add}
           totalClass={props.totalClass}
           modal={props.modal}
+          setEditData={props.setEditData}
         ></AddWithdrawMoney>
+
         <DeleteBtn
           setDeletedData={props.setDeletedData}
           setClientList={props.setClientList}

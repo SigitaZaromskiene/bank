@@ -1,6 +1,6 @@
 import "./App.scss";
 import AddNewBillForm from "./components/AddNewBillForm";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Bill from "./components/Bill";
 import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
@@ -11,8 +11,8 @@ const URL = "http://localhost:3003/bills";
 
 function App() {
   const [clientList, setClientList] = useState([]);
-  const [deleteData, setDeleteData] = useState([]);
-  console.log(clientList);
+  const [deleteData, setDeleteData] = useState(null);
+  const [editData, setEditData] = useState(null);
 
   useEffect(() => {
     axios.get(URL).then((res) => {
@@ -28,6 +28,15 @@ function App() {
       .delete(URL + "/" + deleteData.id)
       .then((res) => console.log(res.data));
   }, [deleteData]);
+
+  useEffect(() => {
+    if (null === editData) {
+      return;
+    }
+    axios.put(URL + "/" + editData.id, editData).then((res) => {
+      console.log(res.data);
+    });
+  }, [editData]);
 
   const sortArrOfObjByProp = (arr, propName) => {
     return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
@@ -95,6 +104,7 @@ function App() {
           totalClass="total"
           modal="modal"
           setDeleteData={setDeleteData}
+          setEditData={setEditData}
         ></Bill>
       ))}
       <div
