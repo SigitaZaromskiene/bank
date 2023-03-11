@@ -14,11 +14,13 @@ function App() {
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
 
+  const [lastStateUpdate, setLastStateUpdate] = useState(Date.now());
+
   useEffect(() => {
     axios.get(URL).then((res) => {
       setClientList(res.data);
     });
-  }, []);
+  }, [lastStateUpdate]);
 
   useEffect(() => {
     if (deleteData === null) {
@@ -26,16 +28,23 @@ function App() {
     }
     axios
       .delete(URL + "/" + deleteData.id)
-      .then((res) => console.log(res.data));
+      .then((res) => setLastStateUpdate(Date.now()));
   }, [deleteData]);
 
   useEffect(() => {
     if (null === editData) {
       return;
     }
-    axios.put(URL + "/" + editData.id, editData).then((res) => {
-      console.log(res.data);
-    });
+
+    console.log(editData);
+
+    axios
+      .put(URL + "/" + editData.action + "/" + editData.id, {
+        number: editData.number,
+      })
+      .then((res) => {
+        setLastStateUpdate(Date.now());
+      });
   }, [editData]);
 
   const sortArrOfObjByProp = (arr, propName) => {
@@ -89,6 +98,7 @@ function App() {
         billContainer="bill-container"
         flex="flex"
         modal="modal"
+        setLastStateUpdate={setLastStateUpdate}
       ></AddNewBillForm>
       {clientList.map((b) => (
         <Bill

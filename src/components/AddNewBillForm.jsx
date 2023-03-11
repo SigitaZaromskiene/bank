@@ -15,8 +15,10 @@ function AddNewBillForm(props) {
     if (createData === null) {
       return;
     }
-    axios.post(URL, createData).then((res) => console.log(res.data));
-  }, [createData]);
+    axios
+      .post(URL, createData)
+      .then((res) => props.setLastStateUpdate(Date.now()));
+  }, [createData, props]);
 
   const create = (_) => {
     if (!addNewName || !addNewSurname) {
