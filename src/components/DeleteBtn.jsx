@@ -20,9 +20,11 @@ function DeleteBtn(props) {
       return;
     }
 
-    props.setClientList((bill) =>
-      bill.filter((bill) => bill.id !== props.bill.id)
-    );
+    props.setDeleteData(props.bill);
+
+    // props.setClientList((bill) =>
+    // bill.filter((bill) => bill.id !== props.bill.id)
+    // );
   };
 
   return (

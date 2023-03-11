@@ -11,6 +11,8 @@ const URL = "http://localhost:3003/bills";
 
 function App() {
   const [clientList, setClientList] = useState([]);
+  const [deleteData, setDeleteData] = useState([]);
+  console.log(clientList);
 
   useEffect(() => {
     axios.get(URL).then((res) => {
@@ -19,13 +21,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (clientList === null) {
+    if (deleteData === null) {
       return;
     }
     axios
-      .delete(URL + "/" + clientList.id)
+      .delete(URL + "/" + deleteData.id)
       .then((res) => console.log(res.data));
-  }, [clientList]);
+  }, [deleteData]);
 
   const sortArrOfObjByProp = (arr, propName) => {
     return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
@@ -92,6 +94,7 @@ function App() {
           add="button-add"
           totalClass="total"
           modal="modal"
+          setDeleteData={setDeleteData}
         ></Bill>
       ))}
       <div

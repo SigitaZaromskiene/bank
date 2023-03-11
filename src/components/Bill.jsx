@@ -31,6 +31,7 @@ function Bill(props) {
           bill={props.text}
           classes={props.classes}
           modal="modal"
+          setDeleteData={props.setDeleteData}
         />
       </div>
     </div>
