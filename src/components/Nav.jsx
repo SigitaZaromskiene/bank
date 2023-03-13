@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { Global } from "./Global";
+
 function Nav(props) {
+  const { route, setRoute } = useContext(Global);
   return (
     <div className={props.className}>
       <div
@@ -9,10 +13,20 @@ function Nav(props) {
         }}
       >
         <h3>Bank app</h3>
-        <p className={props.hover}>Bills</p>
+        <button
+          onClick={() => setRoute("bills")}
+          className={props.hover + (route === "bills" ? "active" : "")}
+        >
+          Bills
+        </button>
       </div>
       <div>
-        <p className={props.hover}>Login</p>
+        <button
+          className={props.hover + (route === "login" ? "active" : "")}
+          onClick={() => setRoute("login")}
+        >
+          Login
+        </button>
       </div>
     </div>
   );

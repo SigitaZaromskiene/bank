@@ -1,10 +1,9 @@
 import "./App.scss";
 import Nav from "./components/Nav";
-
+import { GlobalProvider } from "./components/Global";
 import { useEffect, useState } from "react";
-
 import axios from "axios";
-import LoggedInBills from "./components/LoggedInBills";
+import Routes from "./components/Routes";
 
 const URL = "http://localhost:3003/bills";
 
@@ -52,16 +51,27 @@ function App() {
   // );
 
   return (
-    <div>
+    <GlobalProvider>
       <Nav className="nav" hover="hover"></Nav>
-      <LoggedInBills
+
+      {
+        <Routes
+          clientList={clientList}
+          setClientList={setClientList}
+          setLastStateUpdate={setLastStateUpdate}
+          setDeleteData={setDeleteData}
+          setEditData={setEditData}
+          btn="button"
+        ></Routes>
+      }
+      {/* <LoggedInBills
         clientList={clientList}
         setClientList={setClientList}
         setLastStateUpdate={setLastStateUpdate}
         setDeleteData={setDeleteData}
         setEditData={setEditData}
-      ></LoggedInBills>
-    </div>
+      ></LoggedInBills> */}
+    </GlobalProvider>
   );
 }
 
