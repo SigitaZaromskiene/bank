@@ -15,14 +15,14 @@ function Nav(props) {
         <h3>Bank app</h3>
         <button
           onClick={() => setRoute("bills")}
-          className={props.hover + (route === "bills" ? "active" : "")}
+          className={props.btn + (route === "bills" ? "active" : "")}
         >
           Bills
         </button>
       </div>
       <div>
         <button
-          className={props.hover + (route === "login" ? "active" : "")}
+          className={props.btn + (route === "login" ? "active" : "")}
           onClick={() => setRoute("login")}
         >
           Login

@@ -77,9 +77,9 @@ function App() {
 
   return (
     <GlobalProvider>
-      <Nav class="nav"></Nav>
+      <Nav class="nav" btn="button"></Nav>
 
-      <Routes></Routes>
+      <Routes btn="button"></Routes>
     </GlobalProvider>
   );
 }

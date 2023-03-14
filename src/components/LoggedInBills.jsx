@@ -15,6 +15,9 @@ function LoggedInBills(props) {
   const [lastStateUpdate, setLastStateUpdate] = useState(Date.now());
 
   useEffect(() => {
+    if (lastStateUpdate === null) {
+      return;
+    }
     axios.get(URL).then((res) => {
       setClientList(res.data);
     });
