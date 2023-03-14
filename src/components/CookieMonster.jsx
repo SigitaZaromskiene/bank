@@ -5,9 +5,23 @@ function CookieMonster() {
   const [text, setText] = useState("");
 
   const set = (_) => {
-    axios.get("http://localhost:3003/cookie").then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .post("http://localhost:3003/cookie", { text }, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+
+  const del = (_) => {
+    axios
+      .post(
+        "http://localhost:3003/cookie",
+        { delete: true },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   return (
@@ -27,9 +41,9 @@ function CookieMonster() {
         <button className="btn btn-primary m-1" onClick={set}>
           Set
         </button>
-        {/* <button className="btn btn-danger m-1" onClick={del}>
+        <button className="btn btn-danger m-1" onClick={del}>
           Delete
-        </button> */}
+        </button>
       </div>
     </div>
   );
