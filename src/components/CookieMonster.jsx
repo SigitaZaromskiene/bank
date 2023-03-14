@@ -1,15 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function CookieMonster() {
   const [text, setText] = useState("");
 
   const set = (_) => {
-    axios
-      .post("http://localhost:3003/cookie", { text }, { withCredentials: true })
-      .then((res) => {
-        console.log(res.data);
-      });
+    axios.post("http://localhost:3003/cookie").then((res) => {
+      console.log(res.data);
+    });
   };
 
   const del = (_) => {
