@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import ClientsNumber from "./components/ClientsNumber";
 import CurrentBalance from "./components/CurrentBalance";
 import axios from "axios";
+import CookieMonster from "./components/CookieMonster";
 
 const URL = "http://localhost:3003/bills";
 
@@ -80,6 +81,7 @@ function App() {
 
   return (
     <div className="App">
+      <CookieMonster></CookieMonster>
       <header className="App-header">
         <ClientsNumber
           className="header"
