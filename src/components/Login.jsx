@@ -1,11 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 function Login(props) {
   const [userName, setUserName] = useState(null);
-  //   const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [name, setName] = useState("");
   const [psw, setPsw] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3033/login", { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+      });
+  }, []);
 
   //   const { setLogged, setAuthName } = useContext(Global);
 
@@ -18,18 +26,17 @@ function Login(props) {
       )
       .then((res) => {
         console.log(res.data);
-        //     if (res.data.status === "ok") {
-        //       setUserName(res.data.name);
-        //       setName("");
-        //       setPsw("");
-        //       setError(null);
-        //       setLogged(true);
-        //       setAuthName(res.data.name);
-        //     } else {
-        //       setError(true);
-        //       setUserName(null);
-        //     }
-        //   });
+        if (res.data.status === "ok") {
+          setUserName(res.data.name);
+          setName("");
+          setPsw("");
+          setError(null);
+          //   setLogged(true);
+          //   setAuthName(res.data.name);
+        } else {
+          setError(true);
+          setUserName(null);
+        }
       });
   };
 
@@ -54,13 +61,13 @@ function Login(props) {
           justifyContent: "center",
         }}
       >
-        {/* <div style={{ textAlign: "center", fontSize: "24px" }}>
+        <div style={{ textAlign: "center", fontSize: "24px" }}>
           {error ? (
             <span style={{ color: "crimson" }}>Login Error</span>
           ) : (
             <span>Login</span>
           )}
-        </div> */}
+        </div>
         <div>
           <h5 style={{ textAlign: "center", fontSize: "20px" }}>
             {userName ? (
