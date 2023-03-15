@@ -12,22 +12,33 @@ function Nav(props) {
           gap: "40px",
         }}
       >
-        <h3>Bank app</h3>
-        <button onClick={() => setRoute("bills")} className={props.btn}>
+        <h3 style={{ color: "#161616" }}>Bank app</h3>
+        <p className={props.btn} onClick={() => setRoute("home")}>
+          Home
+        </p>
+        <p className={props.btn} onClick={() => setRoute("bills")}>
           Bills
-        </button>
+        </p>
       </div>
-      {authName ? (
-        <>
-          <h4 onClick={() => setRoute("login")}>{authName}</h4>
-          <button className={props.btn} onClick={() => setRoute("login")}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <button onClick={() => setRoute("login")}>Login</button>
-      )}
-      <div></div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "20px",
+          justifyContent: "center",
+        }}
+      >
+        {authName ? (
+          <>
+            <h4 onClick={() => setRoute("login")}>{authName}</h4>
+            <p className={props.btn} onClick={() => setRoute("login")}>
+              Logout
+            </p>
+          </>
+        ) : (
+          <p onClick={() => setRoute("login")}>Login</p>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 function ClientsNumber(props) {
   return (
     <div className={props.className}>
-      Clients number: {props.clientList.length}
+      Total clients: {props.clientList.length}
     </div>
   );
 }

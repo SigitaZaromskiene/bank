@@ -1,12 +1,16 @@
 import "./App.scss";
+import { useState } from "react";
 import { Global } from "./components/Global";
 import { GlobalProvider } from "./components/Global";
 import Routes from "./components/Routes";
+import Home from "./components/Home";
 import Nav from "./components/Nav";
 
 // const URL = "http://localhost:3003/bills";
 
 function App() {
+  const [clientList, setClientList] = useState([]);
+
   // const [clientList, setClientList] = useState([]);
   // const [deleteData, setDeleteData] = useState(null);
   // const [editData, setEditData] = useState(null);
@@ -77,9 +81,15 @@ function App() {
 
   return (
     <GlobalProvider>
-      <Nav class="nav" btn="button"></Nav>
+      <Nav class="nav" btn="hover"></Nav>
 
-      <Routes btn="button"></Routes>
+      <Routes
+        className="button"
+        btn="hover"
+        headerBank="header-bank"
+        clientList={clientList}
+        setClientList={setClientList}
+      ></Routes>
     </GlobalProvider>
   );
 }

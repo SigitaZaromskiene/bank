@@ -74,7 +74,7 @@
 
 .button {
   padding: 10px 40px;
-  background-color: #5f4ae5;
+  background-color: #653c28;
   border: 1px solid black;
   border-radius: 15px;
   font-size: 18px;
@@ -87,7 +87,7 @@
 
 .button-add {
   padding: 10px 40px;
-  background-color: #5f4ae5;
+  background-color: #653c28;
   border: 1px solid black;
   border-radius: 15px;
   font-size: 14px;
@@ -99,7 +99,7 @@
 
 .button-money {
   padding: 10px 60px;
-  background-color: #5f4ae5;
+  background-color: #653c28;
   border: 1px solid black;
   border-radius: 15px;
   font-size: 24px;
@@ -142,11 +142,12 @@
   background-color: #f4f6f9;
   border: 1px solid black;
   height: 55px;
-  width: 230px;
-  color: black;
+  width: 330px;
+  color: #653c28;
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px 10px;
   font-size: 24px;
+  margin-bottom: 50px;
 }
 
 main {
@@ -192,7 +193,7 @@ main {
   align-items: center;
   font-size: 18px;
   border: 1px solid black;
-  border-radius: 15px;
+
   padding: 10px 20px;
 }
 
@@ -203,4 +204,17 @@ main {
   padding: 10px 20px;
   color: black;
   text-decoration: none;
+  color: #653c28;
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+  background-color: white;
+}
+
+.header-bank {
+  color: #653c28;
+  font-size: 68px;
+  text-align: center;
+  padding: 40px 40px;
+  margin-bottom: 60px;
 }

@@ -8,7 +8,7 @@ import axios from "axios";
 
 function LoggedInBills(props) {
   const URL = "http://localhost:3003/bills";
-  const [clientList, setClientList] = useState([]);
+
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
 
@@ -19,11 +19,9 @@ function LoggedInBills(props) {
       return;
     }
     axios.get(URL).then((res) => {
-      setClientList(res.data);
+      props.setClientList(res.data);
     });
   }, [lastStateUpdate]);
-
-  console.log(clientList);
 
   useEffect(() => {
     if (deleteData === null) {
@@ -57,18 +55,18 @@ function LoggedInBills(props) {
 
   const filterClient = useCallback(
     (filterType) => {
-      let filteredList = clientList;
+      let filteredList = props.clientList;
 
       if (filterType === "with") {
-        filteredList = clientList.filter(({ amount }) => amount);
+        filteredList = props.clientList.filter(({ amount }) => amount);
       }
       if (filterType === "without") {
-        filteredList = clientList.filter(({ amount }) => !amount);
+        filteredList = props.clientList.filter(({ amount }) => !amount);
       }
 
       setFilteredClients(filteredList);
     },
-    [clientList]
+    [props.clientList]
   );
 
   useEffect(() => {
@@ -77,19 +75,10 @@ function LoggedInBills(props) {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <ClientsNumber
-          className="header"
-          clientList={clientList}
-        ></ClientsNumber>
-        <CurrentBalance
-          className="header"
-          clientList={clientList}
-        ></CurrentBalance>
-      </header>
+      <header className="App-header"></header>
       <AddNewBillForm
-        clientList={clientList}
-        setClientList={setClientList}
+        clientList={props.clientList}
+        setClientList={props.setClientList}
         form="form"
         btn="button"
         billContainer="bill-container"
@@ -104,8 +93,8 @@ function LoggedInBills(props) {
           billContainer="bill-container"
           classes="button"
           total={b.total}
-          setClientList={setClientList}
-          clientList={clientList}
+          setClientList={props.setClientList}
+          clientList={props.clientList}
           bill="bill"
           add="button-add"
           totalClass="total"

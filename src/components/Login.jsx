@@ -47,7 +47,7 @@ function Login(props) {
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
+
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -61,71 +61,86 @@ function Login(props) {
           borderRadius: "15px",
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           justifyContent: "center",
         }}
       >
         <div style={{ textAlign: "center", fontSize: "24px" }}>
           {error ? (
-            <span style={{ color: "crimson" }}>Login Error</span>
+            <span style={{ color: "red" }}>Login Error</span>
           ) : (
-            <span>Login</span>
+            <span style={{ color: "#653c28", fontWeight: "500" }}>Login</span>
           )}
         </div>
-        <div>
-          <h5 style={{ textAlign: "center", fontSize: "20px" }}>
-            {userName ? (
-              <span>Hello, {userName}</span>
-            ) : (
-              <span>Hello, guest</span>
-            )}
-          </h5>
+
+        <h5 style={{ textAlign: "center", fontSize: "20px" }}>
+          {userName ? (
+            <span>Hello, {userName}</span>
+          ) : (
+            <span>Hello, guest</span>
+          )}
+        </h5>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+            gap: "20px",
+            width: "100%",
+          }}
+        >
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              gap: "20px",
-              width: "100%",
+              gap: "15px",
             }}
           >
-            <div
+            <label
               style={{
-                display: "flex",
-                gap: "28px",
+                fontSize: "20px",
+                color: "#653c28",
+                fontWeight: "500",
               }}
             >
-              <label style={{ marginRight: "10px", fontSize: "20px" }}>
-                Name
-              </label>
-              <input
-                type="text"
-                style={{ padding: "5px 10px", fontSize: "20px" }}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <label style={{ marginRight: "10px", fontSize: "20px" }}>
-                Password
-              </label>
-              <input
-                type="password"
-                style={{ padding: "5px 10px", fontSize: "20px" }}
-                value={psw}
-                onChange={(e) => setPsw(e.target.value)}
-              />
-            </div>
+              Name
+            </label>
+            <input
+              type="text"
+              style={{ padding: "5px 10px", fontSize: "20px" }}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "15px",
+            }}
+          >
+            <label
+              style={{
+                fontSize: "20px",
+                color: "#653c28",
+                fontWeight: "500",
+              }}
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              style={{
+                padding: "5px 10px",
+                fontSize: "20px",
+                marginBottom: "30px",
+              }}
+              value={psw}
+              onChange={(e) => setPsw(e.target.value)}
+            />
           </div>
         </div>
-        <button
-          style={{
-            marginTop: "40px",
-            marginLeft: "100px",
-          }}
-          className={props.btn}
-          onClick={login}
-        >
+
+        <button className={props.btn} onClick={login}>
           Login
         </button>
       </div>
