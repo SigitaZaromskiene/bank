@@ -7,16 +7,16 @@ function Login(props) {
   const [name, setName] = useState("");
   const [psw, setPsw] = useState("");
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("http://localhost:3033/login", { withCredentials: true })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         if (res.data.status === "ok") {
-  //           setUserName(res.data.name);
-  //         }
-  //       });
-  //   }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3003/login", { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status === "ok") {
+          setUserName(res.data.name);
+        }
+      });
+  }, []);
 
   //   const { setLogged, setAuthName } = useContext(Global);
 
