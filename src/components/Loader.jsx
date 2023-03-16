@@ -1,9 +1,5 @@
 function Loader() {
-  return (
-    <div className="spinner-border m-5" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  );
+  return <div className="lds-dual-ring"></div>;
 }
 
 export default Loader;

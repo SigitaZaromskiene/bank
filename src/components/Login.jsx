@@ -10,16 +10,18 @@ function Login(props) {
 
   const { setRoute } = useContext(Global);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3003/login", { withCredentials: true })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.status === "ok") {
-          setUserName(res.data.name);
-        }
-      });
-  }, []);
+  const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3003/login", { withCredentials: true })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       if (res.data.status === "ok") {
+  //         setUserName(res.data.name);
+  //       }
+  //     });
+  // }, []);
 
   //   const { setLogged, setAuthName } = useContext(Global);
 
@@ -42,6 +44,15 @@ function Login(props) {
         } else {
           setError(true);
           setUserName(null);
+          setModal({
+            class: "visible",
+            msg: "Please enter correct details",
+            color: "red",
+          });
+          setTimeout(() => {
+            setModal({ class: "hidden", msg: "", color: "" });
+          }, 2000);
+          return;
         }
       });
   };
@@ -165,6 +176,10 @@ function Login(props) {
           <button className={props.btn} onClick={login}>
             Login
           </button>
+        </div>
+
+        <div className={`${modal.class} modal`}>
+          <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
         </div>
       </div>
     </>
