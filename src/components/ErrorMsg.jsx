@@ -4,12 +4,10 @@ function ErrorMsg() {
       style={{
         color: "red",
         textAlign: "center",
-        border: "1px solid red",
         fontSize: "20px",
-        backgroundColor: "rgb(244, 246, 249)",
       }}
     >
-      Restrict access to individual bank accounts. Please login.
+      Restrict access to individual bank bills. Please login.
     </h1>
   );
 }

@@ -35,8 +35,8 @@ function Auth({ children }) {
   if (logged === false) {
     return (
       <>
-        <ErrorMsg />
         <Login></Login>
+        <ErrorMsg />
       </>
     );
   }

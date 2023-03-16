@@ -36,7 +36,9 @@ function Nav(props) {
             </p>
           </>
         ) : (
-          <p onClick={() => setRoute("login")}>Login</p>
+          <p className={props.btn} onClick={() => setRoute("login")}>
+            Login
+          </p>
         )}
       </div>
     </div>

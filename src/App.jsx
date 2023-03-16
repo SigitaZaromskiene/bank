@@ -4,7 +4,6 @@ import { Global } from "./components/Global";
 import { GlobalProvider } from "./components/Global";
 import Routes from "./components/Routes";
 import Home from "./components/Home";
-import Nav from "./components/Nav";
 
 // const URL = "http://localhost:3003/bills";
 
