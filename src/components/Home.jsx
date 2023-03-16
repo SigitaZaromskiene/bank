@@ -1,8 +1,20 @@
 import bank from "./img/bank.jpg";
 import ClientsNumber from "./ClientsNumber";
 import CurrentBalance from "./CurrentBalance";
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+const URL = "http://localhost:3003/home";
 
 function Home(props) {
+  useEffect(() => {
+    if (props.lastStateUpdate === null) {
+      return;
+    }
+    axios.get(URL).then((res) => {
+      props.setClientList(res.data);
+    });
+  }, [props.lastStateUpdate]);
   return (
     <div style={{ display: "flex" }}>
       <img

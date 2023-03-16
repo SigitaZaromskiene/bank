@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import ClientsNumber from "./ClientsNumber";
-import CurrentBalance from "./CurrentBalance";
+
 import { v4 as uuidv4 } from "uuid";
 import Bill from "./Bill";
 import AddNewBillForm from "./AddNewBillForm";
@@ -12,16 +11,14 @@ function LoggedInBills(props) {
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
 
-  const [lastStateUpdate, setLastStateUpdate] = useState(Date.now());
-
   useEffect(() => {
-    if (lastStateUpdate === null) {
+    if (props.lastStateUpdate === null) {
       return;
     }
     axios.get(URL).then((res) => {
       props.setClientList(res.data);
     });
-  }, [lastStateUpdate]);
+  }, [props.lastStateUpdate]);
 
   useEffect(() => {
     if (deleteData === null) {
@@ -29,7 +26,7 @@ function LoggedInBills(props) {
     }
     axios
       .delete(URL + "/" + deleteData.id)
-      .then((res) => setLastStateUpdate(Date.now()));
+      .then((res) => props.setLastStateUpdate(Date.now()));
   }, [deleteData]);
 
   useEffect(() => {
@@ -44,7 +41,7 @@ function LoggedInBills(props) {
         number: editData.number,
       })
       .then((res) => {
-        setLastStateUpdate(Date.now());
+        props.setLastStateUpdate(Date.now());
       });
   }, [editData]);
   const sortArrOfObjByProp = (arr, propName) => {
@@ -84,7 +81,7 @@ function LoggedInBills(props) {
         billContainer="bill-container"
         flex="flex"
         modal="modal"
-        setLastStateUpdate={setLastStateUpdate}
+        setLastStateUpdate={props.setLastStateUpdate}
       ></AddNewBillForm>
       {sortArrOfObjByProp(filteredClients, "surname").map((b) => (
         <Bill

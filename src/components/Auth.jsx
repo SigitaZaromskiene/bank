@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import Login from "./Login";
 import { Global } from "./Global";
+import ErrorMsg from "./ErrorMsg";
 
 function Auth({ children }) {
   const [logged, setLogged] = useState(null);
@@ -32,7 +33,12 @@ function Auth({ children }) {
   }
 
   if (logged === false) {
-    return <Login></Login>;
+    return (
+      <>
+        <ErrorMsg />
+        <Login></Login>
+      </>
+    );
   }
 }
 

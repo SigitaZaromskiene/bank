@@ -1,30 +1,41 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Global } from "./Global";
 import LoggedInBills from "./LoggedInBills";
 import Login from "./Login";
 import Auth from "./Auth";
 import Home from "./Home";
+import Nav from "./Nav";
 
 function Routes(props) {
   const { route } = useContext(Global);
 
+  const [clientList, setClientList] = useState([]);
+
+  const [lastStateUpdate, setLastStateUpdate] = useState(Date.now());
+
   switch (route) {
     case "home":
       return (
-        <Auth>
+        <>
+          <Nav class="nav" btn="hover"></Nav>
           <Home
             headerBank={props.headerBank}
-            clientList={props.clientList}
-            setClientList={props.setClientList}
+            clientList={clientList}
+            setClientList={setClientList}
+            lastStateUpdate={lastStateUpdate}
+            setLastStateUpdate={setLastStateUpdate}
           />
-        </Auth>
+        </>
       );
     case "bills":
       return (
         <Auth>
+          <Nav class="nav" btn="hover"></Nav>
           <LoggedInBills
-            clientList={props.clientList}
-            setClientList={props.setClientList}
+            clientList={clientList}
+            setClientList={setClientList}
+            lastStateUpdate={lastStateUpdate}
+            setLastStateUpdate={setLastStateUpdate}
           ></LoggedInBills>
         </Auth>
       );

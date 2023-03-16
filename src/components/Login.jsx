@@ -47,7 +47,7 @@ function Login(props) {
     <div
       style={{
         display: "flex",
-
+        height: "70vh",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -55,7 +55,7 @@ function Login(props) {
       <div
         style={{
           backgroundColor: "#f4f6f9",
-          marginTop: "60px",
+
           padding: "20px 40px",
           border: "1px solid black",
           borderRadius: "15px",
@@ -84,10 +84,8 @@ function Login(props) {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "flex-start",
+
             gap: "20px",
-            width: "100%",
           }}
         >
           <div
@@ -101,13 +99,14 @@ function Login(props) {
                 fontSize: "20px",
                 color: "#653c28",
                 fontWeight: "500",
+                width: "30%",
               }}
             >
               Name
             </label>
             <input
               type="text"
-              style={{ padding: "5px 10px", fontSize: "20px" }}
+              style={{ padding: "5px 10px", fontSize: "20px", width: "80%" }}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -123,6 +122,7 @@ function Login(props) {
                 fontSize: "20px",
                 color: "#653c28",
                 fontWeight: "500",
+                width: "30%",
               }}
             >
               Password
@@ -132,7 +132,8 @@ function Login(props) {
               style={{
                 padding: "5px 10px",
                 fontSize: "20px",
-                marginBottom: "30px",
+                marginBottom: "50px",
+                width: "80%",
               }}
               value={psw}
               onChange={(e) => setPsw(e.target.value)}
