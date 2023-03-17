@@ -1,9 +1,6 @@
 import "./App.scss";
-import { useState } from "react";
-import { Global } from "./components/Global";
 import { GlobalProvider } from "./components/Global";
 import Routes from "./components/Routes";
-import Home from "./components/Home";
 
 // const URL = "http://localhost:3003/bills";
 

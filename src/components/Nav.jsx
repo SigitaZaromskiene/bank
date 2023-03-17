@@ -3,7 +3,7 @@ import { Global } from "./Global";
 import axios from "axios";
 
 function Nav(props) {
-  const { route, setRoute, authName, setAuthName, setLogged } =
+  const { route, setRoute, authName, setAuthName, setLogged, logged } =
     useContext(Global);
 
   const logOut = (_) => {

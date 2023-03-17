@@ -8,7 +8,7 @@ function Login(props) {
   const [name, setName] = useState("");
   const [psw, setPsw] = useState("");
 
-  const { setRoute } = useContext(Global);
+  const { setRoute, setLogged, setAuthName } = useContext(Global);
 
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
@@ -23,7 +23,7 @@ function Login(props) {
   //     });
   // }, []);
 
-  //   const { setLogged, setAuthName } = useContext(Global);
+  // const { setLogged, setAuthName } = useContext(Global);
 
   const login = (_) => {
     axios
@@ -39,8 +39,8 @@ function Login(props) {
           setName("");
           setPsw("");
           setError(null);
-          //   setLogged(true);
-          //   setAuthName(res.data.name);
+          setLogged(true);
+          setAuthName(res.data.name);
         } else {
           setError(true);
           setUserName(null);

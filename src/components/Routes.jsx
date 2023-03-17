@@ -27,6 +27,7 @@ function Routes(props) {
           />
         </>
       );
+
     case "bills":
       return (
         <Auth>
@@ -39,6 +40,7 @@ function Routes(props) {
           ></LoggedInBills>
         </Auth>
       );
+
     case "login":
       return <Login btn={props.className}></Login>;
     default:

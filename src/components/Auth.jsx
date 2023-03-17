@@ -5,9 +5,7 @@ import Login from "./Login";
 import { Global } from "./Global";
 
 function Auth({ children }) {
-  const [logged, setLogged] = useState(null);
-
-  const { setAuthName } = useContext(Global);
+  const { setAuthName, setLogged, logged } = useContext(Global);
 
   useEffect(() => {
     axios

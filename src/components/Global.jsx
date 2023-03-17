@@ -24,7 +24,6 @@ export const GlobalProvider = ({ children }) => {
       value={{
         route,
         setRoute,
-
         authName,
         setAuthName,
         logOut,
