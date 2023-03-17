@@ -74,7 +74,7 @@ function Login(props) {
         onClick={() => setRoute("home")}
       >
         {" "}
-        &larr; Home page
+        &larr; &nbsp; Home page
       </button>
       <div
         style={{
@@ -106,11 +106,7 @@ function Login(props) {
           </div>
 
           <h5 style={{ textAlign: "center", fontSize: "20px" }}>
-            {userName ? (
-              <span>Hello, {userName}</span>
-            ) : (
-              <span>Hello, guest</span>
-            )}
+            <span>Hello, guest</span>
           </h5>
           <div
             style={{
@@ -175,12 +171,15 @@ function Login(props) {
 
           <button
             style={{
-              backgroundColor: "#653c28",
-              padding: "10px 25px",
+              textAlign: "center",
+              width: "150px",
+              padding: "10px",
+              background: "none",
               borderRadius: "15px",
-              fontSize: "22px",
-              border: "none",
               cursor: "pointer",
+              color: "#653c28",
+              fontWeight: "600",
+              border: "1px solid #653c28",
             }}
             onClick={login}
           >
