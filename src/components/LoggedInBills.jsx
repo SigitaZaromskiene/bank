@@ -34,7 +34,7 @@ function LoggedInBills(props) {
       return;
     }
 
-    console.log(editData);
+    
 
     axios
       .put(URL + "/" + editData.action + "/" + editData.id, {

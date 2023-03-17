@@ -41,6 +41,7 @@ function Login(props) {
           setError(null);
           setLogged(true);
           setAuthName(res.data.name);
+          setRoute("home");
         } else {
           setError(true);
           setUserName(null);
