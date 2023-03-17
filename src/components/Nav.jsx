@@ -1,8 +1,20 @@
 import { useContext } from "react";
 import { Global } from "./Global";
+import axios from "axios";
 
 function Nav(props) {
-  const { route, setRoute, authName } = useContext(Global);
+  const { route, setRoute, authName, setAuthName, setLogged } =
+    useContext(Global);
+
+  const logOut = (_) => {
+    axios
+      .post("http://localhost:3003/logout", {}, { withCredentials: true })
+      .then((res) => {
+        setLogged(false);
+        setAuthName(false);
+        setRoute("home");
+      });
+  };
   return (
     <div className={props.class}>
       <div
@@ -31,7 +43,7 @@ function Nav(props) {
         {authName ? (
           <>
             <h4 onClick={() => setRoute("login")}>{authName}</h4>
-            <p className={props.btn} onClick={() => setRoute("login")}>
+            <p className={props.btn} onClick={logOut}>
               Logout
             </p>
           </>

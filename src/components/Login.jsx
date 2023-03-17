@@ -173,7 +173,17 @@ function Login(props) {
             </div>
           </div>
 
-          <button className={props.btn} onClick={login}>
+          <button
+            style={{
+              backgroundColor: "#653c28",
+              padding: "10px 25px",
+              borderRadius: "15px",
+              fontSize: "22px",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={login}
+          >
             Login
           </button>
         </div>
