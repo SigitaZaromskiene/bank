@@ -3,7 +3,7 @@ import { Global } from "./Global";
 import axios from "axios";
 
 function Nav(props) {
-  const { route, setRoute, authName, setAuthName, setLogged } =
+  const { route, setRoute, authName, setAuthName, setLogged, logged } =
     useContext(Global);
 
   const logOut = (_) => {
@@ -25,12 +25,15 @@ function Nav(props) {
         }}
       >
         <h3 style={{ color: "#161616" }}>Bank app</h3>
+
         <p className={props.btn} onClick={() => setRoute("home")}>
           Home
         </p>
-        <p className={props.btn} onClick={() => setRoute("bills")}>
-          Bills
-        </p>
+        {authName ? (
+          <p className={props.btn} onClick={() => setRoute("bills")}>
+            Bills
+          </p>
+        ) : null}
       </div>
       <div
         style={{
