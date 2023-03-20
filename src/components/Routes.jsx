@@ -1,13 +1,30 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Global } from "./Global";
 import LoggedInBills from "./LoggedInBills";
 import Login from "./Login";
 import Auth from "./Auth";
 import Home from "./Home";
 import Nav from "./Nav";
+import axios from "axios";
 
 function Routes(props) {
   const { route } = useContext(Global);
+
+  const { setAuthName, setLogged } = useContext(Global);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3003/login", { withCredentials: true })
+      .then((res) => {
+        if (res.data.status === "ok") {
+          setLogged(true);
+          setAuthName(res.data.name);
+        } else {
+          setLogged(false);
+          setAuthName(null);
+        }
+      });
+  }, [setAuthName, setLogged]);
 
   const [clientList, setClientList] = useState([]);
 

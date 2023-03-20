@@ -17,9 +17,9 @@ function Login(props) {
   //     .get("http://localhost:3003/login", { withCredentials: true })
   //     .then((res) => {
   //       console.log(res.data);
-  //       if (res.data.status === "ok") {
-  //         setUserName(res.data.name);
-  //       }
+  //       // if (res.data.status === "ok") {
+  //       //   setUserName(res.data.name);
+  //       // }
   //     });
   // }, []);
 

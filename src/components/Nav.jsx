@@ -42,7 +42,7 @@ function Nav(props) {
       >
         {authName ? (
           <>
-            <h4 onClick={() => setRoute("login")}>{authName}</h4>
+            <h4>{authName}</h4>
             <p className={props.btn} onClick={logOut}>
               Logout
             </p>

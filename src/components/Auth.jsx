@@ -7,19 +7,19 @@ import { Global } from "./Global";
 function Auth({ children }) {
   const { setAuthName, setLogged, logged } = useContext(Global);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3003/login", { withCredentials: true })
-      .then((res) => {
-        if (res.data.status === "ok") {
-          setLogged(true);
-          setAuthName(res.data.name);
-        } else {
-          setLogged(false);
-          setAuthName(null);
-        }
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3003/login", { withCredentials: true })
+  //     .then((res) => {
+  //       if (res.data.status === "ok") {
+  //         setLogged(true);
+  //         setAuthName(res.data.name);
+  //       } else {
+  //         setLogged(false);
+  //         setAuthName(null);
+  //       }
+  //     });
+  // }, [setAuthName, setLogged]);
 
   if (logged === null) {
     return <Loader></Loader>;
