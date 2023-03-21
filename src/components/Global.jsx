@@ -9,12 +9,14 @@ export const GlobalProvider = ({ children }) => {
   const [logged, setLogged] = useState(null);
   const [authName, setAuthName] = useState(null);
 
+  const [clientList, setClientList] = useState([]);
+
   const logOut = (_) => {
     axios
       .post("http://localhost:3003/logout", {}, { withCredentials: true })
       .then((res) => {
         console.log(res.data);
-        setLogged(false);
+        setLogged(2);
         setAuthName(false);
       });
   };
@@ -29,6 +31,8 @@ export const GlobalProvider = ({ children }) => {
         logOut,
         logged,
         setLogged,
+        clientList,
+        setClientList,
       }}
     >
       {children}

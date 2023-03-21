@@ -17,16 +17,20 @@ function Routes(props) {
       .get("http://localhost:3003/login", { withCredentials: true })
       .then((res) => {
         if (res.data.status === "ok") {
-          setLogged(true);
+          setLogged(1);
           setAuthName(res.data.name);
         } else {
-          setLogged(false);
+          setLogged(2);
           setAuthName(null);
         }
+      })
+      .catch((_) => {
+        setLogged(2);
+        setAuthName(null);
       });
   }, [setAuthName, setLogged]);
 
-  const [clientList, setClientList] = useState([]);
+  const { clientList, setClientList } = useContext(Global);
 
   const [lastStateUpdate, setLastStateUpdate] = useState(Date.now());
 
@@ -47,7 +51,7 @@ function Routes(props) {
 
     case "bills":
       return (
-        <Auth>
+        <>
           <Nav class="nav" btn="hover"></Nav>
           <LoggedInBills
             clientList={clientList}
@@ -55,7 +59,7 @@ function Routes(props) {
             lastStateUpdate={lastStateUpdate}
             setLastStateUpdate={setLastStateUpdate}
           ></LoggedInBills>
-        </Auth>
+        </>
       );
 
     case "login":

@@ -1,17 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ClientsNumber from "./ClientsNumber";
 import CurrentBalance from "./CurrentBalance";
+import { Global } from "./Global";
 
-const URL = "http://localhost:3003/bills";
+const URL = "http://localhost:3003/accounts";
 
-function AddNewBillForm({ setLastStateUpdate, flex, form, btn, clientList }) {
+function AddNewBillForm({ setLastStateUpdate, flex, form, btn }) {
   const [addNewName, setAddNewName] = useState("");
   const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
-  const [createData, setCreateData] = useState(null);
+  const { clientList, createData, setCreateData } = useContext(Global);
 
   useEffect(() => {
     if (createData === null) {

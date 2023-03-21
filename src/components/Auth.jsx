@@ -24,11 +24,11 @@ function Auth({ children }) {
   if (logged === null) {
     return <Loader></Loader>;
   }
-  if (logged === true) {
+  if (logged === 1) {
     return <>{children}</>;
   }
 
-  if (logged === false) {
+  if (logged === 2) {
     return (
       <>
         <Login></Login>

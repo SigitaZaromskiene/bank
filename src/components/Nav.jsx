@@ -29,11 +29,10 @@ function Nav(props) {
         <p className={props.btn} onClick={() => setRoute("home")}>
           Home
         </p>
-        {authName ? (
-          <p className={props.btn} onClick={() => setRoute("bills")}>
-            Bills
-          </p>
-        ) : null}
+
+        <p className={props.btn} onClick={() => setRoute("bills")}>
+          Bills
+        </p>
       </div>
       <div
         style={{

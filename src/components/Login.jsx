@@ -39,7 +39,7 @@ function Login(props) {
           setName("");
           setPsw("");
           setError(null);
-          setLogged(true);
+          setLogged(1);
           setAuthName(res.data.name);
           setRoute("home");
         } else {
