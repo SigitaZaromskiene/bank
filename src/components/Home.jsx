@@ -20,7 +20,7 @@ function Home(props) {
       <img
         src={bank}
         alt="bank app home page img"
-        style={{ height: "865px", width: "80%" }}
+        style={{ height: "868px", width: "80%" }}
       />
       <div
         style={{
