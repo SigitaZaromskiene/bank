@@ -10,6 +10,7 @@ export const GlobalProvider = ({ children }) => {
   const [authName, setAuthName] = useState(null);
 
   const [clientList, setClientList] = useState([]);
+  const [createData, setCreateData] = useState(null);
 
   const logOut = (_) => {
     axios
@@ -33,6 +34,8 @@ export const GlobalProvider = ({ children }) => {
         setLogged,
         clientList,
         setClientList,
+        setCreateData,
+        createData,
       }}
     >
       {children}

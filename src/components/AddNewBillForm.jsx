@@ -5,7 +5,7 @@ import ClientsNumber from "./ClientsNumber";
 import CurrentBalance from "./CurrentBalance";
 import { Global } from "./Global";
 
-const URL = "http://localhost:3003/accounts";
+const URL = "http://localhost:3003/bills";
 
 function AddNewBillForm({ setLastStateUpdate, flex, form, btn }) {
   const [addNewName, setAddNewName] = useState("");

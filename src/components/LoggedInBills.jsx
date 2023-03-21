@@ -6,7 +6,7 @@ import AddNewBillForm from "./AddNewBillForm";
 import axios from "axios";
 
 function LoggedInBills(props) {
-  const URL = "http://localhost:3003/bills";
+  const URL = "http://localhost:3003/accounts";
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
