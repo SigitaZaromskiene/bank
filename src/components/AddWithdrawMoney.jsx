@@ -19,6 +19,16 @@ function AddWithdrawMoney(props) {
   // };
 
   const add = (_) => {
+    const updatedBill = props.clientList.map((bill) => {
+      if (bill.id !== props.bill.id) return bill;
+
+      const newTotalAmount = Number(bill.amount) + Number(newAmount);
+      bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
+
+      return bill;
+    });
+
+    props.setClientList(updatedBill);
     if (!newAmount) {
       setModal({
         class: "visible",
