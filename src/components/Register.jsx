@@ -13,52 +13,61 @@ function Register(props) {
 
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3003/login", { withCredentials: true })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       // if (res.data.status === "ok") {
-  //       //   setUserName(res.data.name);
-  //       // }
-  //     });
-  // }, []);
-
-  // const { setLogged, setAuthName } = useContext(Global);
-
   const register = (_) => {
+    if (psw !== psw2) {
+      setModal({
+        class: "visible",
+        msg: "Password mismatch",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
+      return;
+    }
+
     axios
       .post(
-        "http://localhost:3003/login",
+        "http://localhost:3003/register",
         { name, psw },
         { withCredentials: true }
       )
       .then((res) => {
         console.log(res.data);
         if (res.data.status === "ok") {
-          setUserName(res.data.name);
           setName("");
           setPsw("");
+          setPsw2("");
           setError(null);
-          setLogged(1);
-          setAuthName(res.data.name);
-          setRoute("home");
+
+          //   setModal({
+          //     class: "visible",
+          //     msg: "Please enter correct details",
+          //     color: "red",
+          //   });
+          //   setTimeout(() => {
+          //     setModal({ class: "hidden", msg: "", color: "" });
+          //   }, 2000);
+          //   return;
+          // }
+
+          // setRoute("home");
         } else {
           setError(true);
-          setUserName(null);
-          setModal({
-            class: "visible",
-            msg: "Please enter correct details",
-            color: "red",
-          });
-          setTimeout(() => {
-            setModal({ class: "hidden", msg: "", color: "" });
-          }, 2000);
-          return;
+
+          //   setModal({
+          //     class: "visible",
+          //     msg: "Please enter correct details",
+          //     color: "red",
+          //   });
+          //   setTimeout(() => {
+          //     setModal({ class: "hidden", msg: "", color: "" });
+          //   }, 2000);
+          //   return;
+          // }
         }
       });
   };
-
   return (
     <>
       <button
