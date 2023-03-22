@@ -6,6 +6,7 @@ import Auth from "./Auth";
 import Home from "./Home";
 import Nav from "./Nav";
 import axios from "axios";
+import Register from "./Register";
 
 function Routes(props) {
   const { route } = useContext(Global);
@@ -64,6 +65,8 @@ function Routes(props) {
 
     case "login":
       return <Login btn={props.className}></Login>;
+    case "register":
+      return <Register btn={props.className}></Register>;
     default:
       return null;
   }

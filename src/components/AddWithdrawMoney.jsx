@@ -29,6 +29,8 @@ function AddWithdrawMoney(props) {
     });
 
     props.setClientList(updatedBill);
+
+    console.log(props.clientList);
     if (!newAmount) {
       setModal({
         class: "visible",
@@ -41,7 +43,7 @@ function AddWithdrawMoney(props) {
     } else {
       props.setEditData({
         number: parseInt(newAmount),
-        action: "add",
+
         id: props.bill.id,
       });
     }
@@ -76,7 +78,7 @@ function AddWithdrawMoney(props) {
     } else {
       props.setEditData({
         number: parseInt(newAmount),
-        action: "remove",
+
         id: props.bill.id,
       });
     }

@@ -5,12 +5,11 @@ export const Global = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [route, setRoute] = useState("home");
-
   const [logged, setLogged] = useState(null);
   const [authName, setAuthName] = useState(null);
-
   const [clientList, setClientList] = useState([]);
   const [createData, setCreateData] = useState(null);
+  const [editBills, setEditBills] = useState(null);
 
   const logOut = (_) => {
     axios
@@ -36,6 +35,8 @@ export const GlobalProvider = ({ children }) => {
         setClientList,
         setCreateData,
         createData,
+        setEditBills,
+        editBills,
       }}
     >
       {children}

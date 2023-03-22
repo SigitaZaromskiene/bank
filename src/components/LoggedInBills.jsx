@@ -35,7 +35,7 @@ function LoggedInBills(props) {
     }
 
     axios
-      .put(URL + "/" + editData.action + "/" + editData.id, {
+      .put(URL + "/" + editData.id, {
         number: editData.number,
       })
       .then((res) => {
