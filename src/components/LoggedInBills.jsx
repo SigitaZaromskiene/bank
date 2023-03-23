@@ -6,7 +6,6 @@ import AddNewBillForm from "./AddNewBillForm";
 import axios from "axios";
 
 function LoggedInBills(props) {
-  console.log(props);
   const URL = "http://localhost:3003/accounts";
 
   const [deleteData, setDeleteData] = useState(null);
@@ -49,26 +48,33 @@ function LoggedInBills(props) {
 
   const [filteredClients, setFilteredClients] = useState([]);
 
-  const filterClient = useCallback(
-    (filterType) => {
+  const onChange = (event) => {
+    const value = event.target.value;
+    optionsHandler(value);
+  };
+
+  const optionsHandler = useCallback(
+    (value) => {
       let filteredList = props.clientList;
 
-      if (filterType === "all") {
-        filteredList = props.clientList.filter(({ amount }) => amount);
+      if (value === "all") {
+        filteredList = props.clientList.filter(
+          ({ amount }) => amount < 0 || amount > 0 || amount === 0
+        );
       }
 
-      if (filterType === "without") {
+      if (value === "without") {
         filteredList = props.clientList.filter(({ amount }) => amount < 0);
       }
-      if (filterType === "with0") {
+      if (value === "with0") {
         filteredList = props.clientList.filter(({ amount }) => amount === 0);
       }
-      if (filterType === "blocked") {
+      if (value === "blocked") {
         filteredList = props.clientList.filter(
           ({ blocked }) => blocked === true
         );
       }
-      if (filterType === "with") {
+      if (value === "with") {
         filteredList = props.clientList.filter(({ amount }) => amount > 0);
       }
 
@@ -78,8 +84,8 @@ function LoggedInBills(props) {
   );
 
   useEffect(() => {
-    filterClient();
-  }, [filterClient]);
+    optionsHandler();
+  }, [optionsHandler]);
 
   return (
     <div className="App">
@@ -123,6 +129,7 @@ function LoggedInBills(props) {
       >
         <div style={{ display: "flex", gap: "50px" }}>
           <select
+            onChange={onChange}
             style={{
               display: "flex",
               height: "50px",
@@ -135,43 +142,22 @@ function LoggedInBills(props) {
             }}
           >
             <option>Select to see accounts</option>
-            <option
-              className={props.className}
-              value="1"
-              onChange={() => filterClient("all")}
-            >
+            <option className={props.className} value="all">
               All accounts
             </option>
-            <option
-              className={props.className}
-              value="2"
-              onChange={() => filterClient("with")}
-            >
+            <option className={props.className} value="with">
               With balance
             </option>
-            <option
-              className={props.className}
-              value="3"
-              onClick={() => filterClient("without")}
-            >
+            <option className={props.className} value="without">
               With minus balance
             </option>
-            <option
-              className={props.className}
-              value="4"
-              onClick={() => filterClient("with0")}
-            >
+            <option className={props.className} value="with0">
               With 0 balance
             </option>
-            <option
-              className={props.className}
-              value="5"
-              onClick={() => filterClient("blocked")}
-            >
+            <option className={props.className} value="blocked">
               Blocked accounts
             </option>
           </select>
-
           <select
             style={{
               display: "flex",
@@ -185,25 +171,13 @@ function LoggedInBills(props) {
             }}
           >
             <option>Sort by</option>
-            <option
-              className={props.className}
-              value="1"
-              onChange={() => filterClient("all")}
-            >
+            <option className={props.className} value="1">
               All
             </option>
-            <option
-              className={props.className}
-              value="2"
-              onChange={() => filterClient("with")}
-            >
+            <option className={props.className} value="2">
               Surname
             </option>
-            <option
-              className={props.className}
-              value="3"
-              onClick={() => filterClient("without")}
-            >
+            <option className={props.className} value="3">
               Amount
             </option>
           </select>

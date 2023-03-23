@@ -11,7 +11,6 @@ function Bill(props) {
           style={{
             display: "flex",
             alignItems: "center",
-
             width: "100%",
           }}
         >
