@@ -4,6 +4,9 @@ import axios from "axios";
 import ClientsNumber from "./ClientsNumber";
 import CurrentBalance from "./CurrentBalance";
 import { Global } from "./Global";
+import AccWithoutImg from "./AccWithoutImg";
+import AccWithMoney from "./AccWithMoney";
+import EmptyAcc from "./EmptyAcc";
 
 const URL = "http://localhost:3003/bills";
 
@@ -78,9 +81,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
     <div>
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1.5fr 1fr 1.5fr",
         }}
       >
         <ClientsNumber
@@ -91,10 +93,16 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
           className="header"
           clientList={clientList}
         ></CurrentBalance>
+        <AccWithoutImg
+          className="header"
+          clientList={clientList}
+        ></AccWithoutImg>
+        <EmptyAcc className="header" clientList={clientList}></EmptyAcc>
+        <AccWithMoney className="header" clientList={clientList}></AccWithMoney>
       </div>
       <div className={flex}>
         <div className={form}>
-          <label>Enter your name and surname to open a new bill</label>
+          <label>Open a new account</label>
           <input
             type="text"
             placeholder="Name"
@@ -107,6 +115,13 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             placeholder="Surname"
             value={addNewSurname}
             onChange={setSurnameHandler}
+            required
+          ></input>
+          <input
+            type="text"
+            placeholder="Passport photo"
+            value={addNewName}
+            onChange={setNameHandler}
             required
           ></input>
           <button className={btnBig} onClick={create}>

@@ -31,7 +31,7 @@ function Nav(props) {
         </p>
         {authName ? (
           <p className={props.btn} onClick={() => setRoute("bills")}>
-            Bills
+            Accounts
           </p>
         ) : null}
       </div>
