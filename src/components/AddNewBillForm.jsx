@@ -93,6 +93,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             width: "100%",
             justifyContent: "center",
             gap: "30px",
+            marginBottom: "30px",
+            marginTop: "30px",
           }}
         >
           <ClientsNumber
@@ -114,6 +116,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             width: "100%",
             justifyContent: "center",
             gap: "30px",
+            marginBottom: "30px",
+            marginTop: "30px",
           }}
         >
           <EmptyAcc className="header" clientList={clientList}></EmptyAcc>

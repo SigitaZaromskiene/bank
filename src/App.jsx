@@ -80,6 +80,7 @@ function App() {
         btn="hover"
         btnBig="button-big"
         headerBank="header-bank"
+        class="options"
       ></Routes>
     </GlobalProvider>
   );

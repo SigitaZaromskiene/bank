@@ -6,7 +6,6 @@ import Auth from "./Auth";
 import Home from "./Home";
 import Nav from "./Nav";
 import axios from "axios";
-import Register from "./Register";
 
 function Routes(props) {
   const { route } = useContext(Global);
@@ -55,11 +54,13 @@ function Routes(props) {
         <Auth>
           <Nav class="nav" btn="hover"></Nav>
           <LoggedInBills
+            className={props.class}
             clientList={clientList}
             setClientList={setClientList}
             lastStateUpdate={lastStateUpdate}
             setLastStateUpdate={setLastStateUpdate}
             btnBig={props.btnBig}
+            amount={props.amount}
           ></LoggedInBills>
         </Auth>
       );

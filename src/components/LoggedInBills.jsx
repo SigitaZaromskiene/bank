@@ -6,6 +6,7 @@ import AddNewBillForm from "./AddNewBillForm";
 import axios from "axios";
 
 function LoggedInBills(props) {
+  console.log(props);
   const URL = "http://localhost:3003/accounts";
 
   const [deleteData, setDeleteData] = useState(null);
@@ -52,11 +53,12 @@ function LoggedInBills(props) {
     (filterType) => {
       let filteredList = props.clientList;
 
-      if (filterType === "with") {
+      if (filterType === "all") {
         filteredList = props.clientList.filter(({ amount }) => amount);
       }
+
       if (filterType === "without") {
-        filteredList = props.clientList.filter(({ amount }) => !amount);
+        filteredList = props.clientList.filter(({ amount }) => amount < 0);
       }
       if (filterType === "with0") {
         filteredList = props.clientList.filter(({ amount }) => amount === 0);
@@ -66,8 +68,8 @@ function LoggedInBills(props) {
           ({ blocked }) => blocked === true
         );
       }
-      if (filterType === "without") {
-        filteredList = props.clientList.filter(({ blocked }) => !blocked);
+      if (filterType === "with") {
+        filteredList = props.clientList.filter(({ amount }) => amount > 0);
       }
 
       setFilteredClients(filteredList);
@@ -114,10 +116,100 @@ function LoggedInBills(props) {
           marginTop: "30px",
           display: "flex",
           gap: "20px",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          padding: "40px 150px",
+          marginBottom: "150px",
         }}
       >
-        <button className={props.btnBig} onClick={() => filterClient("all")}>
+        <div style={{ display: "flex", gap: "50px" }}>
+          <select
+            style={{
+              display: "flex",
+              height: "50px",
+              borderRadius: "15px",
+              padding: " 5px 10px",
+              backgroundColor: "#f4f6f9",
+              cursor: "pointer",
+              justifyContent: "flex-start",
+              fontSize: "16px",
+            }}
+          >
+            <option>Select to see accounts</option>
+            <option
+              className={props.className}
+              value="1"
+              onChange={() => filterClient("all")}
+            >
+              All accounts
+            </option>
+            <option
+              className={props.className}
+              value="2"
+              onChange={() => filterClient("with")}
+            >
+              With balance
+            </option>
+            <option
+              className={props.className}
+              value="3"
+              onClick={() => filterClient("without")}
+            >
+              With minus balance
+            </option>
+            <option
+              className={props.className}
+              value="4"
+              onClick={() => filterClient("with0")}
+            >
+              With 0 balance
+            </option>
+            <option
+              className={props.className}
+              value="5"
+              onClick={() => filterClient("blocked")}
+            >
+              Blocked accounts
+            </option>
+          </select>
+
+          <select
+            style={{
+              display: "flex",
+              height: "50px",
+              borderRadius: "15px",
+              padding: " 5px 10px",
+              backgroundColor: "#f4f6f9",
+              justifyContent: "flex-start",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            <option>Sort by</option>
+            <option
+              className={props.className}
+              value="1"
+              onChange={() => filterClient("all")}
+            >
+              All
+            </option>
+            <option
+              className={props.className}
+              value="2"
+              onChange={() => filterClient("with")}
+            >
+              Surname
+            </option>
+            <option
+              className={props.className}
+              value="3"
+              onClick={() => filterClient("without")}
+            >
+              Amount
+            </option>
+          </select>
+        </div>
+        <button className={props.btnBig}>Taxes</button>
+        {/* <button className={props.btnBig} onClick={() => filterClient("all")}>
           All
         </button>
         <button className={props.btnBig} onClick={() => filterClient("with")}>
@@ -130,7 +222,7 @@ function LoggedInBills(props) {
           className={props.btnBig}
           onClick={() => filterClient("without")}
         >
-          Without minus &euro;
+          With minus &euro;
         </button>
         <button
           className={props.btnBig}
@@ -143,7 +235,7 @@ function LoggedInBills(props) {
           onClick={() => filterClient("notBlocked")}
         >
           Available
-        </button>
+        </button> */}
       </div>
     </div>
   );

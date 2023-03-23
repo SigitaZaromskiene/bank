@@ -39,9 +39,17 @@
   }
 }
 
+.options {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  font-size: 16px;
+  padding: 5px;
+}
+
 .form {
   background-color: #f4f6f9;
-
+  margin-bottom: 30px;
   border-radius: 15px;
   border: 1px solid black;
   display: flex;
