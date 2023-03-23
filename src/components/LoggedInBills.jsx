@@ -49,6 +49,40 @@ function LoggedInBills(props) {
   const [filteredClients, setFilteredClients] = useState([]);
   console.log(filteredClients);
 
+  const onChangeSort = (event) => {
+    const value = event.target.value;
+    sortHandler(value);
+  };
+
+  const sortHandler = useCallback(
+    (value) => {
+      let sortedList = props.clientList;
+
+      if (value === "default") {
+        sortedList = props.clientList
+          .filter
+          // ({ amount }) => amount < 0 || amount > 0 || amount === 0
+          ();
+      }
+
+      if (value === "amount") {
+        // sortedList = props.clientList.filter(({ amount }) => amount < 0);
+      }
+      if (value === "surname") {
+        sortedList = props.setClientList((li) =>
+          [...li].sort((a, b) => a.surname.localeCompare(b.surname))
+        );
+      }
+
+      setFilteredClients(sortedList);
+    },
+    [props.clientList]
+  );
+
+  useEffect(() => {
+    sortHandler();
+  }, [sortHandler]);
+
   const onChange = (event) => {
     const value = event.target.value;
     optionsHandler(value);
@@ -161,6 +195,7 @@ function LoggedInBills(props) {
             </option>
           </select>
           <select
+            onChange={onChangeSort}
             style={{
               display: "flex",
               height: "50px",
@@ -173,13 +208,13 @@ function LoggedInBills(props) {
             }}
           >
             <option>Sort by</option>
-            <option className={props.className} value="1">
+            <option className={props.className} value="default">
               Default
             </option>
-            <option className={props.className} value="2">
+            <option className={props.className} value="surname">
               Surname
             </option>
-            <option className={props.className} value="3">
+            <option className={props.className} value="amount">
               Amount
             </option>
           </select>
