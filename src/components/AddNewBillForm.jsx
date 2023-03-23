@@ -7,6 +7,7 @@ import { Global } from "./Global";
 import AccWithoutImg from "./AccWithoutImg";
 import AccWithMoney from "./AccWithMoney";
 import EmptyAcc from "./EmptyAcc";
+import AccWithMinus from "./AccWithMinus";
 
 const URL = "http://localhost:3003/bills";
 
@@ -55,6 +56,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
         surname: addNewSurname,
         id: uuidv4(),
         amount: 0,
+        blocked: false,
       });
 
       setModal({
@@ -81,24 +83,49 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
     <div>
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1.5fr 1fr 1.5fr",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <ClientsNumber
-          className="header"
-          clientList={clientList}
-        ></ClientsNumber>
-        <CurrentBalance
-          className="header"
-          clientList={clientList}
-        ></CurrentBalance>
-        <AccWithoutImg
-          className="header"
-          clientList={clientList}
-        ></AccWithoutImg>
-        <EmptyAcc className="header" clientList={clientList}></EmptyAcc>
-        <AccWithMoney className="header" clientList={clientList}></AccWithMoney>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            gap: "30px",
+          }}
+        >
+          <ClientsNumber
+            className="header"
+            clientList={clientList}
+          ></ClientsNumber>
+          <CurrentBalance
+            className="header"
+            clientList={clientList}
+          ></CurrentBalance>
+          <AccWithoutImg
+            className="header"
+            clientList={clientList}
+          ></AccWithoutImg>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            gap: "30px",
+          }}
+        >
+          <EmptyAcc className="header" clientList={clientList}></EmptyAcc>
+          <AccWithMoney
+            className="header"
+            clientList={clientList}
+          ></AccWithMoney>
+          <AccWithMinus
+            className="header"
+            clientList={clientList}
+          ></AccWithMinus>
+        </div>
       </div>
       <div className={flex}>
         <div className={form}>

@@ -1,16 +1,12 @@
 function AccWithMoney(props) {
-  const getTotalAmount = () => {
-    const av = props.clientList.reduce(
-      (acc, curr) => acc + Number(curr.amount),
-      0
-    );
-    return av / props.clientList.length;
+  const getSumAcc = () => {
+    const empty = props.clientList.filter((acc) => acc.amount > 0);
+
+    return empty.length;
   };
 
   return (
-    <div className={props.className}>
-      Accounts with money: {getTotalAmount().toFixed(2, 0)} &euro;
-    </div>
+    <div className={props.className}>Accounts with balance: {getSumAcc()}</div>
   );
 }
 

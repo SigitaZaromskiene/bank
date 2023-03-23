@@ -1,15 +1,13 @@
 function EmptyAcc(props) {
-  const getTotalAmount = () => {
-    const av = props.clientList.reduce(
-      (acc, curr) => acc + Number(curr.amount),
-      0
-    );
-    return av / props.clientList.length;
+  const getEmptyAcc = () => {
+    const empty = props.clientList.filter((acc) => acc.amount === 0);
+
+    return empty.length;
   };
 
   return (
     <div className={props.className}>
-      Empty accounts: {getTotalAmount().toFixed(2, 0)} &euro;
+      Accounts with empty balance: {getEmptyAcc()}
     </div>
   );
 }
