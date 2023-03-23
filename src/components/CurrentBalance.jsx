@@ -5,7 +5,7 @@ function CurrentBalance(props) {
 
   return (
     <div className={props.className}>
-      Total amount: {getTotalAmount()} &euro;
+      Total amount: {getTotalAmount().toFixed(2, 0)} &euro;
     </div>
   );
 }

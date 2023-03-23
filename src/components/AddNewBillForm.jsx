@@ -7,7 +7,7 @@ import { Global } from "./Global";
 
 const URL = "http://localhost:3003/bills";
 
-function AddNewBillForm({ setLastStateUpdate, flex, form, btn }) {
+function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
   const [addNewName, setAddNewName] = useState("");
   const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
@@ -109,7 +109,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btn }) {
             onChange={setSurnameHandler}
             required
           ></input>
-          <button className={btn} onClick={create}>
+          <button className={btnBig} onClick={create}>
             Submit
           </button>
         </div>

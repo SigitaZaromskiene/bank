@@ -3,6 +3,7 @@ import ClientsNumber from "./ClientsNumber";
 import CurrentBalance from "./CurrentBalance";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import AvargeBalance from "./AvarageBalance";
 
 const URL = "http://localhost:3003/home";
 
@@ -32,13 +33,17 @@ function Home(props) {
         <div className={props.headerBank}>A bank you can count on.</div>
 
         <ClientsNumber
-          className="header"
+          className="header-home"
           clientList={props.clientList}
         ></ClientsNumber>
         <CurrentBalance
-          className="header"
+          className="header-home"
           clientList={props.clientList}
         ></CurrentBalance>
+        <AvargeBalance
+          className="header-home"
+          clientList={props.clientList}
+        ></AvargeBalance>
       </div>
     </div>
   );

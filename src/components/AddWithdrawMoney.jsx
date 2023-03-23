@@ -147,7 +147,7 @@ function AddWithdrawMoney(props) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        gap: "20px",
+        gap: "15px",
       }}
     >
       <button className={props.add} onClick={add}>

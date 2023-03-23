@@ -29,10 +29,11 @@ function Nav(props) {
         <p className={props.btn} onClick={() => setRoute("home")}>
           Home
         </p>
-
-        <p className={props.btn} onClick={() => setRoute("bills")}>
-          Bills
-        </p>
+        {authName ? (
+          <p className={props.btn} onClick={() => setRoute("bills")}>
+            Bills
+          </p>
+        ) : null}
       </div>
       <div
         style={{
@@ -54,9 +55,9 @@ function Nav(props) {
             <p className={props.btn} onClick={() => setRoute("login")}>
               Login
             </p>
-            <p className={props.btn} onClick={() => setRoute("register")}>
+            {/* <p className={props.btn} onClick={() => setRoute("register")}>
               Register
-            </p>
+            </p> */}
           </>
         )}
       </div>

@@ -75,7 +75,7 @@ function LoggedInBills(props) {
         clientList={props.clientList}
         setClientList={props.setClientList}
         form="form"
-        btn="button"
+        btnBig="button-big"
         billContainer="bill-container"
         flex="flex"
         modal="modal"
@@ -106,13 +106,16 @@ function LoggedInBills(props) {
           justifyContent: "center",
         }}
       >
-        <button className="button" onClick={() => filterClient("all")}>
+        <button className={props.btnBig} onClick={() => filterClient("all")}>
           All
         </button>
-        <button className="button" onClick={() => filterClient("with")}>
+        <button className={props.btnBig} onClick={() => filterClient("with")}>
           With &euro;
         </button>
-        <button className="button" onClick={() => filterClient("without")}>
+        <button
+          className={props.btnBig}
+          onClick={() => filterClient("without")}
+        >
           Without &euro;
         </button>
       </div>

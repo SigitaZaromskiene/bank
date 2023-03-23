@@ -52,21 +52,22 @@ function Routes(props) {
 
     case "bills":
       return (
-        <>
+        <Auth>
           <Nav class="nav" btn="hover"></Nav>
           <LoggedInBills
             clientList={clientList}
             setClientList={setClientList}
             lastStateUpdate={lastStateUpdate}
             setLastStateUpdate={setLastStateUpdate}
+            btnBig={props.btnBig}
           ></LoggedInBills>
-        </>
+        </Auth>
       );
 
     case "login":
       return <Login btn={props.className}></Login>;
-    case "register":
-      return <Register btn={props.className}></Register>;
+    // case "register":
+    //   return <Register btn={props.className}></Register>;
     default:
       return null;
   }

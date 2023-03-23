@@ -75,7 +75,12 @@ function App() {
 
   return (
     <GlobalProvider>
-      <Routes className="button" btn="hover" headerBank="header-bank"></Routes>
+      <Routes
+        className="button"
+        btn="hover"
+        btnBig="button-big"
+        headerBank="header-bank"
+      ></Routes>
     </GlobalProvider>
   );
 }
