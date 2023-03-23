@@ -42,11 +42,12 @@ function LoggedInBills(props) {
         props.setLastStateUpdate(Date.now());
       });
   }, [editData]);
-  const sortArrOfObjByProp = (arr, propName) => {
-    return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
-  };
+  // const sortArrOfObjByProp = (arr, propName) => {
+  //   return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
+  // };
 
   const [filteredClients, setFilteredClients] = useState([]);
+  console.log(filteredClients);
 
   const onChange = (event) => {
     const value = event.target.value;
@@ -61,6 +62,7 @@ function LoggedInBills(props) {
         filteredList = props.clientList.filter(
           ({ amount }) => amount < 0 || amount > 0 || amount === 0
         );
+        console.log(filteredList);
       }
 
       if (value === "without") {
@@ -100,7 +102,7 @@ function LoggedInBills(props) {
         modal="modal"
         setLastStateUpdate={props.setLastStateUpdate}
       ></AddNewBillForm>
-      {sortArrOfObjByProp(filteredClients, "surname").map((b) => (
+      {filteredClients.map((b) => (
         <Bill
           key={uuidv4()}
           text={b}
@@ -172,7 +174,7 @@ function LoggedInBills(props) {
           >
             <option>Sort by</option>
             <option className={props.className} value="1">
-              All
+              Default
             </option>
             <option className={props.className} value="2">
               Surname
@@ -183,33 +185,6 @@ function LoggedInBills(props) {
           </select>
         </div>
         <button className={props.btnBig}>Taxes</button>
-        {/* <button className={props.btnBig} onClick={() => filterClient("all")}>
-          All
-        </button>
-        <button className={props.btnBig} onClick={() => filterClient("with")}>
-          With &euro;
-        </button>
-        <button className={props.btnBig} onClick={() => filterClient("with0")}>
-          With 0 &euro;
-        </button>
-        <button
-          className={props.btnBig}
-          onClick={() => filterClient("without")}
-        >
-          With minus &euro;
-        </button>
-        <button
-          className={props.btnBig}
-          onClick={() => filterClient("blocked")}
-        >
-          Blocked
-        </button>
-        <button
-          className={props.btnBig}
-          onClick={() => filterClient("notBlocked")}
-        >
-          Available
-        </button> */}
       </div>
     </div>
   );
