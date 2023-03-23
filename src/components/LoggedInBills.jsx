@@ -58,6 +58,17 @@ function LoggedInBills(props) {
       if (filterType === "without") {
         filteredList = props.clientList.filter(({ amount }) => !amount);
       }
+      if (filterType === "with0") {
+        filteredList = props.clientList.filter(({ amount }) => amount === 0);
+      }
+      if (filterType === "blocked") {
+        filteredList = props.clientList.filter(
+          ({ blocked }) => blocked === true
+        );
+      }
+      if (filterType === "without") {
+        filteredList = props.clientList.filter(({ blocked }) => !blocked);
+      }
 
       setFilteredClients(filteredList);
     },
@@ -112,11 +123,26 @@ function LoggedInBills(props) {
         <button className={props.btnBig} onClick={() => filterClient("with")}>
           With &euro;
         </button>
+        <button className={props.btnBig} onClick={() => filterClient("with0")}>
+          With 0 &euro;
+        </button>
         <button
           className={props.btnBig}
           onClick={() => filterClient("without")}
         >
-          Without &euro;
+          Without minus &euro;
+        </button>
+        <button
+          className={props.btnBig}
+          onClick={() => filterClient("blocked")}
+        >
+          Blocked
+        </button>
+        <button
+          className={props.btnBig}
+          onClick={() => filterClient("notBlocked")}
+        >
+          Available
         </button>
       </div>
     </div>

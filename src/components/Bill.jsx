@@ -11,7 +11,7 @@ function Bill(props) {
           style={{
             display: "flex",
             alignItems: "center",
-          
+
             width: "100%",
           }}
         >
@@ -65,7 +65,7 @@ function Bill(props) {
           </div>
         </div>
 
-        <div style={{ paddingTop: "40px" }}>
+        <div>
           <AddWithdrawMoney
             clientList={props.clientList}
             setClientList={props.setClientList}
