@@ -51,13 +51,17 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
       }, 2000);
       return;
     } else {
-      setCreateData({
-        name: addNewName,
-        surname: addNewSurname,
-        id: uuidv4(),
-        amount: 0,
-        blocked: false,
-      });
+      setCreateData((data, i) => [
+        ...data,
+        {
+          name: addNewName,
+          surname: addNewSurname,
+          id: uuidv4(),
+          amount: 0,
+          blocked: false,
+          row: i,
+        },
+      ]);
 
       setModal({
         class: "visible",

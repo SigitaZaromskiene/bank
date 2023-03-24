@@ -28,9 +28,6 @@ function AddWithdrawMoney(props) {
       return bill;
     });
 
-    props.setClientList(updatedBill);
-
-    console.log(props.clientList);
     if (!newAmount) {
       setModal({
         class: "visible",
@@ -43,18 +40,26 @@ function AddWithdrawMoney(props) {
     } else {
       props.setEditData({
         number: parseInt(newAmount),
-
+        amount: props.bill.amount,
         id: props.bill.id,
       });
+
+      props.setClientList(updatedBill);
     }
   };
 
   const remove = (_) => {
     let isNewAmountValid = true;
 
-    const newTotalAmount = Number(props.bill.amount) - Number(newAmount);
-    isNewAmountValid = newTotalAmount >= 0;
-    props.bill.amount = isNewAmountValid ? newTotalAmount : props.bill.amount;
+    const updatedBill = props.clientList.map((bill) => {
+      if (bill.id !== props.bill.id) return bill;
+
+      const newTotalAmount = Number(bill.amount) - Number(newAmount);
+      isNewAmountValid = newTotalAmount >= 0;
+      bill.amount = isNewAmountValid ? newTotalAmount : bill.amount;
+      return bill;
+    });
+
     if (!isNewAmountValid) {
       setModal({
         class: "visible",
@@ -78,9 +83,11 @@ function AddWithdrawMoney(props) {
     } else {
       props.setEditData({
         number: parseInt(newAmount),
-
+        amount: props.bill.amount,
         id: props.bill.id,
       });
+
+      props.setClientList(updatedBill);
     }
 
     // if (!validateAmount) {

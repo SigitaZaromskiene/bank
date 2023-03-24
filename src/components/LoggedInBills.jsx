@@ -33,21 +33,15 @@ function LoggedInBills(props) {
     if (null === editData) {
       return;
     }
-
     axios
-      .put(URL + "/" + editData.id, {
-        number: editData.number,
-      })
-      .then((res) => {
-        props.setLastStateUpdate(Date.now());
-      });
+      .put(URL + "/" + editData.id, editData, { withCredentials: true })
+      .then((res) => props.setLastStateUpdate(Date.now()));
   }, [editData]);
   // const sortArrOfObjByProp = (arr, propName) => {
   //   return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
   // };
 
   const [filteredClients, setFilteredClients] = useState([]);
-  console.log(filteredClients);
 
   const onChangeSort = (event) => {
     const value = event.target.value;
@@ -64,7 +58,9 @@ function LoggedInBills(props) {
       }
 
       if (value === "amount") {
-        // sortedList = props.clientList.filter(({ amount }) => amount < 0);
+        setFilteredClients((li) =>
+          [...li].sort((a, b) => a.number.localeCompare(b.number))
+        );
       }
       if (value === "surname") {
         setFilteredClients((li) =>
@@ -92,7 +88,6 @@ function LoggedInBills(props) {
         filteredList = props.clientList.filter(
           ({ amount }) => amount < 0 || amount > 0 || amount === 0
         );
-        console.log(filteredList);
       }
 
       if (value === "without") {
