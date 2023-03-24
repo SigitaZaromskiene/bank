@@ -18,8 +18,6 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
 
   const { clientList, createData, setCreateData } = useContext(Global);
 
-  const r = useRef();
-
   useEffect(() => {
     if (createData === null) {
       return;
@@ -147,7 +145,6 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             placeholder="Surname"
             value={addNewSurname}
             onChange={setSurnameHandler}
-          
           ></input>
           <input
             type="text"

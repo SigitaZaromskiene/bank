@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Global } from "./Global";
 
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
 
+  const { disabled } = useContext(Global);
   // const validateAmount = () => {
   //   if (!newAmount) {
   //     setModal({
@@ -157,25 +159,51 @@ function AddWithdrawMoney(props) {
         gap: "15px",
       }}
     >
-      <button className={props.add} onClick={add}>
-        Add &euro;
-      </button>
-      <input
-        type="number"
-        min="0"
-        value={newAmount}
-        style={{
-          fontSize: "30px",
-          marginLeft: "2px",
-          marginRight: "2px",
-          width: "100px",
-        }}
-        onChange={(e) => setNewAmount(e.target.value)}
-      ></input>
+      {disabled ? (
+        <>
+          <button disabled={disabled} className={props.add} onClick={add}>
+            Add &euro;
+          </button>
+          <input
+            type="number"
+            min="0"
+            value={newAmount}
+            style={{
+              fontSize: "30px",
+              marginLeft: "2px",
+              marginRight: "2px",
+              width: "100px",
+            }}
+            onChange={(e) => setNewAmount(e.target.value)}
+          ></input>
 
-      <button className={props.add} onClick={remove}>
-        Withdraw &euro;
-      </button>
+          <button disabled={disabled} className={props.add} onClick={remove}>
+            Withdraw &euro;
+          </button>
+        </>
+      ) : (
+        <>
+          <button disabled={disabled} className={props.add} onClick={add}>
+            Add &euro;
+          </button>
+          <input
+            type="number"
+            min="0"
+            value={newAmount}
+            style={{
+              fontSize: "30px",
+              marginLeft: "2px",
+              marginRight: "2px",
+              width: "100px",
+            }}
+            onChange={(e) => setNewAmount(e.target.value)}
+          ></input>
+
+          <button disabled={disabled} className={props.add} onClick={remove}>
+            Withdraw &euro;
+          </button>
+        </>
+      )}
       <p className={props.totalClass}>Total: {props.bill.amount} &euro;</p>
       <div className={`${modal.class} modal`}>
         <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>

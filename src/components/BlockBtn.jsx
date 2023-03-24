@@ -1,40 +1,46 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { Global } from "./Global";
 
 function BlockBtn(props) {
-  const [modal, setModal] = useState({
-    class: "hidden",
-    msg: "",
-    color: "",
-  });
-  const deleteHandler = () => {
-    if (props.bill.amount !== 0) {
-      setModal({
-        class: "visible",
-        msg: "Cannot delete if bill is not empty",
-        color: "red",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 2000);
+  const { disabled, setDisabled } = useContext(Global);
 
-      return;
-    } else {
-      props.setDeleteData(props.bill);
-    }
+  const blockHandler = () => {
+    setDisabled(true);
 
-    // props.setClientList((bill) =>
-    // bill.filter((bill) => bill.id !== props.bill.id)
-    // );
+    //  props.setChangePhoto(null);
+  };
+
+  const unblockHandler = () => {
+    // setUnblocked((s) => s.map((s) => s === unBlocked));
+
+    setDisabled(false);
   };
 
   return (
     <>
-      <button className={props.classes} onClick={deleteHandler}>
-        Block
-      </button>
-      <div className={`${modal.class} modal`}>
-        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-      </div>
+      {disabled ? (
+        <>
+          <button
+            disabled={!disabled}
+            className={props.classes}
+            onClick={unblockHandler}
+            style={{ color: "darkRed" }}
+          >
+            Unblock
+          </button>
+        </>
+      ) : (
+        <>
+          <button
+            disabled={disabled}
+            className={props.classes}
+            onClick={blockHandler}
+            style={{ color: "darkRed" }}
+          >
+            Block
+          </button>
+        </>
+      )}
     </>
   );
 }

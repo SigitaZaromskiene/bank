@@ -11,6 +11,8 @@ export const GlobalProvider = ({ children }) => {
   const [createData, setCreateData] = useState(null);
   const [editBills, setEditBills] = useState(null);
 
+  const [disabled, setDisabled] = useState(false);
+
   const logOut = (_) => {
     axios
       .post("http://localhost:3003/logout", {}, { withCredentials: true })
@@ -37,6 +39,8 @@ export const GlobalProvider = ({ children }) => {
         createData,
         setEditBills,
         editBills,
+        disabled,
+        setDisabled,
       }}
     >
       {children}

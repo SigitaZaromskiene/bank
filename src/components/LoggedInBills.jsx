@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import Bill from "./Bill";
@@ -10,8 +10,6 @@ function LoggedInBills(props) {
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
-
-  const a = useRef(1);
 
   useEffect(() => {
     if (props.lastStateUpdate === null) {
