@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import Bill from "./Bill";
@@ -10,6 +10,8 @@ function LoggedInBills(props) {
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
+
+  const a = useRef(1);
 
   useEffect(() => {
     if (props.lastStateUpdate === null) {
@@ -51,10 +53,9 @@ function LoggedInBills(props) {
   const sortHandler = useCallback(
     (value) => {
       if (value === "default") {
-        // sortedList = props.clientList
-        //   .filter
-        //   // ({ amount }) => amount < 0 || amount > 0 || amount === 0
-        //   ();
+        //  setFilteredClients((li) => [...li].sort((a, b) => a.row - b.row));
+
+        setFilteredClients(props.clientList);
       }
 
       if (value === "amount") {

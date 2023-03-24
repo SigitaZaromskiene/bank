@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import ClientsNumber from "./ClientsNumber";
 import CurrentBalance from "./CurrentBalance";
@@ -17,6 +17,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
   const { clientList, createData, setCreateData } = useContext(Global);
+
+  const r = useRef();
 
   useEffect(() => {
     if (createData === null) {
@@ -139,14 +141,13 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             placeholder="Name"
             value={addNewName}
             onChange={setNameHandler}
-            required
           ></input>
           <input
             type="text"
             placeholder="Surname"
             value={addNewSurname}
             onChange={setSurnameHandler}
-            required
+          
           ></input>
           <input
             type="text"
