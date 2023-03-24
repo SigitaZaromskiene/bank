@@ -2,7 +2,8 @@ import { useState, useContext } from "react";
 import { Global } from "./Global";
 
 function DeleteBtn(props) {
-  const { disabled, setDisabled } = useContext(Global);
+  const { disabled } = useContext(Global);
+
   const [modal, setModal] = useState({
     class: "hidden",
     msg: "",

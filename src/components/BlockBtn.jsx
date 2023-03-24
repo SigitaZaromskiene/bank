@@ -1,16 +1,34 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Global } from "./Global";
 
 function BlockBtn(props) {
-  const { disabled, setDisabled } = useContext(Global);
+  const [modal, setModal] = useState({
+    class: "hidden",
+    msg: "",
+    color: "",
+  });
+  const { disabled, setDisabled, clientList, setClientList } =
+    useContext(Global);
 
   const blockHandler = () => {
+    const blockedBill = clientList.find((bill) => bill.id === props.bill.id);
+
     setDisabled(true);
 
-    //  props.setChangePhoto(null);
+    setModal({
+      class: "visible",
+      msg: "Cannot use blocked accounts",
+      color: "red",
+    });
+    setTimeout(() => {
+      setModal({ class: "hidden", msg: "", color: "" });
+    }, 2000);
   };
 
+  //  props.setChangePhoto(null);
+
   const unblockHandler = () => {
+    const blockedBill = clientList.find((bill) => bill.id === props.bill.id);
     // setUnblocked((s) => s.map((s) => s === unBlocked));
 
     setDisabled(false);
@@ -39,6 +57,9 @@ function BlockBtn(props) {
           >
             Block
           </button>
+          <div className={`${modal.class} modal`}>
+            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
+          </div>
         </>
       )}
     </>
