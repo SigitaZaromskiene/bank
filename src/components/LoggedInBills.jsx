@@ -56,25 +56,21 @@ function LoggedInBills(props) {
 
   const sortHandler = useCallback(
     (value) => {
-      let sortedList = props.clientList;
-
       if (value === "default") {
-        sortedList = props.clientList
-          .filter
-          // ({ amount }) => amount < 0 || amount > 0 || amount === 0
-          ();
+        // sortedList = props.clientList
+        //   .filter
+        //   // ({ amount }) => amount < 0 || amount > 0 || amount === 0
+        //   ();
       }
 
       if (value === "amount") {
         // sortedList = props.clientList.filter(({ amount }) => amount < 0);
       }
       if (value === "surname") {
-        sortedList = props.setClientList((li) =>
+        setFilteredClients((li) =>
           [...li].sort((a, b) => a.surname.localeCompare(b.surname))
         );
       }
-
-      setFilteredClients(sortedList);
     },
     [props.clientList]
   );
