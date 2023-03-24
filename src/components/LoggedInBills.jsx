@@ -58,9 +58,7 @@ function LoggedInBills(props) {
       }
 
       if (value === "amount") {
-        setFilteredClients((li) =>
-          [...li].sort((a, b) => a.number.localeCompare(b.number))
-        );
+        setFilteredClients((li) => [...li].sort((a, b) => a.amount - b.amount));
       }
       if (value === "surname") {
         setFilteredClients((li) =>
@@ -70,6 +68,8 @@ function LoggedInBills(props) {
     },
     [props.clientList]
   );
+
+  console.log(filteredClients);
 
   useEffect(() => {
     sortHandler();
