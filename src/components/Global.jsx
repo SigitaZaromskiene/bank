@@ -23,6 +23,26 @@ export const GlobalProvider = ({ children }) => {
       });
   };
 
+  // const block = (_) => {
+  //   axios
+  //     .post("http://localhost:3003/block", {}, { withCredentials: true })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setLogged(2);
+  //       setDisabled(true);
+  //     });
+  // };
+
+  // const unblock = (_) => {
+  //   axios
+  //     .post("http://localhost:3003/unblock", {}, { withCredentials: true })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setLogged(2);
+  //       setDisabled(false);
+  //     });
+  // };
+
   return (
     <Global.Provider
       value={{

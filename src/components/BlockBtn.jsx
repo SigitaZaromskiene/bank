@@ -7,31 +7,27 @@ function BlockBtn(props) {
     msg: "",
     color: "",
   });
-  const { disabled, setDisabled, clientList, setClientList } =
-    useContext(Global);
+  const { disabled, setDisabled, clientList } = useContext(Global);
 
   const blockHandler = () => {
     const blockedBill = clientList.find((bill) => bill.id === props.bill.id);
 
-    setDisabled(true);
+    // sauni requesta i backenda, nustatyti blocked = 1
+    // ant then sauni requesta is naujo pafetchinti visus accounts, turi pareiti updeitintas billas su blocked 1
 
-    setModal({
-      class: "visible",
-      msg: "Cannot use blocked accounts",
-      color: "red",
-    });
-    setTimeout(() => {
-      setModal({ class: "hidden", msg: "", color: "" });
-    }, 2000);
+    console.log(blockedBill);
+    if (blockedBill) {
+      setDisabled(true);
+    } else {
+      setDisabled(null);
+    }
   };
-
-  //  props.setChangePhoto(null);
 
   const unblockHandler = () => {
     const blockedBill = clientList.find((bill) => bill.id === props.bill.id);
-    // setUnblocked((s) => s.map((s) => s === unBlocked));
-
-    setDisabled(false);
+    if (blockedBill) {
+      setDisabled(false);
+    }
   };
 
   return (

@@ -43,7 +43,6 @@ function Bill(props) {
               bill={props.text}
               classes={props.classes}
               modal="modal"
-              setDeleteData={props.setDeleteData}
             />
             <BlockBtn
               setDeletedData={props.setDeletedData}
@@ -51,7 +50,6 @@ function Bill(props) {
               bill={props.text}
               classes={props.classes}
               modal="modal"
-              setDeleteData={props.setDeleteData}
             />
             <ChangeBtn
               setDeletedData={props.setDeletedData}
@@ -59,7 +57,6 @@ function Bill(props) {
               bill={props.text}
               classes={props.classes}
               modal="modal"
-              setDeleteData={props.setDeleteData}
             />
           </div>
         </div>

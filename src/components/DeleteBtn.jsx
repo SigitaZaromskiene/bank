@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Global } from "./Global";
 
 function DeleteBtn(props) {
-  const { disabled } = useContext(Global);
+  const { disabled, blockedBill1 } = useContext(Global);
 
   const [modal, setModal] = useState({
     class: "hidden",
@@ -32,33 +32,16 @@ function DeleteBtn(props) {
 
   return (
     <>
-      {disabled ? (
-        <>
-          <button
-            disabled={disabled}
-            className={props.classes}
-            onClick={deleteHandler}
-          >
-            Delete
-          </button>
-          <div className={`${modal.class} modal`}>
-            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-          </div>
-        </>
-      ) : (
-        <>
-          <button
-            disabled={disabled}
-            className={props.classes}
-            onClick={deleteHandler}
-          >
-            Delete
-          </button>
-          <div className={`${modal.class} modal`}>
-            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-          </div>
-        </>
-      )}
+      <button
+        disabled={disabled}
+        className={props.classes}
+        onClick={deleteHandler}
+      >
+        Delete
+      </button>
+      <div className={`${modal.class} modal`}>
+        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
+      </div>
     </>
   );
 }

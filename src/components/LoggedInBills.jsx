@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
+import { Global } from "./Global";
 
 import { v4 as uuidv4 } from "uuid";
 import Bill from "./Bill";
@@ -7,6 +8,8 @@ import axios from "axios";
 
 function LoggedInBills(props) {
   const URL = "http://localhost:3003/accounts";
+
+  const { disabled, setDisabled } = useContext(Global);
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
@@ -28,6 +31,24 @@ function LoggedInBills(props) {
       .delete(URL + "/" + deleteData.id)
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [deleteData]);
+
+  // useEffect(() => {
+  //   if (disabled === null) {
+  //     return;
+  //   }
+  //   axios
+  //     .put(URL + "/" + disabled.id)
+  //     .then((res) => props.setLastStateUpdate(Date.now()));
+  // }, [disabled]);
+
+  // useEffect(() => {
+  //   if (blockedBill1 === null) {
+  //     return;
+  //   }
+  //   axios
+  //     .put(URL + "/" + blockedBill1.id)
+  //     .then((res) => props.setLastStateUpdate(Date.now()));
+  // }, [blockedBill1]);
 
   useEffect(() => {
     if (null === editData) {
@@ -67,8 +88,6 @@ function LoggedInBills(props) {
     },
     [props.clientList]
   );
-
-  console.log(filteredClients);
 
   useEffect(() => {
     sortHandler();
