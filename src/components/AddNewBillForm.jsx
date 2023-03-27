@@ -133,7 +133,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
       </div>
       <div className={flex}>
         <div className={form}>
-          <label>Open a new account</label>
+          <label style={{ fontSize: "18px" }}>Open a new account</label>
           <input
             type="text"
             placeholder="Name"
@@ -146,13 +146,18 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             value={addNewSurname}
             onChange={setSurnameHandler}
           ></input>
-          <input
-            type="text"
-            placeholder="Passport photo"
-            value={addNewName}
-            onChange={setNameHandler}
-            required
-          ></input>
+
+          <label style={{ fontSize: "18px", width: "150px" }}>
+            Add your passport photo
+          </label>
+          <div>
+            <input
+              style={{ textAlign: "end" }}
+              type="file"
+              src="./img/no-photo.jpg"
+            />
+          </div>
+
           <button className={btnBig} onClick={create}>
             Submit
           </button>

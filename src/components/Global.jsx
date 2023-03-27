@@ -11,6 +11,8 @@ export const GlobalProvider = ({ children }) => {
   const [createData, setCreateData] = useState(null);
   const [editBills, setEditBills] = useState(null);
 
+  const [file, setFile] = useState(null);
+
   const [disabled, setDisabled] = useState(null);
 
   const logOut = (_) => {
