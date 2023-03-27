@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { Global } from "./Global";
+
 function AddOver1000(props) {
+  const { setAddOver1000, addOver1000 } = useContext(Global);
   return (
     <div className="modal">
       <div
@@ -20,8 +24,10 @@ function AddOver1000(props) {
             gap: "10px",
           }}
         >
-          <button className="button">Confirm</button>
-          <button className="button" onClick={null}>
+          <button className="button" onClick={props.add}>
+            Confirm
+          </button>
+          <button className="button" onClick={() => setAddOver1000(null)}>
             Cancel
           </button>
         </div>

@@ -9,34 +9,15 @@ function AddWithdrawMoney(props) {
 
   const { setAddOver1000, addOver1000 } = useContext(Global);
 
-  // const validateAmount = () => {
-  //   if (!newAmount) {
-  //     setModal({
-  //       class: "visible",
-  //       msg: "Please enter amount",
-  //       color: "red",
-  //     });
-  //     setTimeout(() => {
-  //       setModal({ class: "hidden", msg: "", color: "" });
-  //     }, 2000);
-  //   }
-  //   return !!newAmount;
-  // };
-
   const add = (_) => {
     const updatedBill = props.clientList.map((bill) => {
       if (bill.id !== props.bill.id) return bill;
 
-      console.log(newAmount);
-
-      if (newAmount > 1000) {
+      if (newAmount >= 1000) {
         setAddOver1000(newAmount);
       }
-
       const newTotalAmount = Number(bill.amount) + Number(newAmount);
-
       bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
-
       return bill;
     });
 
@@ -170,7 +151,7 @@ function AddWithdrawMoney(props) {
       }}
     >
       {!addOver1000 ? (
-        <div>
+        <>
           <button
             disabled={props.bill.blocked}
             className={props.add}
@@ -190,9 +171,9 @@ function AddWithdrawMoney(props) {
             }}
             onChange={(e) => setNewAmount(e.target.value)}
           ></input>
-        </div>
+        </>
       ) : (
-        <AddOver1000></AddOver1000>
+        <AddOver1000 add={add}></AddOver1000>
       )}
 
       <button
