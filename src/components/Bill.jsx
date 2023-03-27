@@ -37,7 +37,7 @@ function Bill(props) {
             style={{ display: "flex", gap: "10px", flexDirection: "column" }}
           >
             <DeleteBtn
-              setDeletedData={props.setDeletedData}
+              setDeletedData={props.setDeleteData}
               setClientList={props.setClientList}
               bill={props.text}
               classes={props.classes}

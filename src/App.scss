@@ -209,7 +209,7 @@ main {
   background-color: hsla(0, 0%, 0%, 80%);
 }
 
-.modal-money {
+.modalA {
   position: fixed;
   top: 0;
   left: 0;
@@ -217,20 +217,10 @@ main {
   height: 100vh;
   width: 100vw;
   z-index: 10;
-  background-color: brown;
+  background-color: hsla(0, 3%, 47%, 0.611);
 }
-
-.modal > p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 15px;
-  background-color: #11a8ab;
-  border-radius: 0.5em;
-}
-
-.modal > div {
+.modal > p,
+.modalA > div {
   position: absolute;
   top: 50%;
   left: 50%;

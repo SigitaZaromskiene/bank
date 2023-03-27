@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { Global } from "./Global";
 
 function AddOver1000(props) {
-  const { setAddOver1000, addOver1000 } = useContext(Global);
+  const { setAddOver1000 } = useContext(Global);
   return (
-    <div className="modal">
+    <div className="modalA">
       <div
         style={{
           display: "flex",

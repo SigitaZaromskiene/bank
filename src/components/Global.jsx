@@ -10,7 +10,6 @@ export const GlobalProvider = ({ children }) => {
   const [clientList, setClientList] = useState([]);
   const [createData, setCreateData] = useState(null);
   const [editBills, setEditBills] = useState(null);
-
   const [addOver1000, setAddOver1000] = useState(null);
 
   const [file, setFile] = useState(null);
@@ -26,26 +25,6 @@ export const GlobalProvider = ({ children }) => {
         setAuthName(false);
       });
   };
-
-  // const block = (_) => {
-  //   axios
-  //     .post("http://localhost:3003/block", {}, { withCredentials: true })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setLogged(2);
-  //       setDisabled(true);
-  //     });
-  // };
-
-  // const unblock = (_) => {
-  //   axios
-  //     .post("http://localhost:3003/unblock", {}, { withCredentials: true })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setLogged(2);
-  //       setDisabled(false);
-  //     });
-  // };
 
   return (
     <Global.Provider

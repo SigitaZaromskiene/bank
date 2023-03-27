@@ -1,9 +1,6 @@
-import { useState, useContext } from "react";
-import { Global } from "./Global";
+import { useState } from "react";
 
 function DeleteBtn(props) {
-  const { disabled } = useContext(Global);
-
   const [modal, setModal] = useState({
     class: "hidden",
     msg: "",
@@ -20,15 +17,9 @@ function DeleteBtn(props) {
       setTimeout(() => {
         setModal({ class: "hidden", msg: "", color: "" });
       }, 2000);
+    } else {
+      props.setDeletedData(props.bill);
     }
-    // else {
-    else {
-      props.setDeleteData(props.bill);
-    }
-
-    // props.setClientList((bill) =>
-    // bill.filter((bill) => bill.id !== props.bill.id)
-    // );
   };
 
   return (
