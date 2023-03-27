@@ -15,9 +15,11 @@ function AddWithdrawMoney(props) {
 
       if (newAmount >= 1000) {
         setAddOver1000(newAmount);
+      } else {
+        const newTotalAmount = Number(bill.amount) + Number(newAmount);
+        bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
+        return bill;
       }
-      const newTotalAmount = Number(bill.amount) + Number(newAmount);
-      bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
       return bill;
     });
 
@@ -82,20 +84,20 @@ function AddWithdrawMoney(props) {
 
       props.setClientList(updatedBill);
     }
-
-    // if (!validateAmount) {
-    //   setModal({
-    //     class: "visible",
-    //     msg: "Not enough funds",
-    //     color: "red",
-    //   });
-    //   setTimeout(() => {
-    //     setModal({ class: "hidden", msg: "", color: "" });
-    //   }, 2000);
-
-    //   return;
-    // }
   };
+
+  // if (!validateAmount) {
+  //   setModal({
+  //     class: "visible",
+  //     msg: "Not enough funds",
+  //     color: "red",
+  //   });
+  //   setTimeout(() => {
+  //     setModal({ class: "hidden", msg: "", color: "" });
+  //   }, 2000);
+
+  //   return;
+  // }
 
   // const addMoneyHandler = () => {
   //   if (!validateAmount()) return;
@@ -173,7 +175,10 @@ function AddWithdrawMoney(props) {
           ></input>
         </>
       ) : (
-        <AddOver1000 newAmount={newAmount}></AddOver1000>
+        <AddOver1000
+          setClientList={props.setClientList}
+          newAmount={newAmount}
+        ></AddOver1000>
       )}
 
       <button

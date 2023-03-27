@@ -10,7 +10,7 @@ export const GlobalProvider = ({ children }) => {
   const [clientList, setClientList] = useState([]);
   const [createData, setCreateData] = useState(null);
   const [editBills, setEditBills] = useState(null);
-  const [addOver1000, setAddOver1000] = useState(null);
+  const [addOver1000, setAddOver1000] = useState(false);
 
   const [file, setFile] = useState(null);
 
