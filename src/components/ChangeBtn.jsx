@@ -31,33 +31,16 @@ function ChangeBtn(props) {
 
   return (
     <>
-      {disabled ? (
-        <>
-          <button
-            disabled={disabled}
-            className={props.classes}
-            onClick={deleteHandler}
-          >
-            Change
-          </button>
-          <div className={`${modal.class} modal`}>
-            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-          </div>
-        </>
-      ) : (
-        <>
-          <button
-            disabled={disabled}
-            className={props.classes}
-            onClick={deleteHandler}
-          >
-            Change
-          </button>
-          <div className={`${modal.class} modal`}>
-            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-          </div>
-        </>
-      )}
+      <button
+        disabled={props.bill.blocked}
+        className={props.classes}
+        onClick={deleteHandler}
+      >
+        Change
+      </button>
+      <div className={`${modal.class} modal`}>
+        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
+      </div>
     </>
   );
 }

@@ -1,43 +1,27 @@
-import { useContext, useState } from "react";
-import { Global } from "./Global";
+import { useState } from "react";
 
 function BlockBtn(props) {
+  console.log(props);
   const [modal, setModal] = useState({
     class: "hidden",
     msg: "",
     color: "",
   });
-  const { disabled, setDisabled, clientList } = useContext(Global);
 
   const blockHandler = () => {
-    const blockedBill = clientList.find((bill) => bill.id === props.bill.id);
-
-    // sauni requesta i backenda, nustatyti blocked = 1
-    // ant then sauni requesta is naujo pafetchinti visus accounts, turi pareiti updeitintas billas su blocked 1
-
-    console.log(blockedBill);
-    if (blockedBill) {
-      setDisabled(true);
-    } else {
-      setDisabled(null);
-    }
-  };
-
-  const unblockHandler = () => {
-    const blockedBill = clientList.find((bill) => bill.id === props.bill.id);
-    if (blockedBill) {
-      setDisabled(false);
-    }
+    props.setBlockUser({
+      id: props.bill.id,
+      isBlocked: props.bill.blocked ? 0 : 1,
+    });
   };
 
   return (
     <>
-      {disabled ? (
+      {props.bill.blocked === 1 ? (
         <>
           <button
-            disabled={!disabled}
             className={props.classes}
-            onClick={unblockHandler}
+            onClick={blockHandler}
             style={{ color: "darkRed" }}
           >
             Unblock
@@ -46,7 +30,6 @@ function BlockBtn(props) {
       ) : (
         <>
           <button
-            disabled={disabled}
             className={props.classes}
             onClick={blockHandler}
             style={{ color: "darkRed" }}

@@ -33,7 +33,7 @@ function DeleteBtn(props) {
   return (
     <>
       <button
-        disabled={disabled}
+        disabled={props.bill.blocked}
         className={props.classes}
         onClick={deleteHandler}
       >

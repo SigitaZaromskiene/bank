@@ -13,6 +13,7 @@ function LoggedInBills(props) {
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
+  const [blockUser, setBlockUser] = useState(null);
 
   useEffect(() => {
     if (props.lastStateUpdate === null) {
@@ -31,6 +32,15 @@ function LoggedInBills(props) {
       .delete(URL + "/" + deleteData.id)
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [deleteData]);
+
+  useEffect(() => {
+    if (blockUser === null) {
+      return;
+    }
+    axios
+      .put(URL + "/" + blockUser.id + "/block", blockUser)
+      .then((res) => props.setLastStateUpdate(Date.now()));
+  }, [blockUser]);
 
   // useEffect(() => {
   //   if (disabled === null) {
@@ -160,6 +170,8 @@ function LoggedInBills(props) {
           modal="modal"
           setDeleteData={setDeleteData}
           setEditData={setEditData}
+          setBlockUser={setBlockUser}
+          blockUser={blockUser}
         ></Bill>
       ))}
       <div
