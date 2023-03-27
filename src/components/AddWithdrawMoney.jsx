@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
 import { Global } from "./Global";
 
+import AddOver1000 from "./AddOver1000";
+
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
 
-  const { disabled } = useContext(Global);
+  const { setAddOver1000, addOver1000 } = useContext(Global);
+
   // const validateAmount = () => {
   //   if (!newAmount) {
   //     setModal({
@@ -24,7 +27,14 @@ function AddWithdrawMoney(props) {
     const updatedBill = props.clientList.map((bill) => {
       if (bill.id !== props.bill.id) return bill;
 
+      console.log(newAmount);
+
+      if (newAmount > 1000) {
+        setAddOver1000(newAmount);
+      }
+
       const newTotalAmount = Number(bill.amount) + Number(newAmount);
+
       bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
 
       return bill;
@@ -159,21 +169,31 @@ function AddWithdrawMoney(props) {
         gap: "15px",
       }}
     >
-      <button disabled={props.bill.blocked} className={props.add} onClick={add}>
-        Add &euro;
-      </button>
-      <input
-        type="number"
-        min="0"
-        value={newAmount}
-        style={{
-          fontSize: "30px",
-          marginLeft: "2px",
-          marginRight: "2px",
-          width: "100px",
-        }}
-        onChange={(e) => setNewAmount(e.target.value)}
-      ></input>
+      {!addOver1000 ? (
+        <div>
+          <button
+            disabled={props.bill.blocked}
+            className={props.add}
+            onClick={add}
+          >
+            Add &euro;
+          </button>
+          <input
+            type="number"
+            min="0"
+            value={newAmount}
+            style={{
+              fontSize: "30px",
+              marginLeft: "2px",
+              marginRight: "2px",
+              width: "100px",
+            }}
+            onChange={(e) => setNewAmount(e.target.value)}
+          ></input>
+        </div>
+      ) : (
+        <AddOver1000></AddOver1000>
+      )}
 
       <button
         disabled={props.bill.blocked}
@@ -187,6 +207,8 @@ function AddWithdrawMoney(props) {
       <div className={`${modal.class} modal`}>
         <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
       </div>
+
+      {/* <AddOver1000 newAmount={newAmount} add={props.add}></AddOver1000> */}
     </div>
   );
 }

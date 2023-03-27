@@ -9,6 +9,7 @@ function DeleteBtn(props) {
     msg: "",
     color: "",
   });
+
   const deleteHandler = () => {
     if (props.bill.amount !== 0) {
       setModal({
@@ -19,9 +20,9 @@ function DeleteBtn(props) {
       setTimeout(() => {
         setModal({ class: "hidden", msg: "", color: "" });
       }, 2000);
-
-      return;
-    } else {
+    }
+    // else {
+    else {
       props.setDeleteData(props.bill);
     }
 

@@ -11,6 +11,8 @@ export const GlobalProvider = ({ children }) => {
   const [createData, setCreateData] = useState(null);
   const [editBills, setEditBills] = useState(null);
 
+  const [addOver1000, setAddOver1000] = useState(null);
+
   const [file, setFile] = useState(null);
 
   const [disabled, setDisabled] = useState(null);
@@ -63,6 +65,8 @@ export const GlobalProvider = ({ children }) => {
         editBills,
         disabled,
         setDisabled,
+        setAddOver1000,
+        addOver1000,
       }}
     >
       {children}

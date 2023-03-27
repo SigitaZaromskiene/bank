@@ -25,47 +25,54 @@ function Bill(props) {
           >
             <p>{props.text.name}</p>
             <p>{props.text.surname}</p>
-
-            <div
-              style={{ display: "flex", gap: "10px", flexDirection: "column" }}
-            >
-              <DeleteBtn
-                setDeletedData={props.setDeletedData}
-                setClientList={props.setClientList}
-                bill={props.text}
-                classes={props.classes}
-                modal="modal"
-              />
-              <BlockBtn
-                setDeletedData={props.setDeletedData}
-                setClientList={props.setClientList}
-                setBlockUser={props.setBlockUser}
-                bill={props.text}
-                classes={props.classes}
-                modal="modal"
-                blockUser={props.blockUser}
-              />
-              <ChangeBtn
-                setDeletedData={props.setDeletedData}
-                setClientList={props.setClientList}
-                bill={props.text}
-                classes={props.classes}
-                modal="modal"
-              />
-            </div>
           </div>
-
           <div>
-            <AddWithdrawMoney
-              clientList={props.clientList}
+            {/* {t.image ? (
+              <img className="list-image" src={IMG + t.image} />
+            ) : (
+              <img className="list-image" src={IMG + "no.gif"} />
+            )} */}
+          </div>
+          <div
+            style={{ display: "flex", gap: "10px", flexDirection: "column" }}
+          >
+            <DeleteBtn
+              setDeletedData={props.setDeletedData}
               setClientList={props.setClientList}
               bill={props.text}
-              add={props.add}
-              totalClass={props.totalClass}
-              modal={props.modal}
-              setEditData={props.setEditData}
-            ></AddWithdrawMoney>
+              classes={props.classes}
+              modal="modal"
+              blockUser={props.blockUser}
+            />
+            <BlockBtn
+              setDeletedData={props.setDeletedData}
+              setClientList={props.setClientList}
+              setBlockUser={props.setBlockUser}
+              bill={props.text}
+              classes={props.classes}
+              modal="modal"
+              blockUser={props.blockUser}
+            />
+            <ChangeBtn
+              setDeletedData={props.setDeletedData}
+              setClientList={props.setClientList}
+              bill={props.text}
+              classes={props.classes}
+              modal="modal"
+            />
           </div>
+        </div>
+
+        <div>
+          <AddWithdrawMoney
+            clientList={props.clientList}
+            setClientList={props.setClientList}
+            bill={props.text}
+            add={props.add}
+            totalClass={props.totalClass}
+            modal={props.modal}
+            setEditData={props.setEditData}
+          ></AddWithdrawMoney>
         </div>
       </div>
     </div>

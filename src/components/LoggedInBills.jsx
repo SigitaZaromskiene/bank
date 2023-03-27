@@ -172,6 +172,7 @@ function LoggedInBills(props) {
           setEditData={setEditData}
           setBlockUser={setBlockUser}
           blockUser={blockUser}
+          
         ></Bill>
       ))}
       <div
