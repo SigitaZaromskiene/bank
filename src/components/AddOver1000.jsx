@@ -24,7 +24,10 @@ function AddOver1000(props) {
             gap: "10px",
           }}
         >
-          <button className="button" onClick={props.add}>
+          <button
+            className="button"
+            onClick={() => setAddOver1000(props.newAmount)}
+          >
             Confirm
           </button>
           <button className="button" onClick={() => setAddOver1000(null)}>

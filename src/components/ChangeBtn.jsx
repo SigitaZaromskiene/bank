@@ -23,10 +23,6 @@ function ChangeBtn(props) {
     } else {
       props.setDeleteData(props.bill);
     }
-
-    // props.setClientList((bill) =>
-    // bill.filter((bill) => bill.id !== props.bill.id)
-    // );
   };
 
   return (

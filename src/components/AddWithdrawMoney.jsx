@@ -173,7 +173,7 @@ function AddWithdrawMoney(props) {
           ></input>
         </>
       ) : (
-        <AddOver1000 add={add}></AddOver1000>
+        <AddOver1000 newAmount={newAmount}></AddOver1000>
       )}
 
       <button
