@@ -9,7 +9,7 @@ import axios from "axios";
 function LoggedInBills(props) {
   const URL = "http://localhost:3003/accounts";
 
-  const { disabled, setDisabled, clientList } = useContext(Global);
+  const { clientList } = useContext(Global);
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
@@ -68,24 +68,6 @@ function LoggedInBills(props) {
     props.setClientList(updateBalance);
   }
 
-  // useEffect(() => {
-  //   if (null === editData) {
-  //     return;
-  //   }
-  //   axios
-  //     .put(URL + "/taxes")
-  //     .then((res) => props.setLastStateUpdate(Date.now()));
-  // }, [editData]);
-
-  // useEffect(() => {
-  //   if (null === editData) {
-  //     return;
-  //   }
-  //   axios
-  //     .put(URL + "/" + editData, { withCredentials: true })
-  //     .then((res) => props.setLastStateUpdate(Date.now()));
-  // }, [editData]);
-
   // const sortArrOfObjByProp = (arr, propName) => {
   //   return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
   // };
@@ -102,18 +84,22 @@ function LoggedInBills(props) {
       if (value === "default") {
         //  setFilteredClients((li) => [...li].sort((a, b) => a.row - b.row));
 
-        setFilteredClients(props.clientList);
+        props.setClientList(props.clientList);
       }
 
       if (value === "amount") {
-        setFilteredClients((li) => [...li].sort((a, b) => a.amount - b.amount));
+        props.setClientList((li) =>
+          [...li].sort((a, b) => a.amount - b.amount)
+        );
       }
 
       if (value === "amount+") {
-        setFilteredClients((li) => [...li].sort((a, b) => b.amount - a.amount));
+        props.setClientList((li) =>
+          [...li].sort((a, b) => b.amount - a.amount)
+        );
       }
       if (value === "surname") {
-        setFilteredClients((li) =>
+        props.setClientList((li) =>
           [...li].sort((a, b) => a.surname.localeCompare(b.surname))
         );
       }
