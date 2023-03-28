@@ -7,13 +7,26 @@ import AddNewBillForm from "./AddNewBillForm";
 import axios from "axios";
 
 function LoggedInBills(props) {
+  console.log(props);
   const URL = "http://localhost:3003/accounts";
 
-  const { disabled, setDisabled } = useContext(Global);
+  const { disabled, setDisabled, clientList } = useContext(Global);
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [blockUser, setBlockUser] = useState(null);
+
+  const payTaxesHandler = () => {
+    console.log(props);
+    const minusTaxes = props.clientList.map((bill) => bill.amount - 5);
+    const clientID = props.clientList.map((bill) => bill.id);
+
+    setEditData({
+      number: parseInt(props.newAmount),
+      amount: minusTaxes,
+      id: clientID,
+    });
+  };
 
   useEffect(() => {
     if (props.lastStateUpdate === null) {
@@ -68,6 +81,7 @@ function LoggedInBills(props) {
       .put(URL + "/" + editData.id, editData, { withCredentials: true })
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [editData]);
+
   // const sortArrOfObjByProp = (arr, propName) => {
   //   return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
   // };
@@ -89,6 +103,10 @@ function LoggedInBills(props) {
 
       if (value === "amount") {
         setFilteredClients((li) => [...li].sort((a, b) => a.amount - b.amount));
+      }
+
+      if (value === "amount+") {
+        setFilteredClients((li) => [...li].sort((a, b) => b.amount - a.amount));
       }
       if (value === "surname") {
         setFilteredClients((li) =>
@@ -236,11 +254,16 @@ function LoggedInBills(props) {
               Surname
             </option>
             <option className={props.className} value="amount">
-              Amount
+              Amount-
+            </option>
+            <option className={props.className} value="amount+">
+              Amount+
             </option>
           </select>
         </div>
-        <button className={props.btnBig}>Taxes</button>
+        <button className={props.btnBig} onClick={payTaxesHandler}>
+          Taxes
+        </button>
       </div>
     </div>
   );
