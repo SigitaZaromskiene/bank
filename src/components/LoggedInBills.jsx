@@ -15,18 +15,6 @@ function LoggedInBills(props) {
   const [editData, setEditData] = useState(null);
   const [blockUser, setBlockUser] = useState(null);
 
-  const payTaxesHandler = () => {
-    console.log(props);
-    const minusTaxes = props.clientList.map((bill) => bill.amount - 5);
-    const clientID = props.clientList.map((bill) => bill.id);
-
-    setEditData({
-      number: parseInt(props.newAmount),
-      amount: minusTaxes,
-      id: clientID,
-    });
-  };
-
   useEffect(() => {
     if (props.lastStateUpdate === null) {
       return;
@@ -54,24 +42,6 @@ function LoggedInBills(props) {
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [blockUser]);
 
-  // useEffect(() => {
-  //   if (disabled === null) {
-  //     return;
-  //   }
-  //   axios
-  //     .put(URL + "/" + disabled.id)
-  //     .then((res) => props.setLastStateUpdate(Date.now()));
-  // }, [disabled]);
-
-  // useEffect(() => {
-  //   if (blockedBill1 === null) {
-  //     return;
-  //   }
-  //   axios
-  //     .put(URL + "/" + blockedBill1.id)
-  //     .then((res) => props.setLastStateUpdate(Date.now()));
-  // }, [blockedBill1]);
-
   useEffect(() => {
     if (null === editData) {
       return;
@@ -80,6 +50,32 @@ function LoggedInBills(props) {
       .put(URL + "/" + editData.id, editData, { withCredentials: true })
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [editData]);
+
+  function payTaxesHandler() {
+    const updateBalance = clientList.map((person) => {
+      axios
+        .put(URL + "/" + person.id, {
+          ...person,
+          amount: person.amount - 5,
+        })
+        .then((res) => console.log(res.data));
+      return {
+        ...person,
+        amount: person.amount - 5,
+      };
+    });
+
+    props.setClientList(updateBalance);
+  }
+
+  // useEffect(() => {
+  //   if (null === editData) {
+  //     return;
+  //   }
+  //   axios
+  //     .put(URL + "/taxes")
+  //     .then((res) => props.setLastStateUpdate(Date.now()));
+  // }, [editData]);
 
   // useEffect(() => {
   //   if (null === editData) {

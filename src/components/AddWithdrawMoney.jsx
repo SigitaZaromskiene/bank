@@ -19,6 +19,7 @@ function AddWithdrawMoney(props) {
         bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
         return bill;
       }
+
       return bill;
     });
 
@@ -172,7 +173,6 @@ function AddWithdrawMoney(props) {
           newAmount={newAmount}
           bill={props.bill}
           setEditData={props.setEditData}
-          add={add}
         ></AddOver1000>
       ) : (
         ""
