@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 function BlockBtn(props) {
+  console.log(props);
   const [modal, setModal] = useState({
     class: "hidden",
     msg: "",
@@ -12,18 +13,6 @@ function BlockBtn(props) {
       id: props.bill.id,
       isBlocked: props.bill.blocked ? 0 : 1,
     });
-
-    if (props.bill.blocked !== 0) {
-      setModal({
-        class: "visible",
-        msg: "Cannot use blocked bills",
-        color: "red",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 2000);
-      return;
-    }
   };
 
   return (
@@ -37,9 +26,6 @@ function BlockBtn(props) {
           >
             Block
           </button>
-          <div className={`${modal.class} modal`}>
-            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-          </div>
         </>
       ) : (
         <>
@@ -50,15 +36,8 @@ function BlockBtn(props) {
           >
             Unblock
           </button>
-          <div className={`${modal.class} modal`}>
-            <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-          </div>
         </>
       )}
-
-      <div className={`${modal.class} modal`}>
-        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
-      </div>
     </>
   );
 }

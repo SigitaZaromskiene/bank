@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useContext } from "react";
 import { Global } from "./Global";
-
+import ErrorMsg from "./ErrorMsg";
 import { v4 as uuidv4 } from "uuid";
 import Bill from "./Bill";
 import AddNewBillForm from "./AddNewBillForm";
@@ -13,7 +13,9 @@ function LoggedInBills(props) {
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
-  const [blockUser, setBlockUser] = useState(null);
+  const [blockUser, setBlockUser] = useState([]);
+
+  console.log(blockUser);
 
   useEffect(() => {
     if (props.lastStateUpdate === null) {
@@ -84,22 +86,18 @@ function LoggedInBills(props) {
       if (value === "default") {
         //  setFilteredClients((li) => [...li].sort((a, b) => a.row - b.row));
 
-        props.setClientList(props.clientList);
+        setFilteredClients(props.clientList);
       }
 
       if (value === "amount") {
-        props.setClientList((li) =>
-          [...li].sort((a, b) => a.amount - b.amount)
-        );
+        setFilteredClients((li) => [...li].sort((a, b) => a.amount - b.amount));
       }
 
       if (value === "amount+") {
-        props.setClientList((li) =>
-          [...li].sort((a, b) => b.amount - a.amount)
-        );
+        setFilteredClients((li) => [...li].sort((a, b) => b.amount - a.amount));
       }
       if (value === "surname") {
-        props.setClientList((li) =>
+        setFilteredClients((li) =>
           [...li].sort((a, b) => a.surname.localeCompare(b.surname))
         );
       }
@@ -133,9 +131,7 @@ function LoggedInBills(props) {
         filteredList = props.clientList.filter(({ amount }) => amount === 0);
       }
       if (value === "blocked") {
-        filteredList = props.clientList.filter(
-          ({ blocked }) => blocked === true
-        );
+        filteredList = props.clientList.filter(({ blocked }) => blocked === 1);
       }
       if (value === "with") {
         filteredList = props.clientList.filter(({ amount }) => amount > 0);
@@ -251,6 +247,7 @@ function LoggedInBills(props) {
             </option>
           </select>
         </div>
+        {!blockUser.isBlocked ? null : <ErrorMsg />}
         <button className={props.btnBig} onClick={payTaxesHandler}>
           Taxes
         </button>

@@ -192,8 +192,6 @@ function AddWithdrawMoney(props) {
       <div className={`${modal.class} modal`}>
         <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
       </div>
-
-      {/* <AddOver1000 newAmount={newAmount} add={props.add}></AddOver1000> */}
     </div>
   );
 }

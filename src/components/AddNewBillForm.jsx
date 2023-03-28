@@ -151,7 +151,10 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             Add your passport photo
           </label>
           <div>
-            <input style={{ textAlign: "end" }} type="file" />
+            <input
+              style={{ textAlign: "end", backgroundColor: "white" }}
+              type="file"
+            />
           </div>
 
           <button className={btnBig} onClick={create}>
