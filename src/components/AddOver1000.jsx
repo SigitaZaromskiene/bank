@@ -2,7 +2,19 @@ import { useContext } from "react";
 import { Global } from "./Global";
 
 function AddOver1000(props) {
-  const { setAddOver1000 } = useContext(Global);
+  const { setAddOver1000, clientList, addOver1000 } = useContext(Global);
+
+  const add = (_) => {
+    const updatedBill = clientList.map((bill) => {
+      if (bill.id !== props.bill.id) return bill;
+
+      bill.amount = Number(bill.amount) + Number(addOver1000);
+      return bill;
+    });
+
+    props.setClientList(updatedBill);
+    setAddOver1000(null);
+  };
   return (
     <div className="modalA">
       <div
@@ -24,10 +36,7 @@ function AddOver1000(props) {
             gap: "10px",
           }}
         >
-          <button
-            className="button"
-            onClick={() => setAddOver1000(props.newAmount)}
-          >
+          <button className="button" onClick={add}>
             Confirm
           </button>
           <button className="button" onClick={() => setAddOver1000(null)}>

@@ -6,7 +6,6 @@ import AddOver1000 from "./AddOver1000";
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
-
   const { setAddOver1000, addOver1000 } = useContext(Global);
 
   const add = (_) => {
@@ -152,33 +151,31 @@ function AddWithdrawMoney(props) {
         gap: "15px",
       }}
     >
-      {!addOver1000 ? (
-        <>
-          <button
-            disabled={props.bill.blocked}
-            className={props.add}
-            onClick={add}
-          >
-            Add &euro;
-          </button>
-          <input
-            type="number"
-            min="0"
-            value={newAmount}
-            style={{
-              fontSize: "30px",
-              marginLeft: "2px",
-              marginRight: "2px",
-              width: "100px",
-            }}
-            onChange={(e) => setNewAmount(e.target.value)}
-          ></input>
-        </>
-      ) : (
+      <button disabled={props.bill.blocked} className={props.add} onClick={add}>
+        Add &euro;
+      </button>
+      <input
+        type="number"
+        min="0"
+        value={newAmount}
+        style={{
+          fontSize: "30px",
+          marginLeft: "2px",
+          marginRight: "2px",
+          width: "100px",
+        }}
+        onChange={(e) => setNewAmount(e.target.value)}
+      ></input>
+      {addOver1000 ? (
         <AddOver1000
           setClientList={props.setClientList}
           newAmount={newAmount}
+          bill={props.bill}
+          setEditData={props.setEditData}
+          add={add}
         ></AddOver1000>
+      ) : (
+        ""
       )}
 
       <button
