@@ -7,9 +7,17 @@ function AddOver1000(props) {
   const add = (_) => {
     const updatedBill = clientList.map((bill) => {
       if (bill.id !== props.bill.id) return bill;
+      console.log(bill);
 
       bill.amount = Number(bill.amount) + Number(addOver1000);
+
       return bill;
+    });
+
+    props.setEditData({
+      number: parseInt(props.newAmount),
+      amount: props.bill.amount,
+      id: props.bill.id,
     });
 
     props.setClientList(updatedBill);

@@ -7,7 +7,6 @@ import AddNewBillForm from "./AddNewBillForm";
 import axios from "axios";
 
 function LoggedInBills(props) {
-  console.log(props);
   const URL = "http://localhost:3003/accounts";
 
   const { disabled, setDisabled, clientList } = useContext(Global);
@@ -81,6 +80,15 @@ function LoggedInBills(props) {
       .put(URL + "/" + editData.id, editData, { withCredentials: true })
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [editData]);
+
+  // useEffect(() => {
+  //   if (null === editData) {
+  //     return;
+  //   }
+  //   axios
+  //     .put(URL + "/" + editData, { withCredentials: true })
+  //     .then((res) => props.setLastStateUpdate(Date.now()));
+  // }, [editData]);
 
   // const sortArrOfObjByProp = (arr, propName) => {
   //   return arr.sort((a, b) => a[propName].localeCompare(b[propName]));
