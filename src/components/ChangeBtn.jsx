@@ -4,9 +4,16 @@ import { useState } from "react";
 function ChangeBtn(props) {
   const [file, readFile, remImage] = useFile();
   const [editImgModal, setImgModal] = useState(false);
+  const [changeImg, setChangeImg] = useState(null);
 
-  const changeImg = () => {
+  const changeImgHandler = () => {
     setImgModal(true);
+  };
+
+  const change = () => {
+    setChangeImg({
+      file,
+    });
   };
   return (
     <>
@@ -14,7 +21,7 @@ function ChangeBtn(props) {
         <button
           disabled={props.bill.blocked}
           className={props.classes}
-          onClick={changeImg}
+          onClick={changeImgHandler}
         >
           Edit img
         </button>
@@ -32,8 +39,9 @@ function ChangeBtn(props) {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "20px" }}
             >
-              <label>Please select photo</label>
+              <label htmlFor="formFile1">Please select photo</label>
               <input
+                id="formFile1"
                 type="file"
                 style={{ border: "1px solid black", padding: "5px" }}
               />
@@ -41,9 +49,15 @@ function ChangeBtn(props) {
             <div
               style={{ display: "flex", justifyContent: "center", gap: "20px" }}
             >
-              <button className="button">Submit</button>
+              <button type="button" className="button" onClick={change}>
+                Submit
+              </button>
 
-              <button className="button" onClick={() => setImgModal(false)}>
+              <button
+                type="button"
+                className="button"
+                onClick={() => setImgModal(false)}
+              >
                 Cancel
               </button>
             </div>

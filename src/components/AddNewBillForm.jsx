@@ -93,79 +93,66 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
         style={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
+          gap: "20px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "center",
-            gap: "30px",
-            marginBottom: "30px",
-            marginTop: "30px",
-          }}
-        >
-          <ClientsNumber
-            className="header"
-            clientList={clientList}
-          ></ClientsNumber>
-          <CurrentBalance
-            className="header"
-            clientList={clientList}
-          ></CurrentBalance>
-          <AccWithoutImg
-            className="header"
-            clientList={clientList}
-          ></AccWithoutImg>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "center",
-            gap: "30px",
-            marginBottom: "30px",
-            marginTop: "30px",
-          }}
-        >
-          <EmptyAcc className="header" clientList={clientList}></EmptyAcc>
-          <AccWithMoney
-            className="header"
-            clientList={clientList}
-          ></AccWithMoney>
-          <AccWithMinus
-            className="header"
-            clientList={clientList}
-          ></AccWithMinus>
-        </div>
+        <ClientsNumber
+          className="header"
+          clientList={clientList}
+        ></ClientsNumber>
+        <CurrentBalance
+          className="header"
+          clientList={clientList}
+        ></CurrentBalance>
+        <AccWithoutImg
+          className="header"
+          clientList={clientList}
+        ></AccWithoutImg>
+
+        <EmptyAcc className="header" clientList={clientList}></EmptyAcc>
+        <AccWithMoney className="header" clientList={clientList}></AccWithMoney>
+        <AccWithMinus className="header" clientList={clientList}></AccWithMinus>
       </div>
       <div className={flex}>
         <div className={form}>
-          <label style={{ fontSize: "18px" }}>Open a new account</label>
-          <input
-            type="text"
-            placeholder="Name"
-            value={addNewName}
-            onChange={setNameHandler}
-          ></input>
-          <input
-            type="text"
-            placeholder="Surname"
-            value={addNewSurname}
-            onChange={setSurnameHandler}
-          ></input>
-
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <label style={{ fontSize: "18px" }}>Open a new account</label>
+            <input
+              type="text"
+              placeholder="Name"
+              value={addNewName}
+              onChange={setNameHandler}
+            ></input>
+            <input
+              type="text"
+              placeholder="Surname"
+              value={addNewSurname}
+              onChange={setSurnameHandler}
+            ></input>
+            <button
+              className={btnBig}
+              style={{ marginTop: "20px" }}
+              onClick={create}
+            >
+              Submit
+            </button>
+          </div>
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              flexDirection: "column",
             }}
           >
-            <label
-              htmlFor="formFile"
-              style={{ fontSize: "18px", width: "150px" }}
-            >
+            <label htmlFor="formFile" style={{ fontSize: "18px" }}>
               Add your passport photo
             </label>
 
@@ -175,24 +162,26 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
               type="file"
               onChange={readFile}
             />
-            <div>
+            <div
+              style={{
+                height: "120px",
+                width: "170px",
+              }}
+            >
               {file ? (
                 <img
                   className="list-image"
                   src={file}
                   alt="addphoto"
                   style={{
-                    height: "50px",
-                    width: "80px",
+                    height: "120px",
+                    width: "170px",
+                    borderRadius: "15px",
                   }}
                 />
               ) : null}
             </div>
           </div>
-
-          <button className={btnBig} onClick={create}>
-            Submit
-          </button>
         </div>
         <div className={`${modal.class} modal`}>
           <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
