@@ -32,7 +32,7 @@ function ChangeBtn(props) {
         className={props.classes}
         onClick={deleteHandler}
       >
-        Change
+        Remove Img
       </button>
       <div className={`${modal.class} modal`}>
         <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>

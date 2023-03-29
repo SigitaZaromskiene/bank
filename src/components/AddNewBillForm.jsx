@@ -9,6 +9,8 @@ import AccWithMoney from "./AccWithMoney";
 import EmptyAcc from "./EmptyAcc";
 import AccWithMinus from "./AccWithMinus";
 
+import { useFile } from "./useFile";
+
 const URL = "http://localhost:3003/bills";
 
 function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
@@ -17,6 +19,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
   const { clientList, createData, setCreateData } = useContext(Global);
+
+  const [file, readFile] = useFile();
 
   useEffect(() => {
     if (createData === null) {
@@ -147,13 +151,18 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             onChange={setSurnameHandler}
           ></input>
 
-          <label style={{ fontSize: "18px", width: "150px" }}>
+          <label
+            htmlFor="formFile"
+            style={{ fontSize: "18px", width: "150px" }}
+          >
             Add your passport photo
           </label>
           <div>
             <input
+              id="formFile"
               style={{ textAlign: "end", backgroundColor: "white" }}
               type="file"
+              onChange={readFile}
             />
           </div>
 

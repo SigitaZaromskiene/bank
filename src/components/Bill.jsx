@@ -2,8 +2,10 @@ import DeleteBtn from "./DeleteBtn";
 import AddWithdrawMoney from "./AddWithdrawMoney";
 import BlockBtn from "./BlockBtn";
 import ChangeBtn from "./ChangeBtn";
+import { useFile } from "./useFile";
 
 function Bill(props) {
+  const [file, remImage] = useFile();
   return (
     <>
       <div className={props.billContainer}>
@@ -29,11 +31,11 @@ function Bill(props) {
               <p>{props.text.surname}</p>
             </div>
             <div>
-              {/* {t.image ? (
-              <img className="list-image" src={IMG + t.image} />
-            ) : (
-              <img className="list-image" src={IMG + "no.gif"} />
-            )} */}
+              <div>
+                {file ? (
+                  <img className="list-image" src={file} alt="addphoto" />
+                ) : null}
+              </div>
             </div>
             <div
               style={{ display: "flex", gap: "10px", flexDirection: "column" }}
@@ -61,6 +63,7 @@ function Bill(props) {
                 bill={props.text}
                 classes={props.classes}
                 modal="modal"
+                onClick={remImage}
               />
             </div>
           </div>
