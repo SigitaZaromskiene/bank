@@ -6,6 +6,9 @@ import { useFile } from "./useFile";
 
 function Bill(props) {
   const [file, remImage] = useFile();
+
+  const IMG = "http://localhost:3003/img/";
+
   return (
     <>
       <div className={props.billContainer}>
@@ -24,18 +27,35 @@ function Bill(props) {
                 fontSize: "22px",
                 gap: "8px",
                 justifyContent: "center",
-                width: "260px",
+                width: "200px",
               }}
             >
               <p>{props.text.name}</p>
               <p>{props.text.surname}</p>
             </div>
-            <div>
-              <div>
-                {file ? (
-                  <img className="list-image" src={file} alt="addphoto" />
-                ) : null}
-              </div>
+            <div
+              style={{ height: "150px", width: "150px", paddingRight: "10px" }}
+            >
+              {props.text.image ? (
+                <img
+                  className="list-image"
+                  src={IMG + props.text.image}
+                  alt="addedphoto"
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    backgroundColor: "white",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    backgroundColor: "white",
+                  }}
+                ></div>
+              )}
             </div>
             <div
               style={{ display: "flex", gap: "10px", flexDirection: "column" }}

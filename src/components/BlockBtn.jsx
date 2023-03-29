@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function BlockBtn(props) {
-  console.log(props);
   const [modal, setModal] = useState({
     class: "hidden",
     msg: "",

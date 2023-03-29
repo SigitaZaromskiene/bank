@@ -15,9 +15,6 @@ function LoggedInBills(props) {
   const [editData, setEditData] = useState(null);
   const [blockUser, setBlockUser] = useState([]);
 
-
-  console.log(blockUser);
-
   useEffect(() => {
     if (props.lastStateUpdate === null) {
       return;

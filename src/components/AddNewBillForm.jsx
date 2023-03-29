@@ -20,7 +20,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
 
   const { clientList, createData, setCreateData } = useContext(Global);
 
-  const [file, readFile] = useFile();
+  const [file, readFile, remImage] = useFile();
 
   useEffect(() => {
     if (createData === null) {
@@ -61,6 +61,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
         id: uuidv4(),
         amount: 0,
         blocked: false,
+        file,
       });
 
       setModal({
@@ -74,6 +75,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
 
       setAddNewName("");
       setAddNewSurname("");
+      remImage();
     }
   };
   const setNameHandler = (e) => {
@@ -151,19 +153,39 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             onChange={setSurnameHandler}
           ></input>
 
-          <label
-            htmlFor="formFile"
-            style={{ fontSize: "18px", width: "150px" }}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            Add your passport photo
-          </label>
-          <div>
+            <label
+              htmlFor="formFile"
+              style={{ fontSize: "18px", width: "150px" }}
+            >
+              Add your passport photo
+            </label>
+
             <input
               id="formFile"
               style={{ textAlign: "end", backgroundColor: "white" }}
               type="file"
               onChange={readFile}
             />
+            <div>
+              {file ? (
+                <img
+                  className="list-image"
+                  src={file}
+                  alt="addphoto"
+                  style={{
+                    height: "50px",
+                    width: "80px",
+                  }}
+                />
+              ) : null}
+            </div>
           </div>
 
           <button className={btnBig} onClick={create}>
