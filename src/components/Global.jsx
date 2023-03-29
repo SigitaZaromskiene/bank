@@ -14,6 +14,8 @@ export const GlobalProvider = ({ children }) => {
 
   const [disabled, setDisabled] = useState(null);
 
+  const [deleteImg, setDelImg] = useState(false);
+
   const logOut = (_) => {
     axios
       .post("http://localhost:3003/logout", {}, { withCredentials: true })
@@ -44,6 +46,8 @@ export const GlobalProvider = ({ children }) => {
         setDisabled,
         setAddOver1000,
         addOver1000,
+        setDelImg,
+        deleteImg,
       }}
     >
       {children}

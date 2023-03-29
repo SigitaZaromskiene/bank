@@ -3,9 +3,14 @@ import AddWithdrawMoney from "./AddWithdrawMoney";
 import BlockBtn from "./BlockBtn";
 import ChangeBtn from "./ChangeBtn";
 import { useFile } from "./useFile";
+import DeleteImg from "./DeleteImg";
+import { Global } from "./Global";
+import { useContext } from "react";
 
 function Bill(props) {
   const [file, remImage] = useFile();
+
+  const { deleteImg } = useContext(Global);
 
   const IMG = "http://localhost:3003/img/";
 
@@ -36,7 +41,7 @@ function Bill(props) {
             <div
               style={{ height: "150px", width: "150px", paddingRight: "10px" }}
             >
-              {props.text.image ? (
+              {props.text.image && !deleteImg ? (
                 <img
                   className="list-image"
                   src={IMG + props.text.image}
@@ -78,6 +83,14 @@ function Bill(props) {
                 blockUser={props.blockUser}
               />
               <ChangeBtn
+                setDeletedData={props.setDeletedData}
+                setClientList={props.setClientList}
+                bill={props.text}
+                classes={props.classes}
+                modal="modal"
+                onClick={remImage}
+              />
+              <DeleteImg
                 setDeletedData={props.setDeletedData}
                 setClientList={props.setClientList}
                 bill={props.text}

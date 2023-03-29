@@ -18,7 +18,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
   const [addNewSurname, setAddNewSurname] = useState("");
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
 
-  const { clientList, createData, setCreateData } = useContext(Global);
+  const { clientList, createData, setCreateData, deleteImg } =
+    useContext(Global);
 
   const [file, readFile, remImage] = useFile();
 
@@ -62,6 +63,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
         amount: 0,
         blocked: false,
         file,
+        deleteImg,
       });
 
       setModal({

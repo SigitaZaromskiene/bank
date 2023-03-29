@@ -1,42 +1,56 @@
-import { useState, useContext } from "react";
-import { Global } from "./Global";
+import { useFile } from "./useFile";
+import { useState } from "react";
 
 function ChangeBtn(props) {
-  const { disabled } = useContext(Global);
-  const [modal, setModal] = useState({
-    class: "hidden",
-    msg: "",
-    color: "",
-  });
-  const deleteHandler = () => {
-    if (props.bill.amount !== 0) {
-      setModal({
-        class: "visible",
-        msg: "Cannot delete if bill is not empty",
-        color: "red",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 2000);
+  const [file, readFile, remImage] = useFile();
+  const [editImgModal, setImgModal] = useState(false);
 
-      return;
-    } else {
-      props.setDeleteData(props.bill);
-    }
+  const changeImg = () => {
+    setImgModal(true);
   };
-
   return (
     <>
-      <button
-        disabled={props.bill.blocked}
-        className={props.classes}
-        onClick={deleteHandler}
-      >
-        Remove Img
-      </button>
-      <div className={`${modal.class} modal`}>
-        <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
+      <div>
+        <button
+          disabled={props.bill.blocked}
+          className={props.classes}
+          onClick={changeImg}
+        >
+          Edit img
+        </button>
       </div>
+      {editImgModal ? (
+        <div className="login-box">
+          <form
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+            >
+              <label>Please select photo</label>
+              <input
+                type="file"
+                style={{ border: "1px solid black", padding: "5px" }}
+              />
+            </div>
+            <div
+              style={{ display: "flex", justifyContent: "center", gap: "20px" }}
+            >
+              <button className="button">Submit</button>
+
+              <button className="button" onClick={() => setImgModal(false)}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : null}
+      <div />
     </>
   );
 }
