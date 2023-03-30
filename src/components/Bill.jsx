@@ -53,13 +53,16 @@ function Bill(props) {
                   }}
                 />
               ) : (
-                <div
+                <img
+                  className="list-image"
+                  src={IMG + "no-photo.jpg"}
+                  alt="aphoto"
                   style={{
                     height: "100%",
                     width: "100%",
                     backgroundColor: "white",
                   }}
-                ></div>
+                />
               )}
             </div>
             <div
