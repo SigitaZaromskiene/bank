@@ -7,7 +7,7 @@ function AccWithMinus(props) {
 
   return (
     <div className={props.className}>
-      Accounts with minus balance: {getSumAcc()}
+      Accounts with negative balance: {getSumAcc()}
     </div>
   );
 }

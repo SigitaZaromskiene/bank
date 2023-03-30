@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { Global } from "./Global";
-
 import AddOver1000 from "./AddOver1000";
 
 function AddWithdrawMoney(props) {
@@ -11,17 +10,16 @@ function AddWithdrawMoney(props) {
   const add = (_) => {
     const updatedBill = props.clientList.map((bill) => {
       if (bill.id !== props.bill.id) return bill;
-
-      if (newAmount >= 1000) {
-        setAddOver1000(newAmount);
-      } else {
+      else {
         const newTotalAmount = Number(bill.amount) + Number(newAmount);
         bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
         return bill;
       }
-
-      return bill;
     });
+
+    if (newAmount >= 1000) {
+      setAddOver1000(true);
+    }
 
     if (!newAmount) {
       setModal({
@@ -169,11 +167,10 @@ function AddWithdrawMoney(props) {
       ></input>
       {addOver1000 ? (
         <AddOver1000
-          setClientList={props.setClientList}
-          newAmount={newAmount}
           bill={props.bill}
           setEditData={props.setEditData}
-        ></AddOver1000>
+          newAmount={newAmount}
+        />
       ) : (
         ""
       )}

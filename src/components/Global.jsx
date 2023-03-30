@@ -9,12 +9,14 @@ export const GlobalProvider = ({ children }) => {
   const [authName, setAuthName] = useState(null);
   const [clientList, setClientList] = useState([]);
   const [createData, setCreateData] = useState(null);
-  const [editBills, setEditBills] = useState(null);
+  // const [editBills, setEditBills] = useState(null);
   const [addOver1000, setAddOver1000] = useState(false);
 
   const [disabled, setDisabled] = useState(null);
 
   const [deleteImg, setDelImg] = useState(false);
+
+  const [editModalTree, setEditModalTree] = useState();
 
   const logOut = (_) => {
     axios
@@ -40,14 +42,15 @@ export const GlobalProvider = ({ children }) => {
         setClientList,
         setCreateData,
         createData,
-        setEditBills,
-        editBills,
+
         disabled,
         setDisabled,
         setAddOver1000,
         addOver1000,
         setDelImg,
         deleteImg,
+        editModalTree,
+        setEditModalTree,
       }}
     >
       {children}

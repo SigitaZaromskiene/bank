@@ -11,7 +11,7 @@ function DeleteBtn(props) {
     if (props.bill.amount !== 0) {
       setModal({
         class: "visible",
-        msg: "Cannot delete if bill is not empty",
+        msg: "Cannot delete if bill is not empty or balance is negative",
         color: "red",
       });
       setTimeout(() => {

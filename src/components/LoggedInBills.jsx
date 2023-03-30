@@ -9,7 +9,7 @@ import axios from "axios";
 function LoggedInBills(props) {
   const URL = "http://localhost:3003/accounts";
 
-  const { clientList } = useContext(Global);
+  const { clientList, deleteImg, setDelImg } = useContext(Global);
 
   const [deleteData, setDeleteData] = useState(null);
   const [editData, setEditData] = useState(null);
@@ -32,6 +32,15 @@ function LoggedInBills(props) {
       .delete(URL + "/" + deleteData.id)
       .then((res) => props.setLastStateUpdate(Date.now()));
   }, [deleteData]);
+
+  // useEffect(() => {
+  //   if (deleteImg === null) {
+  //     return;
+  //   }
+  //   axios
+  //     .delete(URL + "/" + deleteImg.id +"/" deleteImg.image)
+  //     .then((res) => props.setLastStateUpdate(Date.now()));
+  // }, [deleteImg]);
 
   useEffect(() => {
     if (blockUser === null) {

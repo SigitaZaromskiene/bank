@@ -2,28 +2,39 @@ import { useContext } from "react";
 import { Global } from "./Global";
 
 function AddOver1000(props) {
+  console.log(props);
   const { setAddOver1000, clientList, addOver1000 } = useContext(Global);
 
-  const add = (_) => {
-    const updatedBill = clientList.map((bill) => {
-      if (bill.id !== props.bill.id) return bill;
-      else {
-        const newTotalAmount = Number(bill.amount) + Number(addOver1000);
-        bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
+  const confirm = (_) => {
+    const newTotalAmount = Number(props.bill.amount) + Number(props.newAmount);
+    props.bill.amount =
+      newTotalAmount >= 0 ? newTotalAmount : props.bill.amount;
 
-        props.setEditData({
-          number: parseInt(addOver1000),
-          amount: props.bill.amount,
-          id: props.bill.id,
-        });
-
-        return bill;
-      }
+    props.setEditData({
+      number: parseInt(props.newAmount),
+      amount: props.bill.amount,
+      id: props.bill.id,
     });
 
-    props.setClientList(updatedBill);
     setAddOver1000(null);
   };
+  //   const updatedBill = clientList.map((bill) => {
+  //     if (bill.id !== props.bill.id) return bill;
+
+  //     const newTotalAmount = Number(bill.amount) + Number(addOver1000);
+  //     bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
+
+  //     return bill;
+  //   });
+  //   props.setEditData({
+  //     number: parseInt(addOver1000),
+  //     amount: props.bill.amount,
+  //     id: props.bill.id,
+  //   });
+
+  //   props.setClientList(updatedBill);
+  //   setAddOver1000(null);
+  // };
 
   return (
     <div className="modalA">
@@ -46,7 +57,7 @@ function AddOver1000(props) {
             gap: "10px",
           }}
         >
-          <button className="button" onClick={add}>
+          <button className="button" onClick={confirm}>
             Confirm
           </button>
           <button className="button" onClick={() => setAddOver1000(null)}>

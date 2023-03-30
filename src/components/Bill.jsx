@@ -28,10 +28,10 @@ function Bill(props) {
           >
             <div
               style={{
-                display: "flex",
                 fontSize: "22px",
-                gap: "8px",
+
                 justifyContent: "center",
+                flexDirection: "column",
                 width: "200px",
               }}
             >
@@ -39,7 +39,7 @@ function Bill(props) {
               <p>{props.text.surname}</p>
             </div>
             <div
-              style={{ height: "150px", width: "150px", paddingRight: "10px" }}
+              style={{ height: "150px", width: "220px", paddingRight: "30px" }}
             >
               {props.text.image && !deleteImg ? (
                 <img
@@ -50,6 +50,7 @@ function Bill(props) {
                     height: "100%",
                     width: "100%",
                     backgroundColor: "white",
+                    borderRadius: "5px",
                   }}
                 />
               ) : (
@@ -60,7 +61,8 @@ function Bill(props) {
                   style={{
                     height: "100%",
                     width: "100%",
-                    backgroundColor: "white",
+
+                    borderRadius: "5px",
                   }}
                 />
               )}
@@ -85,14 +87,14 @@ function Bill(props) {
                 modal="modal"
                 blockUser={props.blockUser}
               />
-              <ChangeBtn
+              {/* <ChangeBtn
                 setDeletedData={props.setDeletedData}
                 setClientList={props.setClientList}
                 bill={props.text}
                 classes={props.classes}
                 modal="modal"
                 onClick={remImage}
-              />
+              /> */}
               <DeleteImg
                 setDeletedData={props.setDeletedData}
                 setClientList={props.setClientList}
@@ -100,6 +102,7 @@ function Bill(props) {
                 classes={props.classes}
                 modal="modal"
                 onClick={remImage}
+                setEditData={props.setEditData}
               />
             </div>
           </div>
