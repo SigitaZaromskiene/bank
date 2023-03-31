@@ -21,7 +21,7 @@ function BlockBtn(props) {
           <button
             className={props.classes}
             onClick={blockHandler}
-            style={{ color: "darkRed" }}
+            style={{ color: "darkRed", fontWeight: "600" }}
           >
             Block
           </button>
@@ -31,7 +31,7 @@ function BlockBtn(props) {
           <button
             className={props.classes}
             onClick={blockHandler}
-            style={{ color: "darkRed" }}
+            style={{ color: "darkRed", fontWeight: "600" }}
           >
             Unblock
           </button>

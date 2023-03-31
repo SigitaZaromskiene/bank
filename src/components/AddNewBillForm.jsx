@@ -147,7 +147,7 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+
               flexDirection: "column",
             }}
           >
@@ -174,8 +174,8 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
                   alt="addphoto"
                   style={{
                     height: "120px",
-                    width: "170px",
-                    borderRadius: "15px",
+                    width: "120px",
+                    borderRadius: "50%",
                   }}
                 />
               ) : null}

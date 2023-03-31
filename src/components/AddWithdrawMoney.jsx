@@ -182,10 +182,11 @@ function AddWithdrawMoney(props) {
       >
         Withdraw &euro;
       </button>
-
-      <p className={props.totalClass}>
-        Total: {props.bill.amount.toFixed(2, 0)} &euro;
-      </p>
+      <div style={{ width: "230px" }}>
+        <p className={props.totalClass}>
+          Total: {props.bill.amount.toFixed(2, 0)} &euro;
+        </p>
+      </div>
       <div className={`${modal.class} modal`}>
         <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
       </div>

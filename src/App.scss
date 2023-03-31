@@ -53,9 +53,9 @@
   border-radius: 15px;
   border: 1px solid black;
   display: flex;
-  gap: 30px;
+  gap: 50px;
   justify-content: center;
-
+  width: 600px;
   font-size: 24px;
   padding: 30px 20px;
 
@@ -85,6 +85,7 @@
   border: 1px solid black;
   border-radius: 15px;
   font-size: 14px;
+  width: 130px;
 
   &:hover {
     cursor: pointer;
@@ -96,8 +97,8 @@
   background-color: #653c28;
   border: 1px solid black;
   border-radius: 15px;
-  font-size: 18px;
-  width: 140px;
+  font-size: 14px;
+  width: 130px;
 
   &:hover {
     cursor: pointer;
@@ -110,7 +111,7 @@
   border: 1px solid black;
   border-radius: 15px;
 
-  width: 140px;
+  width: 130px;
 
   &:hover {
     cursor: pointer;
@@ -145,6 +146,7 @@
     border-radius: 15px;
     border: 1px solid black;
     gap: 40px;
+    width: 1200px;
   }
 }
 
@@ -153,7 +155,6 @@
   font-weight: 500;
   padding: 10px;
   margin: 0px;
-  width: 120px;
 }
 
 .header {
@@ -165,10 +166,11 @@
   width: 140px;
   height: 130px;
   color: #653c28;
+  border-radius: 15%;
 
-  padding: 8px 20px;
+  padding: 5px 10px;
   font-size: 20px;
-  line-height: 20px;
+
   margin-bottom: 30px;
 }
 

@@ -32,14 +32,18 @@ function Bill(props) {
 
                 justifyContent: "center",
                 flexDirection: "column",
-                width: "200px",
+                width: "150px",
               }}
             >
-              <p>{props.text.name}</p>
-              <p>{props.text.surname}</p>
+              <p style={{ margin: "0px" }}>{props.text.name}</p>
+              <p style={{ margin: "0px" }}>{props.text.surname}</p>
             </div>
             <div
-              style={{ height: "150px", width: "170px", paddingRight: "30px" }}
+              style={{
+                height: "120px",
+                width: "120px",
+                paddingRight: "40px",
+              }}
             >
               {props.text.image ? (
                 <img
@@ -50,7 +54,7 @@ function Bill(props) {
                     height: "100%",
                     width: "100%",
                     backgroundColor: "white",
-                    borderRadius: "5px",
+                    borderRadius: "50%",
                   }}
                 />
               ) : (
@@ -61,8 +65,7 @@ function Bill(props) {
                   style={{
                     height: "100%",
                     width: "100%",
-
-                    borderRadius: "5px",
+                    borderRadius: "50%",
                   }}
                 />
               )}

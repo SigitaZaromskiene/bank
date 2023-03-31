@@ -5,9 +5,7 @@ function AccWithoutImg(props) {
   };
 
   return (
-    <div className={props.className}>
-      Accounts without image: {getImg()} &euro;
-    </div>
+    <div className={props.className}>Accounts without image: {getImg()}</div>
   );
 }
 

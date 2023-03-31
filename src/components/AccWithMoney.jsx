@@ -6,7 +6,9 @@ function AccWithMoney(props) {
   };
 
   return (
-    <div className={props.className}>Accounts with balance: {getSumAcc()}</div>
+    <div className={props.className}>
+      Accounts with positive balance: {getSumAcc()}
+    </div>
   );
 }
 
