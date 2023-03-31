@@ -6,7 +6,8 @@ import { useFile } from "./useFile";
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
-  const { setAddOver1000, addOver1000, deleteImg } = useContext(Global);
+  const { setAddOver1000, addOver1000, deleteImg, setSaveAmount, saveAmount } =
+    useContext(Global);
 
   const [file, readFile, remImage] = useFile();
 
@@ -16,36 +17,38 @@ function AddWithdrawMoney(props) {
 
       if (newAmount >= 1000) {
         setAddOver1000(true);
+        setSaveAmount(newAmount);
+
+        return bill;
       } else {
         const newTotalAmount = Number(bill.amount) + Number(newAmount);
         bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
         return bill;
       }
-      return bill;
     });
 
-    // if (!newAmount) {
-    //   setModal({
-    //     class: "visible",
-    //     msg: "Please enter amount",
-    //     color: "red",
-    //   });
-    //   setTimeout(() => {
-    //     setModal({ class: "hidden", msg: "", color: "" });
-    //   }, 2000);
-    // } else {
-    props.setEditData({
-      name: props.bill.name,
-      surname: props.bill.surname,
-      number: parseInt(newAmount),
-      amount: props.bill.amount,
-      id: props.bill.id,
-      file,
-    });
+    if (!newAmount) {
+      setModal({
+        class: "visible",
+        msg: "Please enter amount",
+        color: "red",
+      });
+      setTimeout(() => {
+        setModal({ class: "hidden", msg: "", color: "" });
+      }, 2000);
+    } else {
+      props.setEditData({
+        name: props.bill.name,
+        surname: props.bill.surname,
+        number: parseInt(newAmount),
+        amount: props.bill.amount,
+        id: props.bill.id,
+        file,
+      });
 
-    props.setClientList(updatedBill);
+      props.setClientList(updatedBill);
+    }
   };
-
   const remove = (_) => {
     let isNewAmountValid = true;
 
@@ -90,6 +93,28 @@ function AddWithdrawMoney(props) {
 
       props.setClientList(updatedBill);
     }
+  };
+
+  const addConfirmHandler = () => {
+    const updatedBill = props.clientList.map((bill) => {
+      if (bill.id !== props.bill.id) return bill;
+
+      const newTotalAmount = Number(bill.amount) + Number(saveAmount);
+      bill.amount = newTotalAmount;
+      return bill;
+    });
+
+    props.setEditData({
+      name: props.bill.name,
+      surname: props.bill.surname,
+      number: parseInt(newAmount),
+      amount: props.bill.amount,
+      id: props.bill.id,
+      file,
+    });
+
+    props.setClientList(updatedBill);
+    setAddOver1000(false);
   };
 
   // if (!validateAmount) {
@@ -194,7 +219,7 @@ function AddWithdrawMoney(props) {
                 gap: "10px",
               }}
             >
-              <button className="button" onClick={add}>
+              <button className="button" onClick={addConfirmHandler}>
                 Confirm
               </button>
               <button className="button" onClick={() => setAddOver1000(null)}>

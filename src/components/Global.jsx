@@ -11,12 +11,11 @@ export const GlobalProvider = ({ children }) => {
   const [createData, setCreateData] = useState(null);
   // const [editBills, setEditBills] = useState(null);
   const [addOver1000, setAddOver1000] = useState(false);
+  const [saveAmount, setSaveAmount] = useState(null);
 
   const [disabled, setDisabled] = useState(null);
 
   const [deleteImg, setDelImg] = useState(false);
-
-  const [editImg, setEditImg] = useState(null);
 
   const [editModalTree, setEditModalTree] = useState();
 
@@ -44,7 +43,8 @@ export const GlobalProvider = ({ children }) => {
         setClientList,
         setCreateData,
         createData,
-        setEditImg,
+        setSaveAmount,
+        saveAmount,
         disabled,
         setDisabled,
         setAddOver1000,
