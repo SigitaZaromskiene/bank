@@ -63,7 +63,6 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
         amount: 0,
         blocked: false,
         file,
-        deleteImg,
       });
 
       setModal({

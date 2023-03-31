@@ -39,9 +39,9 @@ function Bill(props) {
               <p>{props.text.surname}</p>
             </div>
             <div
-              style={{ height: "150px", width: "220px", paddingRight: "30px" }}
+              style={{ height: "150px", width: "170px", paddingRight: "30px" }}
             >
-              {props.text.image && !deleteImg ? (
+              {props.text.image ? (
                 <img
                   className="list-image"
                   src={IMG + props.text.image}
