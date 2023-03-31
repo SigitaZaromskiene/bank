@@ -2,17 +2,16 @@ import { useContext } from "react";
 import { Global } from "./Global";
 
 function AddOver1000(props) {
-  console.log(props);
   const { setAddOver1000, clientList, addOver1000 } = useContext(Global);
 
   const confirm = (_) => {
     const newTotalAmount = Number(props.bill.amount) + Number(props.newAmount);
-    props.bill.amount =
-      newTotalAmount >= 0 ? newTotalAmount : props.bill.amount;
+    props.bill.amount = newTotalAmount;
 
+    console.log(newTotalAmount);
     props.setEditData({
       number: parseInt(props.newAmount),
-      amount: props.bill.amount,
+      amount: newTotalAmount,
       id: props.bill.id,
     });
 

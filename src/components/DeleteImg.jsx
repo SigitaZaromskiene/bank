@@ -21,6 +21,8 @@ function DeleteImg(props) {
     setDelImg(true);
 
     props.setEditData({
+      name: props.bill.name,
+      surname: props.bill.surname,
       number: parseInt(props.newAmount),
       amount: props.bill.amount,
       id: props.bill.id,

@@ -13,36 +13,37 @@ function AddWithdrawMoney(props) {
   const add = (_) => {
     const updatedBill = props.clientList.map((bill) => {
       if (bill.id !== props.bill.id) return bill;
-      else {
+
+      if (newAmount >= 1000) {
+        setAddOver1000(true);
+      } else {
         const newTotalAmount = Number(bill.amount) + Number(newAmount);
         bill.amount = newTotalAmount >= 0 ? newTotalAmount : bill.amount;
         return bill;
       }
+      return bill;
     });
 
-    if (newAmount >= 1000) {
-      setAddOver1000(true);
-    }
+    // if (!newAmount) {
+    //   setModal({
+    //     class: "visible",
+    //     msg: "Please enter amount",
+    //     color: "red",
+    //   });
+    //   setTimeout(() => {
+    //     setModal({ class: "hidden", msg: "", color: "" });
+    //   }, 2000);
+    // } else {
+    props.setEditData({
+      name: props.bill.name,
+      surname: props.bill.surname,
+      number: parseInt(newAmount),
+      amount: props.bill.amount,
+      id: props.bill.id,
+      file,
+    });
 
-    if (!newAmount) {
-      setModal({
-        class: "visible",
-        msg: "Please enter amount",
-        color: "red",
-      });
-      setTimeout(() => {
-        setModal({ class: "hidden", msg: "", color: "" });
-      }, 2000);
-    } else {
-      props.setEditData({
-        number: parseInt(newAmount),
-        amount: props.bill.amount,
-        id: props.bill.id,
-        file,
-      });
-
-      props.setClientList(updatedBill);
-    }
+    props.setClientList(updatedBill);
   };
 
   const remove = (_) => {
@@ -79,6 +80,8 @@ function AddWithdrawMoney(props) {
       }, 2000);
     } else {
       props.setEditData({
+        name: props.bill.name,
+        surname: props.bill.surname,
         number: parseInt(newAmount),
         amount: props.bill.amount,
         id: props.bill.id,
@@ -171,11 +174,35 @@ function AddWithdrawMoney(props) {
         onChange={(e) => setNewAmount(e.target.value)}
       ></input>
       {addOver1000 ? (
-        <AddOver1000
-          bill={props.bill}
-          setEditData={props.setEditData}
-          newAmount={newAmount}
-        />
+        <div className="modalA">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "20px",
+              fontSize: "20px",
+            }}
+          >
+            Are you sure you want to add money?
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <button className="button" onClick={add}>
+                Confirm
+              </button>
+              <button className="button" onClick={() => setAddOver1000(null)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       ) : (
         ""
       )}
