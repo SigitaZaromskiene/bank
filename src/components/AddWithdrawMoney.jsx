@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
 import { Global } from "./Global";
 import AddOver1000 from "./AddOver1000";
+import { useFile } from "./useFile";
 
 function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
-  const { setAddOver1000, addOver1000 } = useContext(Global);
+  const { setAddOver1000, addOver1000, deleteImg } = useContext(Global);
+
+  const [file, readFile, remImage] = useFile();
 
   const add = (_) => {
     const updatedBill = props.clientList.map((bill) => {
@@ -35,6 +38,7 @@ function AddWithdrawMoney(props) {
         number: parseInt(newAmount),
         amount: props.bill.amount,
         id: props.bill.id,
+        file,
       });
 
       props.setClientList(updatedBill);
@@ -78,6 +82,7 @@ function AddWithdrawMoney(props) {
         number: parseInt(newAmount),
         amount: props.bill.amount,
         id: props.bill.id,
+        file,
       });
 
       props.setClientList(updatedBill);

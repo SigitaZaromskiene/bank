@@ -3,27 +3,39 @@ import { Global } from "./Global";
 import { useFile } from "./useFile";
 
 function DeleteImg(props) {
-  const { deleteImg, setDelImg, clientList, setClientList } =
-    useContext(Global);
+  const {
+    deleteImg,
+    setDelImg,
+    clientList,
+    setClientList,
+    setEditImg,
+    setCreateData,
+  } = useContext(Global);
 
-  const { remImage } = useFile();
+  const [file, readFile, remImage] = useFile();
 
   const deleteImgHandler = () => {
-    const updatedBill = clientList.map((bill) => {
-      if (bill.id !== props.bill.id) return bill;
-
-      props.setEditData({
-        amount: props.bill.amount,
-        id: props.bill.id,
-        deleteImg,
-      });
-
-      return bill;
-    });
+    // const updatedBill = clientList.map((bill) => {
+    //   if (bill.id !== props.bill.id) return bill;
 
     setDelImg(true);
-    setClientList(updatedBill);
+
+    props.setEditData({
+      number: parseInt(props.newAmount),
+      amount: props.bill.amount,
+      id: props.bill.id,
+      deleteImg,
+    });
   };
+
+  //   setEditImg({
+  //     deleteImg,
+  //   });
+
+  //   return bill;
+  // });
+
+  // setClientList(updatedBill);
 
   return (
     <>

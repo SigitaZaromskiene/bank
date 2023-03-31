@@ -106,6 +106,7 @@ function Bill(props) {
                 modal="modal"
                 onClick={remImage}
                 setEditData={props.setEditData}
+                setCreateData={props.setCreateData}
               />
             </div>
           </div>

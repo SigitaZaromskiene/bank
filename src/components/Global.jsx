@@ -16,6 +16,8 @@ export const GlobalProvider = ({ children }) => {
 
   const [deleteImg, setDelImg] = useState(false);
 
+  const [editImg, setEditImg] = useState(null);
+
   const [editModalTree, setEditModalTree] = useState();
 
   const logOut = (_) => {
@@ -42,7 +44,7 @@ export const GlobalProvider = ({ children }) => {
         setClientList,
         setCreateData,
         createData,
-
+        setEditImg,
         disabled,
         setDisabled,
         setAddOver1000,
