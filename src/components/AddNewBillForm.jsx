@@ -164,7 +164,6 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
             <div
               style={{
                 height: "120px",
-                width: "170px",
               }}
             >
               {file ? (
@@ -178,7 +177,16 @@ function AddNewBillForm({ setLastStateUpdate, flex, form, btnBig }) {
                     borderRadius: "50%",
                   }}
                 />
-              ) : null}
+              ) : (
+                <div
+                  style={{
+                    height: "120px",
+                    width: "120px",
+                    borderRadius: "50%",
+                    backgroundColor: "white",
+                  }}
+                ></div>
+              )}
             </div>
           </div>
         </div>
