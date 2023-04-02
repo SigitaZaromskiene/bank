@@ -33,7 +33,6 @@ function Login(props) {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.status === "ok") {
           setUserName(res.data.name);
           setName("");

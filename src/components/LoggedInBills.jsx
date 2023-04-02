@@ -214,10 +214,10 @@ function LoggedInBills(props) {
               All accounts
             </option>
             <option className={props.className} value="with">
-              With balance
+              With positive balance
             </option>
             <option className={props.className} value="without">
-              With minus balance
+              With negative balance
             </option>
             <option className={props.className} value="with0">
               With 0 balance
