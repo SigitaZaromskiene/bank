@@ -11,6 +11,7 @@ export const GlobalProvider = ({ children }) => {
   const [createData, setCreateData] = useState(null);
   // const [editBills, setEditBills] = useState(null);
   const [addOver1000, setAddOver1000] = useState(false);
+  // const [saveAmount, setSaveAmount] = useState(null);
 
   const [disabled, setDisabled] = useState(null);
 
@@ -42,7 +43,8 @@ export const GlobalProvider = ({ children }) => {
         setClientList,
         setCreateData,
         createData,
-
+        // setSaveAmount,
+        // saveAmount,
         disabled,
         setDisabled,
         setAddOver1000,

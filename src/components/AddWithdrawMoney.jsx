@@ -6,7 +6,8 @@ function AddWithdrawMoney(props) {
   const [modal, setModal] = useState({ class: "hidden", msg: "", color: "" });
   const [newAmount, setNewAmount] = useState("");
   const [addOver1000, setAddOver1000] = useState(false);
-  const { deleteImg, setSaveAmount, saveAmount } = useContext(Global);
+  const [saveAmount, setSaveAmount] = useState(0);
+  const { deleteImg } = useContext(Global);
 
   const [file, readFile, remImage] = useFile();
 
@@ -115,6 +116,11 @@ function AddWithdrawMoney(props) {
     setAddOver1000(false);
   };
 
+  function setCancel() {
+    setAddOver1000(false);
+    setNewAmount("");
+  }
+
   // if (!validateAmount) {
   //   setModal({
   //     class: "visible",
@@ -220,7 +226,7 @@ function AddWithdrawMoney(props) {
               <button className="button" onClick={addConfirmHandler}>
                 Confirm
               </button>
-              <button className="button" onClick={() => setAddOver1000(null)}>
+              <button className="button" onClick={setCancel}>
                 Cancel
               </button>
             </div>
